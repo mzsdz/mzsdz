@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>맛집신동진</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f6f4;
+      --panel: #ffffff;
+      --ink: #12201c;
+      --muted: #5d7169;
+      --line: #d5e0db;
+      --accent: #0f7a63;
+      --accent-soft: #d8f0e8;
+      --chip: #eef4f1;
+      --chip-on: #12201c;
+      --chip-on-text: #f3f6f4;
+      --tag-c: #e4f2ec;
+      --tag-r: #e4eef5;
+      --font: "IBM Plex Sans KR", system-ui, sans-serif;
+      --display: "Outfit", "IBM Plex Sans KR", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 70% 45% at 0% -5%, #d8f0e8 0%, transparent 55%),
+        radial-gradient(ellipse 55% 40% at 100% 0%, #dceaf5 0%, transparent 50%),
+        var(--bg);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2.25rem 0 4rem;
+    }
+
+    header {
+      margin-bottom: 1.75rem;
+      animation: rise 0.65s ease both;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 7vw, 3.8rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      border: none;
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .brand:hover {
+      opacity: 0.88;
+    }
+
+    .auth-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.45rem;
+      flex-shrink: 0;
+      padding-top: 0.35rem;
+    }
+
+    .auth-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .auth-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .auth-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .auth-btn {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .auth-btn:hover { border-color: #b7c9c1; }
+    .auth-btn.ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .auth-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .auth-btn.primary:hover { filter: brightness(0.95); }
+
+    .brand span { color: var(--accent); }
+
+    .lead {
+      color: var(--muted);
+      max-width: 34rem;
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .meta strong { color: var(--ink); font-weight: 600; }
+
+    .controls {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      animation: rise 0.65s ease 0.06s both;
+    }
+
+    .search { position: relative; }
+
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 0.95rem 1.1rem 0.95rem 2.85rem;
+      font: inherit;
+      font-size: 1rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search input::placeholder { color: #8aa097; }
+
+    .search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .search svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+
+    .filter-block { display: grid; gap: 0.5rem; }
+
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 0.36rem 0.68rem;
+      font: inherit;
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+    }
+
+    .chip:hover { transform: translateY(-1px); border-color: #b7c9c1; }
+    .chip.on {
+      background: var(--chip-on);
+      border-color: var(--chip-on);
+      color: var(--chip-on-text);
+      font-weight: 600;
+    }
+    .chip .count {
+      opacity: 0.5;
+      margin-left: 0.22rem;
+      font-size: 0.76rem;
+    }
+    .chip.on .count { opacity: 0.7; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.95rem;
+      animation: rise 0.65s ease 0.1s both;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem 0.9rem;
+    }
+
+    .toolbar-btn {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 0.38rem 0.7rem;
+      cursor: pointer;
+    }
+
+    .toolbar-btn:hover {
+      border-color: #b7c9c1;
+      background: var(--chip);
+    }
+
+    .toolbar-btn.on {
+      background: var(--chip-on);
+      border-color: var(--chip-on);
+      color: var(--chip-on-text);
+    }
+
+    .result-count { font-size: 0.95rem; color: var(--muted); }
+    .result-count strong { color: var(--accent); }
+
+    .reset {
+      border: none;
+      background: transparent;
+      color: var(--accent);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .grid.select-mode .place {
+      cursor: pointer;
+    }
+
+    .place {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.05rem 1.1rem 0.95rem;
+      display: grid;
+      gap: 0.5rem;
+      transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+      position: relative;
+    }
+
+    .place.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    .place-check {
+      position: absolute;
+      top: 0.7rem;
+      left: 0.7rem;
+      width: 1.15rem;
+      height: 1.15rem;
+      border: 2px solid #9aafa6;
+      border-radius: 4px;
+      background: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .grid.select-mode .place-check {
+      display: inline-flex;
+    }
+
+    .grid.select-mode .place {
+      padding-left: 2.2rem;
+    }
+
+    .place.selected .place-check {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .place.selected .place-check::after {
+      content: "✓";
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .grid.anim .place {
+      animation: rise 0.35s ease both;
+    }
+
+    .place:hover {
+      transform: translateY(-2px);
+      border-color: #b7c9c1;
+      box-shadow: 0 8px 24px rgba(18, 32, 28, 0.06);
+    }
+
+    .grid.select-mode .place.selected:hover {
+      border-color: var(--accent);
+    }
+
+    .bulk-bar {
+      position: sticky;
+      bottom: 0.75rem;
+      z-index: 40;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .bulk-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem 0.65rem;
+      padding: 0.75rem 0.9rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(18, 32, 28, 0.12);
+    }
+
+    .bulk-count {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-right: 0.2rem;
+    }
+
+    .bulk-kind {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .bulk-kind button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.38rem 0.65rem;
+      cursor: pointer;
+    }
+
+    .bulk-kind button.on {
+      background: var(--chip-on);
+      color: var(--chip-on-text);
+    }
+
+    .bulk-bar input[type="text"] {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.42rem 0.65rem;
+      font: inherit;
+      font-size: 0.88rem;
+      min-width: 9rem;
+      flex: 1 1 8rem;
+    }
+
+    .bulk-bar .bulk-add {
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 0.42rem 0.9rem;
+      cursor: pointer;
+    }
+
+    .bulk-bar .bulk-add:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .bulk-bar .bulk-ghost {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .scroll-sentinel {
+      height: 1px;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .place-blurb {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: var(--ink);
+      background: var(--accent-soft);
+      border-radius: 8px;
+      padding: 0.55rem 0.7rem;
+      white-space: pre-wrap;
+    }
+
+    .place-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .place-head-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .place-delete {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.15rem;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .place-delete:hover {
+      color: #a33;
+    }
+
+    .place h2 {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .stars {
+      flex-shrink: 0;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #b8860b;
+      background: #fff6d8;
+      border-radius: 6px;
+      padding: 0.18rem 0.45rem;
+      line-height: 1.2;
+    }
+
+    .stars.unvisited {
+      color: #5a6570;
+      background: #e8eef2;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    select.stars-edit {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid #e6d7a8;
+      background: #fff6d8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23b8860b' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 0.35rem center;
+      color: #b8860b;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 0.2rem 1.3rem 0.2rem 0.45rem;
+      cursor: pointer;
+      line-height: 1.2;
+      max-width: 5.8rem;
+    }
+
+    select.stars-edit.unvisited {
+      color: #5a6570;
+      background-color: #e8eef2;
+      border-color: #cfd8de;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235a6570' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    }
+
+    .place .addr {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .place .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      margin-top: 0.1rem;
+    }
+
+    .tag {
+      font-size: 0.76rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      color: var(--ink);
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .tag.cuisine { background: var(--tag-c); }
+    .tag.region { background: var(--tag-r); }
+    .tag:hover { filter: brightness(0.97); }
+
+    .region-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem 0.35rem;
+      min-height: 1.35rem;
+    }
+    .region-crumb {
+      border: none;
+      background: transparent;
+      color: var(--accent);
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0;
+    }
+    .region-crumb.current {
+      color: var(--ink);
+      text-decoration: none;
+      cursor: default;
+    }
+    .region-sep {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .tag.custom {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding-right: 0.28rem;
+    }
+
+    .tag-label {
+      border: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .tag-x {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.85em;
+      line-height: 1;
+      padding: 0.1rem 0.22rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tag-x:hover {
+      background: rgba(18, 32, 28, 0.08);
+      color: var(--ink);
+    }
+
+    .tag-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .tag-add input {
+      width: 5.5rem;
+      border: 1px dashed var(--line);
+      background: transparent;
+      border-radius: 6px;
+      padding: 0.18rem 0.4rem;
+      font: inherit;
+      font-size: 0.76rem;
+      color: var(--ink);
+      outline: none;
+    }
+    .tag-add input:focus {
+      border-color: var(--accent);
+      border-style: solid;
+    }
+
+    .tag-add-btn {
+      border: 1px dashed var(--line);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 6px;
+      padding: 0.18rem 0.42rem;
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      line-height: 1.2;
+    }
+    .tag-add-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tag-rows {
+      display: grid;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+    .tag-row {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0.35rem;
+      align-items: start;
+    }
+    .tag-row-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-top: 0.12rem;
+    }
+    .tag-row-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      align-items: center;
+      min-height: 1.6rem;
+    }
+
+    .naver {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 0.15rem;
+    }
+    .naver:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .empty {
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Auth / nickname modals ---- */
+    .auth-modal {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0;
+      width: min(92vw, 400px);
+      background: var(--panel);
+      color: var(--ink);
+      box-shadow: 0 20px 50px rgba(18, 32, 28, 0.18);
+      position: relative;
+    }
+    .auth-modal::backdrop {
+      background: rgba(18, 32, 28, 0.35);
+    }
+    .auth-modal-inner {
+      padding: 1.35rem 1.4rem 1.45rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .auth-modal h2 {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .auth-modal p.hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .auth-modal label {
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .auth-modal input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 0.85rem;
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      outline: none;
+    }
+    .auth-modal input[readonly] {
+      background: var(--chip);
+      color: var(--muted);
+      cursor: default;
+    }
+    .auth-actions {
+      display: grid;
+      gap: 0.45rem;
+    }
+    .auth-divider {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0.65rem;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .auth-divider::before,
+    .auth-divider::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+    }
+    .auth-provider {
+      display: grid;
+      gap: 0.4rem;
+    }
+    .auth-btn.kakao {
+      background: #fee500;
+      border-color: #fee500;
+      color: #191919;
+    }
+    .auth-btn.naver {
+      background: #03c75a;
+      border-color: #03c75a;
+      color: #fff;
+    }
+    .auth-btn.google {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+    .auth-status {
+      font-size: 0.84rem;
+      color: var(--accent);
+      min-height: 1.2em;
+    }
+    .auth-modal-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      border: none;
+      background: transparent;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0.25rem 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 1.2rem, 1100px); padding-top: 1.4rem; }
+      .brand { font-size: 2.2rem; }
+      .header-top { flex-direction: column; gap: 0.5rem; }
+      .auth-bar { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="header-top">
+        <button type="button" class="brand" id="homeBtn" title="홈으로" aria-label="홈으로">맛집<span>신동진</span></button>
+        <div class="auth-bar" id="authBar"></div>
+      </div>
+      <div class="meta">
+        <span>★★★ <strong id="star3Count">0</strong></span>
+        <span>★★ <strong id="star2Count">0</strong></span>
+        <span>★ <strong id="star1Count">0</strong></span>
+        <span>미방문 <strong id="star0Count">0</strong></span>
+        <span>전체 <strong id="totalCount">0</strong>곳</span>
+      </div>
+    </header>
+
+    <section class="controls">
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="q" type="search" placeholder="가게 이름, 주소, 태그 검색…" autocomplete="off" />
+      </div>
+
+      <div class="filter-block">
+        <div class="filter-label">별점</div>
+        <div class="chips" id="starChips"></div>
+      </div>
+
+      <div class="filter-block">
+        <div class="filter-label">지역</div>
+        <div class="region-nav" id="regionNav"></div>
+        <div class="chips" id="regionChips"></div>
+      </div>
+
+      <div class="filter-block">
+        <div class="filter-label">종류</div>
+        <div class="chips" id="cuisineChips"></div>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="result-count"><strong id="shownCount">0</strong>곳 표시</div>
+      <div class="toolbar-actions">
+        <button type="button" class="toolbar-btn" id="selectModeBtn" hidden>선택</button>
+        <button type="button" class="toolbar-btn" id="selectVisibleBtn" hidden>표시 중 선택</button>
+        <button type="button" class="reset" id="resetBtn">필터 초기화</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="scroll-sentinel" id="scrollSentinel" hidden aria-hidden="true"></div>
+    <div class="bulk-bar" id="bulkBar" hidden>
+      <div class="bulk-bar-inner">
+        <span class="bulk-count" id="bulkCount">0곳 선택</span>
+        <div class="bulk-kind" id="bulkKind">
+          <button type="button" data-kind="cuisine" class="on">종류</button>
+          <button type="button" data-kind="region">지역</button>
+        </div>
+        <input id="bulkLabel" type="text" maxlength="24" placeholder="추가할 태그" autocomplete="off" />
+        <button type="button" class="bulk-add" id="bulkAddBtn">추가</button>
+        <button type="button" class="bulk-ghost" id="bulkClearBtn">선택 해제</button>
+        <button type="button" class="bulk-ghost" id="bulkExitBtn">선택 종료</button>
+      </div>
+    </div>
+    <div class="empty" id="empty" hidden>조건에 맞는 곳이 없어요. 태그를 조금 줄여보세요.</div>
+  </div>
+
+  <dialog class="auth-modal" id="authModal">
+    <form method="dialog">
+      <button type="submit" class="auth-modal-close" id="authModalClose" aria-label="닫기">×</button>
+    </form>
+    <div class="auth-modal-inner">
+      <h2>로그인 / 회원가입</h2>
+      <p class="hint">Google 또는 이메일로 가입할 수 있어요. 닉네임은 가입 후 회원 정보에서 설정합니다.</p>
+      <div class="auth-provider">
+        <button type="button" class="auth-btn google" id="authGoogleBtn">Google로 계속</button>
+      </div>
+      <div class="auth-divider">또는 이메일</div>
+      <label>
+        이메일
+        <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" />
+      </label>
+      <div class="auth-actions">
+        <button type="button" class="auth-btn primary" id="authMagicBtn">매직 링크로 계속</button>
+      </div>
+      <p class="auth-status" id="authStatus" role="status"></p>
+    </div>
+  </dialog>
+
+  <dialog class="auth-modal" id="profileModal">
+    <form method="dialog">
+      <button type="submit" class="auth-modal-close" id="profileModalClose" aria-label="닫기">×</button>
+    </form>
+    <form class="auth-modal-inner" id="profileForm">
+      <h2>회원 정보</h2>
+      <p class="hint">표시 이름(닉네임)을 수정할 수 있어요.</p>
+      <label>
+        이메일
+        <input id="profileEmail" type="email" readonly tabindex="-1" />
+      </label>
+      <label>
+        닉네임
+        <input id="profileNickname" type="text" autocomplete="nickname" placeholder="2자 이상" maxlength="24" required />
+      </label>
+      <div class="auth-actions">
+        <button type="submit" class="auth-btn primary">저장</button>
+      </div>
+      <p class="auth-status" id="profileStatus" role="status"></p>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./js/supabase-client.js"></script>
+  <script src="./js/place-social.js"></script>
+  <script src="./places.js"></script>
+  <script>
+    const CATEGORY_ALIASES = {
+      "바(BAR)": "바",
+      BAR: "바",
+      "백숙,삼계탕": "삼계탕",
+      "순대,순댓국": "순대",
+      "족발,보쌈": "족발·보쌈",
+      "곱창,막창,양": "곱창·막창",
+      "곰탕,설렁탕": "곰탕·설렁탕",
+      "칼국수,만두": "칼국수",
+      "장어,먹장어요리": "장어",
+      "육류,고기요리": "고기",
+      "맥주,호프": "맥주·호프",
+      "다이어트,샐러드": "샐러드",
+      "카페,디저트": "카페",
+      "백반,가정식": "백반",
+      "떡류제조": "떡",
+      "일본식라면": "라멘",
+      "돼지고기구이": "돼지고기",
+      "소고기구이": "소고기",
+      "브런치카페": "브런치",
+      "베트남음식": "베트남",
+      "인도음식": "인도",
+      "아시아음식": "아시아",
+      "프랑스음식": "프랑스",
+      "이탈리아음식": "이탈리아",
+      "멕시코,남미음식": "멕시코",
+      "멕시코음식": "멕시코",
+      "아귀찜,해물찜": "해물찜",
+      "스파게티,파스타전문": "파스타",
+      "전,빈대떡": "전·빈대떡",
+      "치킨,닭강정": "치킨",
+      "사철,영양탕": "영양탕",
+      "일식당": "일식",
+      "중식당": "중식",
+      "한식당": "한식",
+      "요리주점": "술집",
+      "포장마차": "포차",
+      "종합분식": "분식",
+      "돈가스": "돈가스",
+      "돈까스": "돈가스",
+      "국수": "국수",
+      "냉면": "냉면",
+      "김밥": "김밥",
+      "카레": "카레",
+      "베이글": "베이글",
+      "브런치": "브런치",
+      "국밥": "국밥",
+      "감자탕": "감자탕",
+      "해장국": "해장국",
+      "추어탕": "추어탕",
+      "양꼬치": "양꼬치",
+      "닭갈비": "닭갈비",
+      "생선회": "회",
+      "횟집": "회",
+      "초밥": "초밥",
+      "스시": "초밥",
+      "라멘": "라멘",
+      "우동": "우동",
+      "소바": "소바",
+      "떡볶이": "떡볶이",
+      "마라탕": "마라탕",
+      "한정식": "한정식",
+      "햄버거": "햄버거",
+      "피자": "피자",
+      "스테이크": "스테이크",
+      "샤브샤브": "샤브샤브",
+      "이자카야": "이자카야",
+      "덮밥": "덮밥",
+      "만두": "만두",
+      "쌈밥": "쌈밥",
+      "게장": "게장",
+      "조개요리": "조개",
+      "해물": "해물",
+      "베이커리": "베이커리",
+      "디저트": "디저트",
+      "아이스크림": "아이스크림",
+      "와인": "와인",
+      "주류": "주류",
+      "카페": "카페",
+      "한식": "한식",
+      "양식": "양식",
+      "중식": "중식",
+      "일식": "일식",
+      "분식": "분식",
+      "술집": "술집",
+      "바": "바",
+    };
+
+    const GENERIC_CUISINE = new Set([
+      "음식점",
+      "일반",
+      "기타",
+      "여가",
+      "생활/문화",
+      "쇼핑",
+    ]);
+
+    // Extra tags split out from compound Naver categories
+    const CATEGORY_EXTRA_TAGS = {
+      "카페,디저트": ["디저트"],
+      "족발,보쌈": ["족발", "보쌈"],
+      "곱창,막창,양": ["곱창", "막창"],
+      "곰탕,설렁탕": ["곰탕", "설렁탕"],
+      "칼국수,만두": ["만두"],
+      "백숙,삼계탕": ["백숙", "삼계탕"],
+      "순대,순댓국": ["순댓국"],
+      "치킨,닭강정": ["닭강정"],
+      "전,빈대떡": ["전", "빈대떡"],
+      "아귀찜,해물찜": ["아귀찜", "해물"],
+      "맥주,호프": ["맥주", "호프"],
+      "스파게티,파스타전문": ["스파게티"],
+      "소고기구이": ["한우"],
+    };
+
+    const METRO_SIDOS = new Set(["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종"]);
+    const KNOWN_SIDOS = new Set([
+      "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
+      "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주",
+    ]);
+
+    /** 법정동(용산동2가 등) → 행정구 복원용 */
+    const DISTRICT_SIDO = {
+      종로구: "서울", 중구: "서울", 용산구: "서울", 성동구: "서울", 광진구: "서울",
+      동대문구: "서울", 중랑구: "서울", 성북구: "서울", 강북구: "서울", 도봉구: "서울",
+      노원구: "서울", 은평구: "서울", 서대문구: "서울", 마포구: "서울", 양천구: "서울",
+      강서구: "서울", 구로구: "서울", 금천구: "서울", 영등포구: "서울", 동작구: "서울",
+      관악구: "서울", 서초구: "서울", 강남구: "서울", 송파구: "서울", 강동구: "서울",
+      해운대구: "부산", 수영구: "부산", 부산진구: "부산", 동래구: "부산", 남구: "부산",
+      북구: "부산", 사상구: "부산", 사하구: "부산", 금정구: "부산", 연제구: "부산",
+      수성구: "대구", 달서구: "대구",
+      연수구: "인천", 남동구: "인천", 부평구: "인천", 계양구: "인천", 미추홀구: "인천",
+      서구: "인천", 동구: "인천",
+    };
+
+    function normalizeSido(raw) {
+      const s = (raw || "").trim();
+      if (s.startsWith("서울")) return "서울";
+      if (s.startsWith("부산")) return "부산";
+      if (s.startsWith("대구")) return "대구";
+      if (s.startsWith("인천")) return "인천";
+      if (s.startsWith("광주")) return "광주";
+      if (s.startsWith("대전")) return "대전";
+      if (s.startsWith("울산")) return "울산";
+      if (s.startsWith("세종")) return "세종";
+      if (s.startsWith("경기")) return "경기";
+      if (s.startsWith("강원")) return "강원";
+      if (s.startsWith("충북") || s.startsWith("충청북")) return "충북";
+      if (s.startsWith("충남") || s.startsWith("충청남")) return "충남";
+      if (s.startsWith("전북") || s.startsWith("전라북")) return "전북";
+      if (s.startsWith("전남") || s.startsWith("전라남")) return "전남";
+      if (s.startsWith("경북") || s.startsWith("경상북")) return "경북";
+      if (s.startsWith("경남") || s.startsWith("경상남")) return "경남";
+      if (s.startsWith("제주")) return "제주";
+      return s
+        .replace(/특별자치도$/, "")
+        .replace(/특별시$/, "")
+        .replace(/광역시$/, "")
+        .replace(/특별자치시$/, "")
+        .replace(/도$/, "");
+    }
+
+    function isLegalDongToken(token) {
+      const t = String(token || "").trim();
+      return /동\d*가$/.test(t) || /[가-힣]+동$/.test(t);
+    }
+
+    /** 용산동2가 → { sido: 서울, district: 용산구 } */
+    function regionFromLegalDong(token) {
+      const t = String(token || "").trim();
+      const m = t.match(/^(.+?)동\d*가$/);
+      if (!m) return null;
+      const district = `${m[1]}구`;
+      const sido = DISTRICT_SIDO[district];
+      if (!sido) return null;
+      return { sido, city: null, district };
+    }
+
+    /** @returns {{ sido: string|null, city: string|null, district: string|null }} */
+    function parseRegionPath(address) {
+      const parts = String(address || "").trim().split(/\s+/).filter(Boolean);
+      const first = parts[0] || "";
+      const second = parts[1] || "";
+      const third = parts[2] || "";
+
+      // Incomplete jibun-only address: "용산동2가 1-206 …"
+      const fromDong = regionFromLegalDong(first);
+      if (fromDong) return fromDong;
+
+      const sidoRaw = normalizeSido(first);
+      if (!KNOWN_SIDOS.has(sidoRaw)) {
+        // Don't treat 법정동/잡토큰 as a region tag (e.g. 관양동).
+        return { sido: null, city: null, district: null };
+      }
+      const sido = sidoRaw;
+      let city = null;
+      let district = null;
+
+      if (METRO_SIDOS.has(sido)) {
+        if (/구$/.test(second) && !isLegalDongToken(second)) district = second;
+      } else if (/시$|군$/.test(second)) {
+        city = second.replace(/(시|군)$/, "");
+        if (/구$/.test(third) && !isLegalDongToken(third)) district = third;
+      } else if (/구$/.test(second) && !isLegalDongToken(second)) {
+        district = second;
+      }
+
+      return { sido, city, district };
+    }
+
+    function regionLabels(path) {
+      const labels = [];
+      const push = (l) => {
+        const v = String(l || "").trim();
+        if (!v) return;
+        if (labels.some((x) => x.toLowerCase() === v.toLowerCase())) return;
+        labels.push(v);
+      };
+      push(path?.sido);
+      // Avoid 대구+대구 when city was wrongly filled with the same sido name.
+      if (path?.city && path.city !== path.sido) push(path.city);
+      if (path?.district && path.district !== path.sido && path.district !== path.city) {
+        push(path.district);
+      }
+      return labels;
+    }
+
+    function emptyRegionPath() {
+      return { sido: null, city: null, district: null };
+    }
+
+    function normTagKey(label) {
+      return String(label || "")
+        .trim()
+        .normalize("NFC")
+        .toLowerCase();
+    }
+
+    function dedupeTagViews(views) {
+      const map = new Map();
+      for (const v of views || []) {
+        const key = normTagKey(v?.label);
+        if (!key) continue;
+        const prev = map.get(key);
+        // Prefer the one that exists in DB (has tagId).
+        if (!prev || (!prev.tagId && v.tagId)) map.set(key, v);
+      }
+      return [...map.values()];
+    }
+
+    /** Build hierarchy from flat region tag labels (DB). */
+    function deriveRegionPath(labels) {
+      const list = [
+        ...new Set(
+          (labels || [])
+            .map((l) => String(l || "").trim())
+            .filter((l) => l && !isLegalDongToken(l))
+        ),
+      ];
+      const sido = list.find((l) => KNOWN_SIDOS.has(l)) || null;
+      const district = list.find((l) => /구$/.test(l)) || null;
+      let city = null;
+      if (sido && !METRO_SIDOS.has(sido)) {
+        city =
+          list.find(
+            (l) =>
+              l !== sido &&
+              l !== district &&
+              !KNOWN_SIDOS.has(l) &&
+              !/구$/.test(l)
+          ) || null;
+      }
+      if (city && city === sido) city = null;
+      return { sido, city, district };
+    }
+
+    function regionExtras(labels, path) {
+      const used = new Set(
+        [path?.sido, path?.city, path?.district].filter(Boolean).map((l) => normTagKey(l))
+      );
+      return (labels || []).filter(
+        (l) => l && !used.has(normTagKey(l)) && !isLegalDongToken(l)
+      );
+    }
+
+    function parseCuisine(category) {
+      const raw = (category || "").trim();
+      const tags = [];
+
+      const push = (t) => {
+        const v = (t || "").trim();
+        if (!v || GENERIC_CUISINE.has(v) || tags.includes(v)) return;
+        tags.push(v);
+      };
+
+      if (CATEGORY_ALIASES[raw]) push(CATEGORY_ALIASES[raw]);
+      for (const extra of CATEGORY_EXTRA_TAGS[raw] || []) push(extra);
+
+      for (const piece of raw.split(",").map((s) => s.trim()).filter(Boolean)) {
+        if (CATEGORY_ALIASES[piece]) push(CATEGORY_ALIASES[piece]);
+        else {
+          const cleaned = piece
+            .replace(/\(BAR\)/gi, "")
+            .replace(/전문$/, "")
+            .replace(/요리$/, "")
+            .trim();
+          if (!GENERIC_CUISINE.has(cleaned)) push(cleaned);
+        }
+      }
+
+      if (/카페/.test(raw)) push("카페");
+      if (/디저트/.test(raw)) push("디저트");
+      if (/BAR|바\(/.test(raw)) push("바");
+
+      return tags;
+    }
+
+    function starLabel(n) {
+      if (n >= 3) return "★★★";
+      if (n === 2) return "★★";
+      if (n === 1) return "★";
+      return "미방문";
+    }
+
+    function enrich(place, index) {
+      const rawStars = Number(place.stars);
+      const stars = Number.isFinite(rawStars) ? rawStars : 1;
+      const baseCuisine = parseCuisine(place.category);
+      const addressRegionPath = parseRegionPath(place.address);
+      const addressRegionLabels = regionLabels(addressRegionPath);
+      const tags = [
+        ...baseCuisine.map((t) => ({ type: "cuisine", label: t })),
+        ...addressRegionLabels.map((t) => ({ type: "region", label: t })),
+      ];
+      const baseSearchText = [
+        place.name,
+        place.category,
+        place.address,
+        place.list || "",
+        ...baseCuisine,
+        ...addressRegionLabels,
+      ]
+        .join(" ")
+        .toLowerCase();
+      const searchText = `${baseSearchText} ${starLabel(stars)}`.toLowerCase();
+      const query = encodeURIComponent(`${place.name} ${place.address.split(" ").slice(0, 3).join(" ")}`);
+      const naverUrl = place.sid
+        ? `https://map.naver.com/p/entry/place/${place.sid}`
+        : `https://map.naver.com/v5/search/${query}`;
+      return {
+        ...place,
+        stars,
+        baseStars: stars,
+        id: index,
+        baseCuisine,
+        cuisine: [...baseCuisine],
+        cuisineSet: new Set(baseCuisine),
+        cuisineTags: baseCuisine.map((label) => ({ type: "cuisine", label })),
+        customTags: [],
+        addressRegionPath,
+        addressRegionLabels,
+        regionPath: { ...addressRegionPath },
+        region: [...addressRegionLabels],
+        regionTags: addressRegionLabels.map((label) => ({ type: "region", label })),
+        extraRegions: [],
+        tags,
+        searchText,
+        baseSearchText,
+        naverUrl,
+      };
+    }
+
+    const allPlaces = (window.PLACES || []).map(enrich)
+      .sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name, "ko"));
+    /** @type {typeof allPlaces} */
+    let places = allPlaces.slice();
+    /** @type {Set<string>} */
+    let hiddenSids = new Set();
+    /** @type {Record<string, number>} */
+    let starsBySid = {};
+
+    const state = {
+      q: "",
+      stars: new Set(),
+      regionPath: emptyRegionPath(),
+      customRegion: null,
+      cuisines: new Set(),
+    };
+
+    /** @type {Record<string, string>} */
+    let memosBySid = {};
+    /** @type {Record<string, Array<{ id: string, label: string, kind?: string }>>} */
+    let tagsBySid = {};
+    /** After admin seed, DB is the only source for that kind (so deletes stick). */
+    let cuisineDbReady = false;
+    let regionDbReady = false;
+
+    const els = {
+      totalCount: document.getElementById("totalCount"),
+      star1Count: document.getElementById("star1Count"),
+      star2Count: document.getElementById("star2Count"),
+      star3Count: document.getElementById("star3Count"),
+      star0Count: document.getElementById("star0Count"),
+      shownCount: document.getElementById("shownCount"),
+      starChips: document.getElementById("starChips"),
+      regionNav: document.getElementById("regionNav"),
+      regionChips: document.getElementById("regionChips"),
+      cuisineChips: document.getElementById("cuisineChips"),
+      grid: document.getElementById("grid"),
+      empty: document.getElementById("empty"),
+      scrollSentinel: document.getElementById("scrollSentinel"),
+      q: document.getElementById("q"),
+      resetBtn: document.getElementById("resetBtn"),
+      homeBtn: document.getElementById("homeBtn"),
+      selectModeBtn: document.getElementById("selectModeBtn"),
+      selectVisibleBtn: document.getElementById("selectVisibleBtn"),
+      bulkBar: document.getElementById("bulkBar"),
+      bulkCount: document.getElementById("bulkCount"),
+      bulkKind: document.getElementById("bulkKind"),
+      bulkLabel: document.getElementById("bulkLabel"),
+      bulkAddBtn: document.getElementById("bulkAddBtn"),
+      bulkClearBtn: document.getElementById("bulkClearBtn"),
+      bulkExitBtn: document.getElementById("bulkExitBtn"),
+    };
+
+    const PAGE_SIZE = 48;
+    let visibleLimit = PAGE_SIZE;
+    let filterKey = "";
+    let renderQueued = false;
+    let hasMore = false;
+    let selectMode = false;
+    let bulkKind = "cuisine";
+    /** @type {Set<string>} */
+    const selectedSids = new Set();
+    /** @type {object[]} */
+    let lastShownPlaces = [];
+    /** @type {Map<string, object>} */
+    const placeBySid = new Map();
+
+    function rebuildPlaceIndex() {
+      placeBySid.clear();
+      for (const p of places) {
+        if (p.sid) placeBySid.set(String(p.sid), p);
+      }
+    }
+
+    function computeStarStats() {
+      return [
+        ["★★★", places.filter((p) => p.stars === 3).length],
+        ["★★", places.filter((p) => p.stars === 2).length],
+        ["★", places.filter((p) => p.stars === 1).length],
+        ["미방문", places.filter((p) => p.stars === 0).length],
+      ];
+    }
+
+    let starStats = computeStarStats();
+    rebuildPlaceIndex();
+
+    function applyHiddenPlaces(sids) {
+      hiddenSids = new Set((sids || []).map(String));
+      places = allPlaces.filter((p) => !p.sid || !hiddenSids.has(String(p.sid)));
+      starStats = computeStarStats();
+      rebuildPlaceIndex();
+      for (const sid of [...selectedSids]) {
+        if (hiddenSids.has(sid) || !placeBySid.has(sid)) selectedSids.delete(sid);
+      }
+    }
+
+    function applyStarOverrides(map) {
+      starsBySid = map || {};
+      for (const place of allPlaces) {
+        const sid = place.sid ? String(place.sid) : "";
+        const override = sid ? starsBySid[sid] : undefined;
+        place.stars = Number.isFinite(override) ? Number(override) : place.baseStars;
+        place.searchText = [
+          place.baseSearchText,
+          starLabel(place.stars),
+          ...(place.cuisine || []),
+          ...(place.region || []),
+        ]
+          .join(" ")
+          .toLowerCase();
+      }
+      allPlaces.sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name, "ko"));
+      places = allPlaces.filter((p) => !p.sid || !hiddenSids.has(String(p.sid)));
+      starStats = computeStarStats();
+      rebuildPlaceIndex();
+    }
+
+    function countBy(getter) {
+      const map = new Map();
+      for (const p of places) {
+        for (const tag of getter(p)) {
+          map.set(tag, (map.get(tag) || 0) + 1);
+        }
+      }
+      return [...map.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ko"));
+    }
+
+    function applyCustomTags() {
+      const EMPTY = "__empty__";
+      for (const place of allPlaces) {
+        const custom = (tagsBySid[String(place.sid)] || []).filter((t) => t.label);
+        const cuisineAll = custom.filter((t) => t.kind !== "region");
+        const regionAll = custom.filter((t) => t.kind === "region");
+        const cuisineCustom = cuisineAll.filter((t) => t.label !== EMPTY);
+        const regionCustom = regionAll.filter(
+          (t) => t.label !== EMPTY && !isLegalDongToken(t.label)
+        );
+        const cuisineCleared = cuisineAll.some((t) => t.label === EMPTY);
+        const regionCleared = regionAll.some((t) => t.label === EMPTY);
+        place.customTags = [...cuisineCustom, ...regionCustom];
+
+        // Cuisine: DB is source of truth once seeded / present / explicitly cleared.
+        if (cuisineDbReady || cuisineCustom.length > 0 || cuisineCleared) {
+          place.cuisine = cuisineCustom.map((t) => t.label);
+          place.cuisineSet = new Set(place.cuisine);
+          place.cuisineTags = cuisineCustom.map((t) => ({
+            type: "cuisine",
+            label: t.label,
+            tagId: t.id,
+          }));
+        } else {
+          place.cuisine = [...(place.baseCuisine || [])];
+          place.cuisineSet = new Set(place.cuisine);
+          place.cuisineTags = (place.baseCuisine || []).map((label) => ({
+            type: "cuisine",
+            label,
+          }));
+        }
+
+        // Region: same rule.
+        if (regionDbReady || regionCustom.length > 0 || regionCleared) {
+          let path = deriveRegionPath(regionCustom.map((t) => t.label));
+          const addr = place.addressRegionPath || emptyRegionPath();
+          path = {
+            sido: path.sido || addr.sido || null,
+            city: path.city || addr.city || null,
+            district: path.district || addr.district || null,
+          };
+          if (path.city && path.sido && path.city === path.sido) path.city = null;
+
+          const byLabel = new Map();
+          for (const t of regionCustom) {
+            const key = normTagKey(t.label);
+            if (!key) continue;
+            const prev = byLabel.get(key);
+            if (!prev || (!prev.id && t.id)) byLabel.set(key, t);
+          }
+
+          const regionTagViews = [];
+          const seen = new Set();
+          const pushLabel = (label, preferDb = true) => {
+            const key = normTagKey(label);
+            if (!key || seen.has(key)) return;
+            seen.add(key);
+            const hit = byLabel.get(key);
+            if (hit && preferDb) {
+              regionTagViews.push({ type: "region", label: hit.label, tagId: hit.id });
+            } else if (hit) {
+              regionTagViews.push({ type: "region", label: hit.label, tagId: hit.id });
+            } else {
+              regionTagViews.push({ type: "region", label: String(label).trim() });
+            }
+          };
+
+          for (const label of regionLabels(path)) pushLabel(label);
+          for (const t of regionCustom) {
+            const key = normTagKey(t.label);
+            if (!key || seen.has(key)) continue;
+            // Orphan district/city tags without hierarchy still show once.
+            seen.add(key);
+            regionTagViews.push({ type: "region", label: t.label, tagId: t.id });
+          }
+
+          place.regionPath = path;
+          place.regionTags = dedupeTagViews(regionTagViews);
+          place.region = place.regionTags.map((t) => t.label);
+          place.extraRegions = regionExtras(place.region, path).filter(
+            (l) => !/(구|시|군)$/.test(l)
+          );
+        } else {
+          const allRegionLabels = [...(place.addressRegionLabels || [])];
+          place.regionPath = deriveRegionPath(allRegionLabels);
+          place.regionTags = dedupeTagViews(
+            allRegionLabels.map((label) => ({ type: "region", label }))
+          );
+          place.region = place.regionTags.map((t) => t.label);
+          place.extraRegions = regionExtras(place.region, place.regionPath).filter(
+            (l) => !/(구|시|군)$/.test(l)
+          );
+        }
+
+        place.tags = [...place.cuisineTags, ...place.regionTags];
+        place.searchText = [
+          place.baseSearchText,
+          starLabel(place.stars),
+          ...place.cuisine,
+          ...place.region,
+        ]
+          .join(" ")
+          .toLowerCase();
+      }
+    }
+
+    function cuisineStats() {
+      const stats = countBy((p) => p.cuisine);
+      const selected = state.cuisines;
+      if (stats.length <= 60) return stats;
+      const top = stats.slice(0, 60);
+      const topSet = new Set(top.map(([k]) => k));
+      for (const label of selected) {
+        if (!topSet.has(label)) {
+          const hit = stats.find(([k]) => k === label);
+          if (hit) top.push(hit);
+        }
+      }
+      return top;
+    }
+
+    function placesMatchingRegion(path) {
+      return places.filter((p) => {
+        const rp = p.regionPath || emptyRegionPath();
+        if (path.sido && rp.sido !== path.sido) return false;
+        if (path.city && rp.city !== path.city) return false;
+        if (path.district && rp.district !== path.district) return false;
+        return true;
+      });
+    }
+
+    function countField(list, getter) {
+      const map = new Map();
+      for (const p of list) {
+        const key = getter(p);
+        if (!key) continue;
+        map.set(key, (map.get(key) || 0) + 1);
+      }
+      return [...map.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ko"));
+    }
+
+    function isAdminAreaLabel(label) {
+      const l = String(label || "").trim();
+      if (!l) return false;
+      if (KNOWN_SIDOS.has(l)) return true;
+      return /(구|시|군)$/.test(l);
+    }
+
+    function currentRegionLevelStats() {
+      const { sido, city, district } = state.regionPath;
+      if (!sido || state.customRegion) {
+        // Top level: only real 시도. Districts like 남구/중구 must not appear here.
+        const sidoStats = countField(places, (p) => p.regionPath?.sido).filter(([k]) =>
+          KNOWN_SIDOS.has(k)
+        );
+        const customStats = countBy((p) => p.extraRegions || []);
+        const sidoSet = new Set(sidoStats.map(([k]) => k));
+        const extras = customStats.filter(
+          ([k]) => !sidoSet.has(k) && !isAdminAreaLabel(k)
+        );
+        return [...sidoStats, ...extras];
+      }
+      if (METRO_SIDOS.has(sido)) {
+        return countField(
+          placesMatchingRegion({ sido, city: null, district: null }),
+          (p) => p.regionPath?.district
+        );
+      }
+      if (!city) {
+        return countField(
+          placesMatchingRegion({ sido, city: null, district: null }),
+          (p) => p.regionPath?.city
+        );
+      }
+      return countField(
+        placesMatchingRegion({ sido, city, district: null }),
+        (p) => p.regionPath?.district
+      );
+    }
+
+    function isSidoLabel(label) {
+      return KNOWN_SIDOS.has(label);
+    }
+
+    function renderRegionNav() {
+      if (!els.regionNav) return;
+      els.regionNav.innerHTML = "";
+      const { sido, city, district } = state.regionPath;
+      if (!sido && !state.customRegion) return;
+
+      const addCrumb = (label, onClick) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "region-crumb" + (onClick ? "" : " current");
+        btn.textContent = label;
+        if (onClick) btn.addEventListener("click", onClick);
+        els.regionNav.appendChild(btn);
+      };
+      const addSep = () => {
+        const sep = document.createElement("span");
+        sep.className = "region-sep";
+        sep.textContent = "›";
+        els.regionNav.appendChild(sep);
+      };
+
+      addCrumb("전체", () => {
+        state.regionPath = emptyRegionPath();
+        state.customRegion = null;
+        scheduleRender();
+      });
+
+      if (state.customRegion) {
+        addSep();
+        addCrumb(state.customRegion, null);
+        return;
+      }
+
+      addSep();
+      addCrumb(sido, district || city ? () => {
+        state.regionPath = { sido, city: null, district: null };
+        state.customRegion = null;
+        scheduleRender();
+      } : null);
+
+      if (city) {
+        addSep();
+        addCrumb(city, district ? () => {
+          state.regionPath = { sido, city, district: null };
+          scheduleRender();
+        } : null);
+      }
+      if (district) {
+        addSep();
+        addCrumb(district, null);
+      }
+    }
+
+    function renderRegionChips() {
+      renderRegionNav();
+      const stats = currentRegionLevelStats();
+      const { sido, city, district } = state.regionPath;
+      let selected = null;
+      if (state.customRegion) selected = state.customRegion;
+      else if (sido && METRO_SIDOS.has(sido)) selected = district;
+      else if (sido && city) selected = district;
+
+      els.regionChips.innerHTML = "";
+      for (const [label, count] of stats) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        const on =
+          state.customRegion === label ||
+          selected === label;
+        btn.className = "chip" + (on ? " on" : "");
+        btn.innerHTML = `${label}<span class="count">${count}</span>`;
+        btn.addEventListener("click", () => {
+          if (state.customRegion || (!state.regionPath.sido && !state.customRegion)) {
+            if (!isSidoLabel(label)) {
+              state.customRegion = state.customRegion === label ? null : label;
+              state.regionPath = emptyRegionPath();
+            } else {
+              state.customRegion = null;
+              state.regionPath = { sido: label, city: null, district: null };
+            }
+          } else if (METRO_SIDOS.has(state.regionPath.sido)) {
+            state.regionPath = {
+              sido: state.regionPath.sido,
+              city: null,
+              district: state.regionPath.district === label ? null : label,
+            };
+          } else if (!state.regionPath.city) {
+            state.regionPath = {
+              sido: state.regionPath.sido,
+              city: label,
+              district: null,
+            };
+          } else {
+            state.regionPath = {
+              sido: state.regionPath.sido,
+              city: state.regionPath.city,
+              district: state.regionPath.district === label ? null : label,
+            };
+          }
+          scheduleRender();
+        });
+        els.regionChips.appendChild(btn);
+      }
+    }
+
+    function renderChips(container, stats, selected, { exclusive = false } = {}) {
+      container.innerHTML = "";
+      for (const [label, count] of stats) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chip" + (selected.has(label) ? " on" : "");
+        btn.innerHTML = `${label}<span class="count">${count}</span>`;
+        btn.addEventListener("click", () => {
+          if (exclusive) {
+            if (selected.has(label)) selected.clear();
+            else {
+              selected.clear();
+              selected.add(label);
+            }
+          } else if (selected.has(label)) {
+            selected.delete(label);
+          } else {
+            selected.add(label);
+          }
+          scheduleRender();
+        });
+        container.appendChild(btn);
+      }
+    }
+
+    function matches(place) {
+      if (state.q) {
+        const tokens = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+        const memo = (memosBySid[String(place.sid)] || "").toLowerCase();
+        const hay = `${place.searchText} ${memo}`;
+        if (!tokens.every((t) => hay.includes(t.replace(/^#/, "")))) return false;
+      }
+      if (state.stars.size) {
+        const ok =
+          (state.stars.has("★★★") && place.stars === 3) ||
+          (state.stars.has("★★") && place.stars === 2) ||
+          (state.stars.has("★") && place.stars === 1) ||
+          (state.stars.has("미방문") && place.stars === 0);
+        if (!ok) return false;
+      }
+      const rp = place.regionPath || emptyRegionPath();
+      const sp = state.regionPath;
+      if (state.customRegion) {
+        if (!(place.extraRegions || []).includes(state.customRegion)) return false;
+      } else {
+        if (sp.sido && rp.sido !== sp.sido) return false;
+        if (sp.city && rp.city !== sp.city) return false;
+        if (sp.district && rp.district !== sp.district) return false;
+      }
+      if (state.cuisines.size) {
+        for (const t of state.cuisines) {
+          if (!place.cuisineSet?.has(t)) return false;
+        }
+      }
+      return true;
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function currentFilterKey() {
+      const sp = state.regionPath;
+      return [
+        state.q,
+        [...state.stars].join(","),
+        sp.sido || "",
+        sp.city || "",
+        sp.district || "",
+        state.customRegion || "",
+        [...state.cuisines].join(","),
+      ].join("|");
+    }
+
+    function placeCardHtml(place, isAdmin) {
+      const renderTag = (t) => {
+        if (isAdmin && place.sid) {
+          const idAttr = t.tagId ? ` data-tag-id="${escapeHtml(t.tagId)}"` : "";
+          return `<span class="tag ${t.type} custom" data-type="${t.type}" data-label="${escapeHtml(t.label)}">
+            <button type="button" class="tag-label" data-type="${t.type}" data-label="${escapeHtml(t.label)}">${escapeHtml(t.label)}</button>
+            <button type="button" class="tag-x"${idAttr}
+              data-sid="${escapeHtml(String(place.sid))}"
+              data-kind="${escapeHtml(t.type)}"
+              data-label="${escapeHtml(t.label)}"
+              title="태그 삭제" aria-label="태그 삭제">×</button>
+          </span>`;
+        }
+        return `<button type="button" class="tag ${t.type}" data-type="${t.type}" data-label="${escapeHtml(t.label)}">${escapeHtml(t.label)}</button>`;
+      };
+
+      const cuisineHtml = (place.cuisineTags || [])
+        .map(renderTag)
+        .join("");
+      const regionHtml = (place.regionTags || [])
+        .map(renderTag)
+        .join("");
+
+      const cuisineAdd = isAdmin && place.sid
+        ? `<form class="tag-add" data-sid="${escapeHtml(String(place.sid))}" data-kind="cuisine">
+            <input type="text" name="label" maxlength="24" placeholder="추가" aria-label="종류 태그 추가" />
+            <button type="submit" class="tag-add-btn" title="종류 태그 추가">+</button>
+          </form>`
+        : "";
+      const regionAdd = isAdmin && place.sid
+        ? `<form class="tag-add" data-sid="${escapeHtml(String(place.sid))}" data-kind="region">
+            <input type="text" name="label" maxlength="24" placeholder="추가" aria-label="지역 태그 추가" />
+            <button type="submit" class="tag-add-btn" title="지역 태그 추가">+</button>
+          </form>`
+        : "";
+
+      const blurb = memosBySid[String(place.sid)];
+      const blurbHtml = blurb
+        ? `<p class="place-blurb">${escapeHtml(blurb)}</p>`
+        : "";
+
+      const starBadge =
+        isAdmin && place.sid && !selectMode
+          ? `<select class="stars-edit${place.stars === 0 ? " unvisited" : ""}" data-sid="${escapeHtml(String(place.sid))}" title="평점 변경" aria-label="평점 변경">
+              <option value="3"${place.stars === 3 ? " selected" : ""}>★★★</option>
+              <option value="2"${place.stars === 2 ? " selected" : ""}>★★</option>
+              <option value="1"${place.stars === 1 ? " selected" : ""}>★</option>
+              <option value="0"${place.stars === 0 ? " selected" : ""}>미방문</option>
+            </select>`
+          : `<span class="stars${place.stars === 0 ? " unvisited" : ""}" title="${starLabel(place.stars)}">${starLabel(place.stars)}</span>`;
+
+      return `
+        <span class="place-check" aria-hidden="true"></span>
+        <div class="place-head">
+          <h2>${escapeHtml(place.name)}</h2>
+          <div class="place-head-actions">
+            ${starBadge}
+            ${
+              isAdmin && place.sid && !selectMode
+                ? `<button type="button" class="place-delete" data-sid="${escapeHtml(String(place.sid))}" data-name="${escapeHtml(place.name)}" title="목록에서 삭제">삭제</button>`
+                : ""
+            }
+          </div>
+        </div>
+        ${blurbHtml}
+        <div class="tag-rows">
+          <div class="tag-row">
+            <div class="tag-row-label">종류</div>
+            <div class="tag-row-items">${cuisineHtml}${selectMode ? "" : cuisineAdd}</div>
+          </div>
+          <div class="tag-row">
+            <div class="tag-row-label">지역</div>
+            <div class="tag-row-items">${regionHtml}${selectMode ? "" : regionAdd}</div>
+          </div>
+        </div>
+        <a class="naver" href="${place.naverUrl}" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
+      `;
+    }
+
+    function selectTagForPlace(place, type, label) {
+      if (!place) return;
+      if (type === "region") {
+        const rp = place.regionPath || emptyRegionPath();
+        if ((place.extraRegions || []).includes(label)) {
+          state.customRegion = state.customRegion === label ? null : label;
+          state.regionPath = emptyRegionPath();
+        } else if (label === rp.sido) {
+          state.customRegion = null;
+          state.regionPath = { sido: rp.sido, city: null, district: null };
+        } else if (label === rp.city) {
+          state.customRegion = null;
+          state.regionPath = { sido: rp.sido, city: rp.city, district: null };
+        } else if (label === rp.district) {
+          state.customRegion = null;
+          state.regionPath = { sido: rp.sido, city: rp.city, district: rp.district };
+        } else {
+          state.customRegion = null;
+          state.regionPath = emptyRegionPath();
+        }
+      } else {
+        if (state.cuisines.has(label)) state.cuisines.clear();
+        else {
+          state.cuisines.clear();
+          state.cuisines.add(label);
+        }
+      }
+      scheduleRender();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function wireGridOnce() {
+      if (els.grid.dataset.wired) return;
+      els.grid.dataset.wired = "1";
+
+      els.grid.addEventListener("click", async (e) => {
+        const card = e.target.closest?.(".place");
+
+        if (selectMode && card?.dataset.sid) {
+          const interactive = e.target.closest?.(
+            "a, button, input, select, form, .tag, .tag-x, .tag-label, .tag-add"
+          );
+          if (!interactive) {
+            e.preventDefault();
+            const sid = String(card.dataset.sid);
+            if (selectedSids.has(sid)) selectedSids.delete(sid);
+            else selectedSids.add(sid);
+            card.classList.toggle("selected", selectedSids.has(sid));
+            updateBulkBar();
+            return;
+          }
+          // In select mode, tag clicks select the card instead of filtering.
+          if (e.target.closest?.("button.tag[data-label], button.tag-label[data-label], .tag.custom")) {
+            if (!e.target.closest?.(".tag-x")) {
+              e.preventDefault();
+              e.stopPropagation();
+              const sid = String(card.dataset.sid);
+              if (selectedSids.has(sid)) selectedSids.delete(sid);
+              else selectedSids.add(sid);
+              card.classList.toggle("selected", selectedSids.has(sid));
+              updateBulkBar();
+              return;
+            }
+          }
+        }
+
+        const delBtn = e.target.closest?.(".place-delete");
+        if (delBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const sid = delBtn.dataset.sid;
+          const name = delBtn.dataset.name || "이 가게";
+          if (!sid || !window.PlaceSocial?.hidePlace) return;
+          if (!confirm(`「${name}」을(를) 목록에서 삭제할까요?`)) return;
+          const result = await window.PlaceSocial.hidePlace(sid);
+          if (result?.error) alert(result.error);
+          return;
+        }
+
+        const xBtn = e.target.closest?.(".tag-x");
+        if (xBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!window.PlaceSocial) return;
+          const tagId = xBtn.dataset.tagId;
+          const kind = xBtn.dataset.kind === "region" ? "region" : "cuisine";
+          const label = xBtn.dataset.label;
+          const sid = xBtn.dataset.sid;
+          const place = placeBySid.get(String(sid));
+          let result;
+          if (tagId && window.PlaceSocial.removeTag) {
+            result = await window.PlaceSocial.removeTag(tagId);
+          } else if (window.PlaceSocial.removeTagByLabel) {
+            const current =
+              kind === "region" ? place?.region || [] : place?.cuisine || [];
+            const seedLabels = current.filter(
+              (l) => String(l).toLowerCase() !== String(label || "").toLowerCase()
+            );
+            result = await window.PlaceSocial.removeTagByLabel(sid, label, kind, {
+              seedLabels,
+            });
+          }
+          if (result?.error) alert(result.error);
+          return;
+        }
+
+        const tagBtn = e.target.closest?.("button.tag[data-label], button.tag-label[data-label]");
+        if (tagBtn) {
+          const place = placeBySid.get(String(card?.dataset.sid || ""));
+          selectTagForPlace(place, tagBtn.dataset.type, tagBtn.dataset.label);
+        }
+      });
+
+      els.grid.addEventListener("submit", async (e) => {
+        const form = e.target.closest?.("form.tag-add");
+        if (!form || !els.grid.contains(form)) return;
+        e.preventDefault();
+        const input = form.querySelector('input[name="label"]');
+        const label = (input?.value || "").trim();
+        const kind = form.dataset.kind === "region" ? "region" : "cuisine";
+        if (!label || !window.PlaceSocial?.addTag) return;
+        const result = await window.PlaceSocial.addTag(form.dataset.sid, label, kind);
+        if (result?.error) {
+          alert(result.error);
+          return;
+        }
+        if (input) input.value = "";
+      });
+
+      els.grid.addEventListener("change", async (e) => {
+        const sel = e.target.closest?.("select.stars-edit");
+        if (!sel || !els.grid.contains(sel)) return;
+        const sid = sel.dataset.sid;
+        const next = Number(sel.value);
+        if (!sid || !window.PlaceSocial?.setPlaceStars) return;
+        sel.disabled = true;
+        const result = await window.PlaceSocial.setPlaceStars(sid, next);
+        sel.disabled = false;
+        if (result?.error) {
+          alert(result.error);
+          const place = placeBySid.get(String(sid));
+          if (place) sel.value = String(place.stars);
+          return;
+        }
+      });
+    }
+
+    function updateBulkBar() {
+      const isAdmin = !!window.PlaceSocial?.isAdmin?.();
+      if (els.selectModeBtn) {
+        els.selectModeBtn.hidden = !isAdmin;
+        els.selectModeBtn.classList.toggle("on", selectMode);
+        els.selectModeBtn.textContent = selectMode ? "선택 중" : "선택";
+      }
+      if (els.selectVisibleBtn) {
+        els.selectVisibleBtn.hidden = !isAdmin || !selectMode;
+      }
+      if (els.bulkBar) {
+        els.bulkBar.hidden = !isAdmin || !selectMode;
+      }
+      if (els.bulkCount) {
+        els.bulkCount.textContent = `${selectedSids.size}곳 선택`;
+      }
+      if (els.bulkAddBtn) {
+        els.bulkAddBtn.disabled = selectedSids.size === 0;
+      }
+      els.grid.classList.toggle("select-mode", selectMode && isAdmin);
+    }
+
+    function setSelectMode(on) {
+      selectMode = !!on;
+      if (!selectMode) selectedSids.clear();
+      updateBulkBar();
+      scheduleRender();
+    }
+
+    function renderPlaces(list) {
+      const isAdmin = !!window.PlaceSocial?.isAdmin?.();
+      wireGridOnce();
+      lastShownPlaces = list;
+      els.grid.classList.toggle("anim", list.length <= PAGE_SIZE);
+      els.grid.classList.toggle("select-mode", selectMode && isAdmin);
+      const frag = document.createDocumentFragment();
+      for (const place of list) {
+        const article = document.createElement("article");
+        article.className = "place";
+        if (place.sid) {
+          article.dataset.sid = String(place.sid);
+          if (selectedSids.has(String(place.sid))) article.classList.add("selected");
+        }
+        article.innerHTML = placeCardHtml(place, isAdmin);
+        frag.appendChild(article);
+      }
+      els.grid.replaceChildren(frag);
+      updateBulkBar();
+    }
+
+    function scheduleRender() {
+      if (renderQueued) return;
+      renderQueued = true;
+      requestAnimationFrame(() => {
+        renderQueued = false;
+        render();
+      });
+    }
+
+    function render() {
+      const nextKey = currentFilterKey();
+      if (nextKey !== filterKey) {
+        filterKey = nextKey;
+        visibleLimit = PAGE_SIZE;
+      }
+
+      renderChips(els.starChips, starStats, state.stars, { exclusive: true });
+      renderRegionChips();
+      renderChips(els.cuisineChips, cuisineStats(), state.cuisines, { exclusive: true });
+
+      const filtered = places.filter(matches);
+      const shown = filtered.slice(0, visibleLimit);
+
+      els.totalCount.textContent = String(places.length);
+      els.star1Count.textContent = String(starStats.find(([k]) => k === "★")?.[1] || 0);
+      els.star2Count.textContent = String(starStats.find(([k]) => k === "★★")?.[1] || 0);
+      els.star3Count.textContent = String(starStats.find(([k]) => k === "★★★")?.[1] || 0);
+      if (els.star0Count) {
+        els.star0Count.textContent = String(starStats.find(([k]) => k === "미방문")?.[1] || 0);
+      }
+      els.shownCount.textContent =
+        filtered.length > shown.length
+          ? `${shown.length} / ${filtered.length}`
+          : String(filtered.length);
+      els.empty.hidden = filtered.length > 0;
+      hasMore = filtered.length > shown.length;
+      if (els.scrollSentinel) {
+        els.scrollSentinel.hidden = !hasMore;
+      }
+      renderPlaces(shown);
+    }
+
+    let searchTimer = 0;
+    els.q.addEventListener("input", () => {
+      state.q = els.q.value.trim();
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(() => scheduleRender(), 160);
+    });
+
+    function goHome() {
+      state.q = "";
+      state.stars.clear();
+      state.regionPath = emptyRegionPath();
+      state.customRegion = null;
+      state.cuisines.clear();
+      if (els.q) els.q.value = "";
+      if (selectMode) setSelectMode(false);
+      else scheduleRender();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    els.homeBtn?.addEventListener("click", goHome);
+
+    els.resetBtn.addEventListener("click", () => {
+      goHome();
+    });
+
+    els.selectModeBtn?.addEventListener("click", () => {
+      if (!window.PlaceSocial?.isAdmin?.()) return;
+      setSelectMode(!selectMode);
+    });
+
+    els.selectVisibleBtn?.addEventListener("click", () => {
+      if (!selectMode) return;
+      for (const place of lastShownPlaces) {
+        if (place.sid) selectedSids.add(String(place.sid));
+      }
+      scheduleRender();
+    });
+
+    els.bulkKind?.addEventListener("click", (e) => {
+      const btn = e.target.closest?.("button[data-kind]");
+      if (!btn) return;
+      bulkKind = btn.dataset.kind === "region" ? "region" : "cuisine";
+      els.bulkKind.querySelectorAll("button").forEach((b) => {
+        b.classList.toggle("on", b.dataset.kind === bulkKind);
+      });
+    });
+
+    els.bulkClearBtn?.addEventListener("click", () => {
+      selectedSids.clear();
+      scheduleRender();
+    });
+
+    els.bulkExitBtn?.addEventListener("click", () => {
+      setSelectMode(false);
+    });
+
+    els.bulkAddBtn?.addEventListener("click", async () => {
+      if (!window.PlaceSocial?.addTagsBulk) return;
+      const label = (els.bulkLabel?.value || "").trim();
+      if (!label) {
+        alert("태그 이름을 입력해 주세요.");
+        els.bulkLabel?.focus();
+        return;
+      }
+      if (!selectedSids.size) {
+        alert("가게를 먼저 선택해 주세요.");
+        return;
+      }
+      const kindLabel = bulkKind === "region" ? "지역" : "종류";
+      if (!confirm(`선택한 ${selectedSids.size}곳에 ${kindLabel} 태그 「${label}」을(를) 추가할까요?`)) {
+        return;
+      }
+      els.bulkAddBtn.disabled = true;
+      const result = await window.PlaceSocial.addTagsBulk([...selectedSids], label, bulkKind);
+      els.bulkAddBtn.disabled = selectedSids.size === 0;
+      if (result?.error) {
+        alert(result.error);
+        return;
+      }
+      const added = result?.added || 0;
+      const skipped = result?.skipped || 0;
+      if (els.bulkLabel) els.bulkLabel.value = "";
+      alert(`추가 ${added}곳` + (skipped ? `, 이미 있음 ${skipped}곳` : ""));
+    });
+
+    els.bulkLabel?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        els.bulkAddBtn?.click();
+      }
+    });
+
+    if (els.scrollSentinel && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((e) => e.isIntersecting)) return;
+          if (!hasMore) return;
+          visibleLimit += PAGE_SIZE;
+          scheduleRender();
+        },
+        { root: null, rootMargin: "600px 0px", threshold: 0 }
+      );
+      io.observe(els.scrollSentinel);
+    } else {
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!hasMore) return;
+          const nearBottom =
+            window.innerHeight + window.scrollY >= document.body.offsetHeight - 800;
+          if (!nearBottom) return;
+          visibleLimit += PAGE_SIZE;
+          scheduleRender();
+        },
+        { passive: true }
+      );
+    }
+
+    render();
+    let tagSeedStarted = false;
+    window.PlaceSocial?.init({
+      onMemosChange(map) {
+        memosBySid = map || {};
+        scheduleRender();
+      },
+      onTagsChange(map) {
+        tagsBySid = map || {};
+        applyCustomTags();
+        scheduleRender();
+      },
+      onHiddenChange(sids) {
+        applyHiddenPlaces(sids);
+        applyCustomTags();
+        filterKey = "";
+        scheduleRender();
+      },
+      onStarsChange(map) {
+        applyStarOverrides(map);
+        filterKey = "";
+        scheduleRender();
+      },
+      async onAuthChange(auth) {
+        if (!auth?.isAdmin && selectMode) {
+          selectMode = false;
+          selectedSids.clear();
+        }
+        updateBulkBar();
+        scheduleRender();
+        if (!auth?.isAdmin || tagSeedStarted) return;
+        if (!window.PlaceSocial?.seedRegionTags || !window.PlaceSocial?.seedCuisineTags) return;
+        tagSeedStarted = true;
+
+        const cuisineLabelSet = [
+          ...Object.values(CATEGORY_ALIASES),
+          ...Object.values(CATEGORY_EXTRA_TAGS).flat(),
+          "바",
+          "칵테일",
+          "위스키",
+          "이자카야",
+          "술집",
+          "포차",
+          "맥주",
+          "호프",
+          "와인",
+        ];
+
+        if (window.PlaceSocial.repairTagKinds) {
+          const repaired = await window.PlaceSocial.repairTagKinds({
+            cuisineLabels: cuisineLabelSet,
+            regionLabels: [...KNOWN_SIDOS],
+          });
+          if (repaired?.fixed) {
+            console.info(`[tags] repaired ${repaired.fixed} misclassified tags`);
+          }
+        }
+
+        const regionEntries = places
+          .filter((p) => p.sid)
+          .map((p) => ({
+            sid: p.sid,
+            labels: p.addressRegionLabels || [],
+          }));
+        const cuisineEntries = places
+          .filter((p) => p.sid)
+          .map((p) => ({
+            sid: p.sid,
+            labels: p.baseCuisine || [],
+          }));
+
+        const regionResult = await window.PlaceSocial.seedRegionTags(regionEntries);
+        const cuisineResult = await window.PlaceSocial.seedCuisineTags(cuisineEntries);
+
+        if (regionResult?.error || cuisineResult?.error) {
+          console.warn("[tags] seed failed", regionResult?.error || cuisineResult?.error);
+          tagSeedStarted = false;
+          return;
+        }
+        regionDbReady = true;
+        cuisineDbReady = true;
+        applyCustomTags();
+        scheduleRender();
+        if (regionResult?.seeded) {
+          console.info(`[tags] seeded ${regionResult.seeded} region tags`);
+        }
+        if (cuisineResult?.seeded) {
+          console.info(`[tags] seeded ${cuisineResult.seeded} cuisine tags`);
+        }
+      },
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "NOOP",
+  "sid": "1366939902",
+  "address": "용산동2가 1-206 해방타워 5층",
+  "roadAddress": null,
+  "jibunAddress": null,
+  "shortAddress": null,
+  "fullAddress": null,
+  "all_addr_keys": {
+    "address": "용산동2가 1-206 해방타워 5층"
+  }
+}

@@ -1,0 +1,7 @@
+raw/
+scripts/
+supabase/
+.cursor/
+.git/
+*.md
+!README.md

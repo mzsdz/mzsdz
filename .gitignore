@@ -1,0 +1,19 @@
+# secrets / env
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# local tooling
+node_modules/
+.vercel/
+supabase/.temp/
+__pycache__/
+*.pyc
+*.log

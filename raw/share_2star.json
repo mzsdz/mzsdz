@@ -1,0 +1,3890 @@
+{
+  "folder": {
+    "folderId": 11861405,
+    "name": "맛보검 2보검 맛집",
+    "memo": "",
+    "externalLink": "",
+    "userId": null,
+    "colorCode": "4",
+    "iconId": "1",
+    "markerColor": "4",
+    "lastUseTime": 1784786981000,
+    "creationTime": 1541479067000,
+    "shouldOverlay": true,
+    "bookmarkCount": 110,
+    "userIdNo": null,
+    "folderType": "SHARED",
+    "placeUserProfile": {
+      "placeUserId": "5b9b394480c03107ddd9cde6",
+      "reviewPageUrl": "https://m.place.naver.com/my/5b9b394480c03107ddd9cde6/review?v=2",
+      "imageUrl": "https://pup-review-phinf.pstatic.net/MjAyNjAyMTFfOTcg/MDAxNzcwNzk5NDcyNjU4.OcAhpNqdo7T7wFAcfzmOj1NluTM8wq_IGR96d1KQM9Ag.j0mO8787_AGLlVJH_n03ExdvB0zD46lchJhFh33aKkQg.JPEG/IMG_2783.jpeg",
+      "nick": "맛보검"
+    },
+    "shareId": "e16c902890167c37734a695f74080c04",
+    "encryptedUserIdNo": "94Up1d3cWj4QB-tr:muh9vR-PDUJVhbenF2f8Z8D9oSAV",
+    "followCount": 1,
+    "viewCount": 26,
+    "publicationStatus": "R",
+    "isExposed": true,
+    "isDefaultFolder": false
+  },
+  "unavailableCount": 0,
+  "mismatchedCount": 0,
+  "removed": false,
+  "bookmarkList": [
+    {
+      "bookmarkId": 4281287827,
+      "name": "어니스트키친",
+      "displayName": "",
+      "px": 126.9904189,
+      "py": 37.4297486,
+      "type": "place",
+      "useTime": 1773877451000,
+      "lastUpdateTime": 1773877451000,
+      "creationTime": 1773877450000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1041633301",
+      "address": "경기 과천시 관문로 92",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02290107",
+      "cidPath": [
+        "220036",
+        "220047",
+        "220170",
+        "230734"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 4280786790,
+      "name": "오성감자탕",
+      "displayName": "",
+      "px": 126.9930098,
+      "py": 37.432794,
+      "type": "place",
+      "useTime": 1773847088000,
+      "lastUpdateTime": 1773847088000,
+      "creationTime": 1773847087000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "20601276",
+      "address": "경기 과천시 관문로 130",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02290107",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220067",
+        "220681"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 921948124,
+      "name": "몬안베띠 양재역점",
+      "displayName": "",
+      "px": 127.0399484,
+      "py": 37.4841161,
+      "type": "place",
+      "useTime": 1773160371000,
+      "lastUpdateTime": 1773160371000,
+      "creationTime": 1677728806000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "38709080",
+      "address": "서울특별시 서초구 양재동 7-2",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09650102",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220552",
+        "221043"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 295591839,
+      "name": "류센소 해운대 본점",
+      "displayName": "",
+      "px": 129.1562423,
+      "py": 35.1615557,
+      "type": "place",
+      "useTime": 1773159145000,
+      "lastUpdateTime": 1773159145000,
+      "creationTime": 1606229347000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1208154146",
+      "address": "부산광역시 해운대구 우동 265-4 1층",
+      "memo": "",
+      "url": "",
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "08350105",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220087",
+        "220844"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 280992282,
+      "name": "원합천돼지국밥",
+      "displayName": "",
+      "px": 126.9066378,
+      "py": 37.5574771,
+      "type": "place",
+      "useTime": 1773159145000,
+      "lastUpdateTime": 1773159145000,
+      "creationTime": 1603443280000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1722516855",
+      "address": "서울특별시 마포구 도화동 38-23",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440104",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220061",
+        "220623"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 277450001,
+      "name": "오레노라멘 본점",
+      "displayName": "",
+      "px": 126.9178414,
+      "py": 37.5472309,
+      "type": "place",
+      "useTime": 1773159145000,
+      "lastUpdateTime": 1773159145000,
+      "creationTime": 1602676283000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "814481697",
+      "address": "서울특별시 마포구 합정동 361-1",
+      "memo": "",
+      "url": "",
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440122",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220087",
+        "1005245"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 4154432364,
+      "name": "킹콩드립 로스터리",
+      "displayName": "",
+      "px": 126.9931974,
+      "py": 37.4286997,
+      "type": "place",
+      "useTime": 1769875946000,
+      "lastUpdateTime": 1769875946000,
+      "creationTime": 1769875945000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37236640",
+      "address": "경기 과천시 별양상가1로 31",
+      "memo": "",
+      "url": "",
+      "mcid": "CAFE",
+      "mcidName": "카페",
+      "rcode": "02290109",
+      "cidPath": [
+        "220036",
+        "220052",
+        "220563"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 99548513,
+      "name": "커넥츠커피 합정",
+      "displayName": "",
+      "px": 126.9125836,
+      "py": 37.5461161,
+      "type": "place",
+      "useTime": 1769873183000,
+      "lastUpdateTime": 1769873183000,
+      "creationTime": 1555738920000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1212775640",
+      "address": "서울 마포구 성지길 60 1층",
+      "memo": "",
+      "url": "",
+      "mcid": "CAFE",
+      "mcidName": "카페",
+      "rcode": "09440122",
+      "cidPath": [
+        "220036",
+        "220052",
+        "220563"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 283574943,
+      "name": "하쿠텐라멘",
+      "displayName": "",
+      "px": 126.9258094,
+      "py": 37.5628261,
+      "type": "place",
+      "useTime": 1769872969000,
+      "lastUpdateTime": 1769872969000,
+      "creationTime": 1603968147000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1031219213",
+      "address": "서울특별시 마포구 연남동 387-6",
+      "memo": "",
+      "url": "",
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440124",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220087",
+        "220844"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 277450247,
+      "name": "마시타야",
+      "displayName": "",
+      "px": 126.9267248,
+      "py": 37.5549158,
+      "type": "place",
+      "useTime": 1769872958000,
+      "lastUpdateTime": 1769872958000,
+      "creationTime": 1602676324000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "543015182",
+      "address": "서울특별시 마포구 서교동 333-16",
+      "memo": "",
+      "url": "",
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440120",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220087",
+        "220844"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 280881806,
+      "name": "오레노라멘송파",
+      "displayName": "",
+      "px": 127.1094332,
+      "py": 37.5095295,
+      "type": "place",
+      "useTime": 1769872823000,
+      "lastUpdateTime": 1769872823000,
+      "creationTime": 1603425980000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1713900848",
+      "address": "서울특별시 송파구 송파동 42-6 일층",
+      "memo": "",
+      "url": "",
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09710104",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220087",
+        "1005245"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 1609636017,
+      "name": "오영바버샵",
+      "displayName": "",
+      "px": 126.9910781,
+      "py": 37.4298716,
+      "type": "place",
+      "useTime": 1769865999000,
+      "lastUpdateTime": 1769865999000,
+      "creationTime": 1713414274000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1912547545",
+      "address": "경기 과천시 관문로 92",
+      "memo": null,
+      "url": null,
+      "mcid": "LIFE_CULTURE",
+      "mcidName": "생활/문화",
+      "rcode": "02290107",
+      "cidPath": [
+        "223267",
+        "223268",
+        "223288",
+        "1003325",
+        "1002062"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1153403341,
+      "name": "솔향기 쭈꾸미",
+      "displayName": "",
+      "px": 126.8502774,
+      "py": 37.6634356,
+      "type": "place",
+      "useTime": 1769865999000,
+      "lastUpdateTime": 1769865999000,
+      "creationTime": 1692105887000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13570357",
+      "address": "경기 고양시 덕양구 수역이길 7 ",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02281106",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220058",
+        "220606"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 169927537,
+      "name": "전라상회",
+      "displayName": "",
+      "px": 126.9368431,
+      "py": 37.5148693,
+      "type": "place",
+      "useTime": 1769865999000,
+      "lastUpdateTime": 1769865999000,
+      "creationTime": 1577255229000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "21290261",
+      "address": "서울 동작구 노들로 688 노량진수산시장",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09590101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220076",
+        "220792",
+        "221629"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77544760,
+      "name": "형제상회",
+      "displayName": "",
+      "px": 126.9368431,
+      "py": 37.5148693,
+      "type": "place",
+      "useTime": 1769865999000,
+      "lastUpdateTime": 1769865999000,
+      "creationTime": 1544602173000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "32812007",
+      "address": "서울 동작구 노들로 688 한냉카센타",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09590101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220076",
+        "220792",
+        "221629"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 2828068184,
+      "name": "신의주찹쌀순대",
+      "displayName": "",
+      "px": 127.0819951,
+      "py": 37.4895442,
+      "type": "place",
+      "useTime": 1768269300000,
+      "lastUpdateTime": 1768269300000,
+      "creationTime": 1738581931000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "20885730",
+      "address": "서울 강남구 양재대로27길 6",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680114",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220768",
+        "221550"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1295911732,
+      "name": "몬안베띠 과천힐스테이트점",
+      "displayName": "",
+      "px": 126.9904189,
+      "py": 37.4297486,
+      "type": "place",
+      "useTime": 1741490802000,
+      "lastUpdateTime": 1741490802000,
+      "creationTime": 1699934815000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1807961506",
+      "address": "경기 과천시 관문로 92",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02290107",
+      "cidPath": [
+        "220036",
+        "220041",
+        "220103"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 475165523,
+      "name": "커넥츠커피 망원",
+      "displayName": "",
+      "px": 126.9105161,
+      "py": 37.5549024,
+      "type": "place",
+      "useTime": 1738462893000,
+      "lastUpdateTime": 1738462893000,
+      "creationTime": 1636713279000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1923036804",
+      "address": "서울특별시 마포구 망원동 378-6 105호 커넥츠커피 망원점",
+      "memo": null,
+      "url": null,
+      "mcid": "CAFE",
+      "mcidName": "카페",
+      "rcode": "09440123",
+      "cidPath": [
+        "220036",
+        "220052",
+        "220563"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 1551644161,
+      "name": "72ml 칵테일바",
+      "displayName": "",
+      "px": 127.1298465,
+      "py": 37.4309475,
+      "type": "place",
+      "useTime": 1738462535000,
+      "lastUpdateTime": 1738462535000,
+      "creationTime": 1711281891000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1686324388",
+      "address": "경기 성남시 중원구 성남대로 1132",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "02133101",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220554",
+        "221116"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 416020278,
+      "name": "항아리보쌈본점",
+      "displayName": "",
+      "px": 127.0571969,
+      "py": 37.2396231,
+      "type": "place",
+      "useTime": 1738462498000,
+      "lastUpdateTime": 1738462498000,
+      "creationTime": 1628765395000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18277434",
+      "address": "경기도 수원시 영통구 망포동 387-1",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02117107",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220766",
+        "232009"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 2019940392,
+      "name": "테일러커피 연남점",
+      "displayName": "",
+      "px": 126.9263399,
+      "py": 37.5631113,
+      "type": "place",
+      "useTime": 1724669250000,
+      "lastUpdateTime": 1724669250000,
+      "creationTime": 1724669250000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37604020",
+      "address": "서울 마포구 성미산로 189",
+      "memo": null,
+      "url": null,
+      "mcid": "CAFE",
+      "mcidName": "카페",
+      "rcode": "09440124",
+      "cidPath": [
+        "220036",
+        "220052",
+        "220576",
+        "1002683"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 114599270,
+      "name": "김씨네심야식당",
+      "displayName": "",
+      "px": 126.9214793,
+      "py": 37.546001,
+      "type": "place",
+      "useTime": 1724522925000,
+      "lastUpdateTime": 1724522925000,
+      "creationTime": 1562259849000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "33299940",
+      "address": "서울 마포구 와우산로3길 28",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09440115",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220556",
+        "221121"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 736795796,
+      "name": "산도 교대본점",
+      "displayName": "",
+      "px": 127.0174941,
+      "py": 37.4928835,
+      "type": "place",
+      "useTime": 1724335543000,
+      "lastUpdateTime": 1724335543000,
+      "creationTime": 1663063328000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1918289213",
+      "address": "서울특별시 서초구 서초동 1666-12 1층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650108",
+      "cidPath": [
+        "220036",
+        "220044",
+        "220137",
+        "220994"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 698817412,
+      "name": "금은돈 신용산점",
+      "displayName": "",
+      "px": 126.9649856,
+      "py": 37.5241634,
+      "type": "place",
+      "useTime": 1722386442000,
+      "lastUpdateTime": 1722386442000,
+      "creationTime": 1659775705000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1290987162",
+      "address": "서울특별시 용산구 한강로3가 65-180 1층 금은돈",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09170128",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 204095112,
+      "name": "원조호수삼계탕",
+      "displayName": "",
+      "px": 126.9044738,
+      "py": 37.5026552,
+      "type": "place",
+      "useTime": 1721368593000,
+      "lastUpdateTime": 1721368593000,
+      "creationTime": 1584588309000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18674644",
+      "address": "서울 영등포구 도림로 274-1",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09560132",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220774",
+        "221606"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 65718999,
+      "name": "홍명",
+      "displayName": "",
+      "px": 127.029511,
+      "py": 37.514508,
+      "type": "place",
+      "useTime": 1720105910000,
+      "lastUpdateTime": 1720105910000,
+      "creationTime": 1537196026000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18505540",
+      "address": "서울 강남구 논현로131길 10",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680108",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220091",
+        "220861"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 1833502056,
+      "name": "진미평양냉면",
+      "displayName": "",
+      "px": 127.0360501,
+      "py": 37.5161247,
+      "type": "place",
+      "useTime": 1720105871000,
+      "lastUpdateTime": 1720105871000,
+      "creationTime": 1720105870000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37912785",
+      "address": "서울 강남구 학동로 305-3",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680108",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220063",
+        "220645"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1782376512,
+      "name": "Bel.G",
+      "displayName": "",
+      "px": 126.9886163,
+      "py": 37.5391582,
+      "type": "place",
+      "useTime": 1718729659000,
+      "lastUpdateTime": 1718729659000,
+      "creationTime": 1718729659000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1635694696",
+      "address": "서울 용산구 녹사평대로54길 23",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09170130",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220553",
+        "221078"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1752628194,
+      "name": "깡통만두",
+      "displayName": "",
+      "px": 126.9860918,
+      "py": 37.5781764,
+      "type": "place",
+      "useTime": 1717918907000,
+      "lastUpdateTime": 1717918907000,
+      "creationTime": 1717918907000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11863403",
+      "address": "서울 종로구 북촌로2길 5-6",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09110147",
+      "cidPath": [
+        "220036",
+        "220048",
+        "220189"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 852371928,
+      "name": "강남면옥 평촌점",
+      "displayName": "",
+      "px": 126.9754861,
+      "py": 37.3969756,
+      "type": "place",
+      "useTime": 1714965584000,
+      "lastUpdateTime": 1714965584000,
+      "creationTime": 1672849472000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1132564321",
+      "address": "경기도 안양시 동안구 관양동 224-5",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02173102",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220063",
+        "1000410"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 1588518159,
+      "name": "을지면옥",
+      "displayName": "",
+      "px": 126.9885549,
+      "py": 37.5737216,
+      "type": "place",
+      "useTime": 1712638768000,
+      "lastUpdateTime": 1712638768000,
+      "creationTime": 1712638761000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1707416833",
+      "address": "서울 종로구 삼일대로30길 12",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09110137",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220063",
+        "220645"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1294843550,
+      "name": "남호식당 역삼 본점",
+      "displayName": "",
+      "px": 127.0360125,
+      "py": 37.4988179,
+      "type": "place",
+      "useTime": 1700131329000,
+      "lastUpdateTime": 1700131329000,
+      "creationTime": 1699869687000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18396264",
+      "address": "서울 강남구 논현로85길 23",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1291720982,
+      "name": "자매수산",
+      "displayName": "",
+      "px": 127.0277864,
+      "py": 37.500875,
+      "type": "place",
+      "useTime": 1699692382000,
+      "lastUpdateTime": 1699692382000,
+      "creationTime": 1699692382000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37441575",
+      "address": "서울 강남구 봉은사로18길 90",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220076",
+        "220792",
+        "221629"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 1126161133,
+      "name": "옛골가마솥뼈다귀",
+      "displayName": "옛골가마솥뼈다귀",
+      "px": 126.976104,
+      "py": 37.394808,
+      "type": "place",
+      "useTime": 1692069399000,
+      "lastUpdateTime": 1692069399000,
+      "creationTime": 1690686812000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18677833",
+      "address": "경기 안양시 동안구 흥안대로 458 평촌 메가타운",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02173103",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220067",
+        "220681"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 119692923,
+      "name": "금돼지식당",
+      "displayName": "",
+      "px": 127.0116977,
+      "py": 37.5570933,
+      "type": "place",
+      "useTime": 1684398104000,
+      "lastUpdateTime": 1684398104000,
+      "creationTime": 1563784055000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37869877",
+      "address": "서울 중구 다산로 149",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09140162",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220765",
+        "221458"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 838631284,
+      "name": "한성칼국수",
+      "displayName": "",
+      "px": 127.0090677,
+      "py": 37.4559497,
+      "type": "place",
+      "useTime": 1684293994000,
+      "lastUpdateTime": 1684293994000,
+      "creationTime": 1671769210000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19873165",
+      "address": "경기도 과천시 과천동 28-1",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02290105",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220073",
+        "220712"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 985410347,
+      "name": "바오로흑염소농장 사당점",
+      "displayName": "",
+      "px": 126.9835221,
+      "py": 37.477582,
+      "type": "place",
+      "useTime": 1684119825000,
+      "lastUpdateTime": 1684119825000,
+      "creationTime": 1682093968000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1122500485",
+      "address": "서울특별시 서초구 방배동 450-10 1층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 1005755300,
+      "name": "이가네양꼬치 양재역직영점",
+      "displayName": "",
+      "px": 127.0347977,
+      "py": 37.4853715,
+      "type": "place",
+      "useTime": 1683424638000,
+      "lastUpdateTime": 1683424638000,
+      "creationTime": 1683424637000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1944962798",
+      "address": "서울특별시 강남구 도곡동 954-11 B1층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680118",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220093",
+        "1002649"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 1002072850,
+      "name": "방배동구름떡집",
+      "displayName": "",
+      "px": 126.9895875,
+      "py": 37.4916513,
+      "type": "place",
+      "useTime": 1683187681000,
+      "lastUpdateTime": 1683187681000,
+      "creationTime": 1683187681000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37695700",
+      "address": "서울 서초구 방배4동 815-1",
+      "memo": null,
+      "url": null,
+      "mcid": "GENERAL",
+      "mcidName": "일반",
+      "rcode": "09650621",
+      "cidPath": [
+        "225111",
+        "225117",
+        "225167",
+        "225357"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 933646343,
+      "name": "만수정",
+      "displayName": "",
+      "px": 127.1026882,
+      "py": 37.2835864,
+      "type": "place",
+      "useTime": 1683129772000,
+      "lastUpdateTime": 1683129772000,
+      "creationTime": 1678534185000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "12034535",
+      "address": "경기도 용인시 기흥구 신갈동 374-8",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02463101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220076",
+        "220799"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 895789786,
+      "name": "미가훠궈양고기",
+      "displayName": "",
+      "px": 127.0981463,
+      "py": 37.3225907,
+      "type": "place",
+      "useTime": 1683129409000,
+      "lastUpdateTime": 1683129409000,
+      "creationTime": 1675958961000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13125296",
+      "address": "경기도 용인시 수지구 풍덕천동 723-4 1층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02465101",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220091",
+        "220861"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 930130239,
+      "name": "군포식당",
+      "displayName": "",
+      "px": 126.9472865,
+      "py": 37.3555258,
+      "type": "place",
+      "useTime": 1679046773000,
+      "lastUpdateTime": 1679046773000,
+      "creationTime": 1678276849000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19497039",
+      "address": "경기도 군포시 당동 748-22",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02410101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 936706869,
+      "name": "우나기야교대",
+      "displayName": "",
+      "px": 127.0160948,
+      "py": 37.495207,
+      "type": "place",
+      "useTime": 1678767675000,
+      "lastUpdateTime": 1678767675000,
+      "creationTime": 1678767674000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1083137317",
+      "address": "서울특별시 서초구 서초동 1685-8",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650108",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220081",
+        "220804"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 928447875,
+      "name": "왕주먹",
+      "displayName": "",
+      "px": 126.9309453,
+      "py": 37.4825106,
+      "type": "place",
+      "useTime": 1678161770000,
+      "lastUpdateTime": 1678161770000,
+      "creationTime": 1678161770000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "32496631",
+      "address": "서울특별시 관악구 서원동 75-25",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09620102",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220765",
+        "221458"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 925959775,
+      "name": "가츠오 교대본점",
+      "displayName": "",
+      "px": 127.0152491,
+      "py": 37.4923782,
+      "type": "place",
+      "useTime": 1677986143000,
+      "lastUpdateTime": 1677986143000,
+      "creationTime": 1677986142000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1652220988",
+      "address": "서울특별시 서초구 서초동 1658-17",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650108",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220082",
+        "220812"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 415726707,
+      "name": "카츠바이콘반",
+      "displayName": "",
+      "px": 127.0364561,
+      "py": 37.524776,
+      "type": "place",
+      "useTime": 1677728818000,
+      "lastUpdateTime": 1677728818000,
+      "creationTime": 1628732926000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1573951163",
+      "address": "서울특별시 강남구 신사동 647-22",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680107",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220081",
+        "220804"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 915068033,
+      "name": "원포더로드",
+      "displayName": "",
+      "px": 126.9546564,
+      "py": 37.4817598,
+      "type": "place",
+      "useTime": 1677263609000,
+      "lastUpdateTime": 1677263609000,
+      "creationTime": 1677263608000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1361155638",
+      "address": "서울특별시 관악구 봉천동 1667-20 3층",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09620101",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220554",
+        "221116"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 371082427,
+      "name": "청산토방",
+      "displayName": "",
+      "px": 126.85531,
+      "py": 34.1763304,
+      "type": "place",
+      "useTime": 1676295865000,
+      "lastUpdateTime": 1676295865000,
+      "creationTime": 1622050730000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "34637598",
+      "address": "전라남도 완도군 청산면 당락리 903-4",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "1289035022",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220091",
+        "220861"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 900032751,
+      "name": "을지로전기구이찹쌀통닭",
+      "displayName": "",
+      "px": 126.9917012,
+      "py": 37.4288143,
+      "type": "place",
+      "useTime": 1676261825000,
+      "lastUpdateTime": 1676261825000,
+      "creationTime": 1676261812000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1256748878",
+      "address": "경기도 과천시 중앙동 40-13 가보자 빌딩 1층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02290107",
+      "cidPath": [
+        "220036",
+        "220049",
+        "220245"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 889453348,
+      "name": "맛집곱창구이",
+      "displayName": "",
+      "px": 126.9837251,
+      "py": 37.4779775,
+      "type": "place",
+      "useTime": 1675522240000,
+      "lastUpdateTime": 1675522240000,
+      "creationTime": 1675522240000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18222123",
+      "address": "서울특별시 서초구 방배동 451-26 1층 맛집곱창구이",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220767",
+        "221540"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 415991595,
+      "name": "지아니스나폴리 역삼 본점",
+      "displayName": "",
+      "px": 127.0375362,
+      "py": 37.5026443,
+      "type": "place",
+      "useTime": 1675309966000,
+      "lastUpdateTime": 1675309966000,
+      "creationTime": 1628762040000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13392604",
+      "address": "서울특별시 강남구 역삼동 669-18",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220044",
+        "220127",
+        "220913"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 863773471,
+      "name": "참치광장",
+      "displayName": "",
+      "px": 126.8632632,
+      "py": 37.5269575,
+      "type": "place",
+      "useTime": 1673672740000,
+      "lastUpdateTime": 1673672740000,
+      "creationTime": 1673672739000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1045198539",
+      "address": "서울특별시 양천구 신정동 888-41",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09470101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220076",
+        "220792",
+        "221630"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 311670077,
+      "name": "새벽집 청담본점",
+      "displayName": "",
+      "px": 127.0527725,
+      "py": 37.5256081,
+      "type": "place",
+      "useTime": 1671614653000,
+      "lastUpdateTime": 1671614653000,
+      "creationTime": 1611157375000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11680234",
+      "address": "서울특별시 강남구 청담동 129-10",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680104",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220764",
+        "1002990"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 810481351,
+      "name": "작은공간",
+      "displayName": "",
+      "px": 127.0355545,
+      "py": 37.486949,
+      "type": "place",
+      "useTime": 1669365276000,
+      "lastUpdateTime": 1669365276000,
+      "creationTime": 1669365275000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "20897027",
+      "address": "서울특별시 강남구 도곡동 950-5",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680118",
+      "cidPath": [
+        "220036,220048,220187"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 124596215,
+      "name": "몽탄",
+      "displayName": "",
+      "px": 126.97225,
+      "py": 37.5360103,
+      "type": "place",
+      "useTime": 1666009154000,
+      "lastUpdateTime": 1666009154000,
+      "creationTime": 1565347685000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1810277002",
+      "address": "서울 용산구 백범로99길 50",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09170124",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220733"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 362112207,
+      "name": "르 사이트",
+      "displayName": "",
+      "px": 127.0226949,
+      "py": 37.5188695,
+      "type": "place",
+      "useTime": 1639294545000,
+      "lastUpdateTime": 1639294545000,
+      "creationTime": 1620643469000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1129461617",
+      "address": "서울특별시 강남구 신사동 536-1",
+      "memo": "",
+      "url": null,
+      "mcid": "CAFE",
+      "mcidName": "카페",
+      "rcode": "09680107",
+      "cidPath": [
+        "220036",
+        "220052",
+        "220576",
+        "221212"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 492961258,
+      "name": "유림 닭도리탕",
+      "displayName": "",
+      "px": 126.8717884,
+      "py": 37.5478715,
+      "type": "place",
+      "useTime": 1638992783000,
+      "lastUpdateTime": 1638992783000,
+      "creationTime": 1638992783000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19866704",
+      "address": "서울특별시 강서구 염창동 280-6 유림",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09500101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220770",
+        "221569"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 129316687,
+      "name": "탕화쿵푸마라탕 공덕점",
+      "displayName": "",
+      "px": 126.9521969,
+      "py": 37.5425431,
+      "type": "place",
+      "useTime": 1631897303000,
+      "lastUpdateTime": 1631897303000,
+      "creationTime": 1566913379000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1368087777",
+      "address": "서울 마포구 마포대로 92 효성해링턴스쿼어 B동 1층 5호",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440104",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220091",
+        "1002666"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 131849845,
+      "name": "울프강 스테이크하우스",
+      "displayName": "",
+      "px": 127.0414525,
+      "py": 37.5244653,
+      "type": "place",
+      "useTime": 1630293101000,
+      "lastUpdateTime": 1630293101000,
+      "creationTime": 1567916563000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "36449091",
+      "address": "서울 강남구 선릉로152길 21",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680104",
+      "cidPath": [
+        "220036",
+        "220044",
+        "220134",
+        "220934"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 400918881,
+      "name": "뽕족 강남역본점",
+      "displayName": "",
+      "px": 127.0301911,
+      "py": 37.4974176,
+      "type": "place",
+      "useTime": 1626515165000,
+      "lastUpdateTime": 1626515165000,
+      "creationTime": 1626515165000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1091575912",
+      "address": "서울특별시 강남구 역삼동 824-12",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220766",
+        "221504"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 390568505,
+      "name": "서울마라 화곡본점",
+      "displayName": "",
+      "px": 126.8367259,
+      "py": 37.5409968,
+      "type": "place",
+      "useTime": 1624960456000,
+      "lastUpdateTime": 1624960456000,
+      "creationTime": 1624960456000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1867593691",
+      "address": "서울특별시 강서구 화곡동 1067-19",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09500103",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220091",
+        "220861"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 389119240,
+      "name": "하동관 여의도역점",
+      "displayName": "",
+      "px": 126.9256512,
+      "py": 37.5218052,
+      "type": "place",
+      "useTime": 1624767844000,
+      "lastUpdateTime": 1624767844000,
+      "creationTime": 1624767844000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1856637619",
+      "address": "서울특별시 영등포구 여의도동 35-3",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09560110",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220069",
+        "220696"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 379115188,
+      "name": "등촌샤브칼국수 역삼점",
+      "displayName": "",
+      "px": 127.031612,
+      "py": 37.4917165,
+      "type": "place",
+      "useTime": 1623318074000,
+      "lastUpdateTime": 1623318074000,
+      "creationTime": 1623318074000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "36826470",
+      "address": "서울특별시 강남구 역삼1동 837-2",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220073",
+        "220717"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 349065307,
+      "name": "곰바위 본점",
+      "displayName": "",
+      "px": 127.0588373,
+      "py": 37.5148749,
+      "type": "place",
+      "useTime": 1618465165000,
+      "lastUpdateTime": 1618465165000,
+      "creationTime": 1618465165000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11540780",
+      "address": "서울특별시 강남구 삼성동 76-10",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680105",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220767",
+        "221540"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 318163449,
+      "name": "하동관 명동본점",
+      "displayName": "",
+      "px": 126.9849722,
+      "py": 37.5644272,
+      "type": "place",
+      "useTime": 1618422991000,
+      "lastUpdateTime": 1618422991000,
+      "creationTime": 1612707662000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11679353",
+      "address": "서울특별시 중구 명동1가 10-4",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09140126",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220069",
+        "220696"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 94296496,
+      "name": "원조 조박집 본관",
+      "displayName": "",
+      "px": 126.9438536,
+      "py": 37.5399011,
+      "type": "place",
+      "useTime": 1607747350000,
+      "lastUpdateTime": 1607747350000,
+      "creationTime": 1553229059000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11679456",
+      "address": "서울 마포구 토정로 313-1",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440105",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220733"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 298639114,
+      "name": "다운타우너 잠실",
+      "displayName": "",
+      "px": 127.1107153,
+      "py": 37.5090511,
+      "type": "place",
+      "useTime": 1607006860000,
+      "lastUpdateTime": 1607006860000,
+      "creationTime": 1607006855000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1484348632",
+      "address": "서울특별시 송파구 송파동 46-4",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09710104",
+      "cidPath": [
+        "220036",
+        "220044",
+        "220138",
+        "1005329"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 292291013,
+      "name": "아방궁",
+      "displayName": "",
+      "px": 127.0305984,
+      "py": 37.4944693,
+      "type": "place",
+      "useTime": 1605581533000,
+      "lastUpdateTime": 1605581533000,
+      "creationTime": 1605581527000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "35553533",
+      "address": "서울특별시 강남구 역삼동 831-32",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220091",
+        "220861"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 278454714,
+      "name": "클래식햄버거",
+      "displayName": "",
+      "px": 126.9529166,
+      "py": 37.5488366,
+      "type": "place",
+      "useTime": 1602905689000,
+      "lastUpdateTime": 1602905689000,
+      "creationTime": 1602905689000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1231756388",
+      "address": "서울특별시 마포구 공덕동 232-10",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440102",
+      "cidPath": [
+        "220036",
+        "220044",
+        "220138",
+        "221004"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 276697682,
+      "name": "영광보쌈",
+      "displayName": "",
+      "px": 126.95295,
+      "py": 37.545275,
+      "type": "place",
+      "useTime": 1602500767000,
+      "lastUpdateTime": 1602500767000,
+      "creationTime": 1602500767000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13159261",
+      "address": "서울특별시 마포구 공덕동 256-20",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440102",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 266589531,
+      "name": "마루심 마포점",
+      "displayName": "",
+      "px": 126.9434393,
+      "py": 37.5395447,
+      "type": "place",
+      "useTime": 1599981597000,
+      "lastUpdateTime": 1599981597000,
+      "creationTime": 1599981597000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1856636774",
+      "address": "서울특별시 마포구 용강동 51-3",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440105",
+      "cidPath": [
+        "220036",
+        "220038",
+        "230614",
+        "230615"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 259619086,
+      "name": "다운타우너 청담",
+      "displayName": "",
+      "px": 127.0385501,
+      "py": 37.5240852,
+      "type": "place",
+      "useTime": 1597823864000,
+      "lastUpdateTime": 1597823864000,
+      "creationTime": 1597823864000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "887123043",
+      "address": "서울특별시 강남구 신사동 666-25",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680107",
+      "cidPath": [
+        "220036",
+        "220044",
+        "220138",
+        "1005329"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 132687092,
+      "name": "일도씨닭갈비 방배본점",
+      "displayName": "",
+      "px": 126.9990974,
+      "py": 37.4797528,
+      "type": "place",
+      "useTime": 1597651492000,
+      "lastUpdateTime": 1597651492000,
+      "creationTime": 1568249403000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "34573305",
+      "address": "서울 서초구 방배로8길 4",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220771",
+        "1001693"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 258846911,
+      "name": "삼육가 사당역직영점",
+      "displayName": "",
+      "px": 126.9828912,
+      "py": 37.4774208,
+      "type": "place",
+      "useTime": 1597651329000,
+      "lastUpdateTime": 1597651329000,
+      "creationTime": 1597651329000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37700608",
+      "address": "서울특별시 서초구 방배동 450-16",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "1005463"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 247176646,
+      "name": "을밀대 강남점",
+      "displayName": "",
+      "px": 127.030369,
+      "py": 37.4953797,
+      "type": "place",
+      "useTime": 1595257051000,
+      "lastUpdateTime": 1595257051000,
+      "creationTime": 1595257051000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13455431",
+      "address": "서울 강남구 테헤란로4길 46",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220063",
+        "1000610"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 132984508,
+      "name": "무수옥 도봉본점",
+      "displayName": "",
+      "px": 127.0441842,
+      "py": 37.6771561,
+      "type": "place",
+      "useTime": 1593999122000,
+      "lastUpdateTime": 1593999122000,
+      "creationTime": 1568373702000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19877511",
+      "address": "서울 도봉구 도봉로165길 15 무수옥",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09320108",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220764",
+        "221440"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 226622958,
+      "name": "장수한방삼계탕",
+      "displayName": "",
+      "px": 126.952663,
+      "py": 37.5445716,
+      "type": "place",
+      "useTime": 1589867057000,
+      "lastUpdateTime": 1589867057000,
+      "creationTime": 1589867057000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19584443",
+      "address": "서울 마포구 만리재로 15 제일빌딩",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440102",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220774",
+        "221606"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 167890605,
+      "name": "중앙해장",
+      "displayName": "",
+      "px": 127.0655417,
+      "py": 37.5082495,
+      "type": "place",
+      "useTime": 1589736498000,
+      "lastUpdateTime": 1589736498000,
+      "creationTime": 1576842013000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37703543",
+      "address": "서울 강남구 영동대로86길 17 육인빌딩",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680106",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220068",
+        "1005263"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 122255448,
+      "name": "뫼촌",
+      "displayName": "",
+      "px": 126.9526488,
+      "py": 37.5412769,
+      "type": "place",
+      "useTime": 1584595538000,
+      "lastUpdateTime": 1584595538000,
+      "creationTime": 1564563101000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13573629",
+      "address": "서울 마포구 새창로6길 18",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440104",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220770",
+        "221569"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 149255025,
+      "name": "을밀대 평양냉면",
+      "displayName": "",
+      "px": 126.9455005,
+      "py": 37.5474905,
+      "type": "place",
+      "useTime": 1583292078000,
+      "lastUpdateTime": 1583292078000,
+      "creationTime": 1573140879000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11679611",
+      "address": "서울 마포구 숭문길 24",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440109",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220063",
+        "220645"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 128104717,
+      "name": "쿠시노주방",
+      "displayName": "",
+      "px": 126.9239455,
+      "py": 37.559505,
+      "type": "place",
+      "useTime": 1577987023000,
+      "lastUpdateTime": 1577987023000,
+      "creationTime": 1566486429000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "86471200",
+      "address": "서울 마포구 동교로 218-1 지하 1층 쿠시노주방",
+      "memo": "",
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09440121",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220556",
+        "221121"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 141118537,
+      "name": "델리인디아",
+      "displayName": "",
+      "px": 126.9197468,
+      "py": 37.5486828,
+      "type": "place",
+      "useTime": 1571210728000,
+      "lastUpdateTime": 1571210728000,
+      "creationTime": 1571210728000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37420517",
+      "address": "서울 마포구 독막로9길 8 2층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440120",
+      "cidPath": [
+        "220036",
+        "220042",
+        "220118"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 137340550,
+      "name": "에덴식당",
+      "displayName": "",
+      "px": 126.9263573,
+      "py": 37.5201388,
+      "type": "place",
+      "useTime": 1570002218000,
+      "lastUpdateTime": 1570002218000,
+      "creationTime": 1570002218000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "36898413",
+      "address": "서울 영등포구 의사당대로 127 롯데캐슬엠파이어 B-006호",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09560110",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220055",
+        "230043"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 133408925,
+      "name": "춘천집 닭갈비막국수",
+      "displayName": "",
+      "px": 126.9362139,
+      "py": 37.5570469,
+      "type": "place",
+      "useTime": 1568543505000,
+      "lastUpdateTime": 1568543505000,
+      "creationTime": 1568543505000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19886283",
+      "address": "서울 서대문구 연세로5가길 1",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09410116",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220771",
+        "221575"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 132982968,
+      "name": "봉피양 마포점",
+      "displayName": "",
+      "px": 126.9429479,
+      "py": 37.5401044,
+      "type": "place",
+      "useTime": 1568373117000,
+      "lastUpdateTime": 1568373117000,
+      "creationTime": 1568373117000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "32799849",
+      "address": "서울 마포구 토정로 308",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440105",
+      "cidPath": [
+        "220036",
+        "220037",
+        "230062"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 122255310,
+      "name": "마포양지설렁탕",
+      "displayName": "",
+      "px": 126.9505091,
+      "py": 37.5420365,
+      "type": "place",
+      "useTime": 1566307777000,
+      "lastUpdateTime": 1566307777000,
+      "creationTime": 1564563072000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37365482",
+      "address": "서울 마포구 새창로 6",
+      "memo": "",
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440104",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220069",
+        "220696"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 126531559,
+      "name": "정식당",
+      "displayName": "",
+      "px": 127.0410861,
+      "py": 37.5256529,
+      "type": "place",
+      "useTime": 1566002219000,
+      "lastUpdateTime": 1566002219000,
+      "creationTime": 1566002219000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13320884",
+      "address": "서울 강남구 선릉로158길 11",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680104",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 122255350,
+      "name": "미분당",
+      "displayName": "",
+      "px": 126.9514009,
+      "py": 37.5414594,
+      "type": "place",
+      "useTime": 1564563079000,
+      "lastUpdateTime": 1564563079000,
+      "creationTime": 1564563079000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1511113792",
+      "address": "서울 마포구 새창로4길 16",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09440104",
+      "cidPath": [
+        "220036",
+        "220041",
+        "1005203"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 121297007,
+      "name": "카에루",
+      "displayName": "",
+      "px": 126.9102718,
+      "py": 37.5501382,
+      "type": "place",
+      "useTime": 1564230954000,
+      "lastUpdateTime": 1564230954000,
+      "creationTime": 1564230954000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37286386",
+      "address": "서울 마포구 양화로1길 31 우진빌딩",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09440122",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220556",
+        "221121"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 115574199,
+      "name": "동남집",
+      "displayName": "",
+      "px": 126.9240116,
+      "py": 37.5210236,
+      "type": "place",
+      "useTime": 1562643825000,
+      "lastUpdateTime": 1562643825000,
+      "creationTime": 1562643825000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1006653770",
+      "address": "서울 영등포구 의사당대로 108",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09560110",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220069",
+        "220696"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 104251048,
+      "name": "초원양꼬치",
+      "displayName": "",
+      "px": 126.8516097,
+      "py": 37.5521827,
+      "type": "place",
+      "useTime": 1557819319000,
+      "lastUpdateTime": 1557819319000,
+      "creationTime": 1557819319000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "37879322",
+      "address": "서울 강서구 화곡로58길 22-18",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09500103",
+      "cidPath": [
+        "220036",
+        "220039",
+        "220093",
+        "230767"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 102523455,
+      "name": "남원골명품추어탕",
+      "displayName": "",
+      "px": 126.8325098,
+      "py": 37.5397704,
+      "type": "place",
+      "useTime": 1557054312000,
+      "lastUpdateTime": 1557054312000,
+      "creationTime": 1557054312000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1116790836",
+      "address": "서울 양천구 화곡로 95",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09470103",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220066",
+        "220672"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 94374317,
+      "name": "올드문래",
+      "displayName": "",
+      "px": 126.8942772,
+      "py": 37.5139396,
+      "type": "place",
+      "useTime": 1553256681000,
+      "lastUpdateTime": 1553256681000,
+      "creationTime": 1553256681000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "481624431",
+      "address": "서울 영등포구 도림로 433-6",
+      "memo": null,
+      "url": null,
+      "mcid": "BAR",
+      "mcidName": "BAR",
+      "rcode": "09560120",
+      "cidPath": [
+        "220036",
+        "220051",
+        "220553",
+        "221078"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 93884649,
+      "name": "등촌 최월선칼국수",
+      "displayName": "",
+      "px": 126.8566894,
+      "py": 37.5560117,
+      "type": "place",
+      "useTime": 1553017343000,
+      "lastUpdateTime": 1553017343000,
+      "creationTime": 1553017343000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11687067",
+      "address": "서울 강서구 화곡로64길 68",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09500102",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220073",
+        "220712"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 81229078,
+      "name": "오가와",
+      "displayName": "",
+      "px": 126.97448,
+      "py": 37.5721808,
+      "type": "place",
+      "useTime": 1546660411000,
+      "lastUpdateTime": 1546660411000,
+      "creationTime": 1546660409000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "13574838",
+      "address": "서울 종로구 새문안로5길 19",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09110117",
+      "cidPath": [
+        "220036",
+        "220038",
+        "220081",
+        "220804"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 78437798,
+      "name": "마루심 반포점",
+      "displayName": "",
+      "px": 127.0104677,
+      "py": 37.5019957,
+      "type": "place",
+      "useTime": 1545129041000,
+      "lastUpdateTime": 1545129041000,
+      "creationTime": 1545129039000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "20206990",
+      "address": "서울 서초구 고무래로10길 10 청구빌딩 1층",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09650107",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220076",
+        "220799"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77549931,
+      "name": "신촌황소곱창 신촌본점",
+      "displayName": "",
+      "px": 126.9350634,
+      "py": 37.5584604,
+      "type": "place",
+      "useTime": 1544604219000,
+      "lastUpdateTime": 1544604219000,
+      "creationTime": 1544604218000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "36943314",
+      "address": "서울 서대문구 연세로9길 31",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09410116",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220767",
+        "221540"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77549883,
+      "name": "성수족발",
+      "displayName": "",
+      "px": 127.05437,
+      "py": 37.546072,
+      "type": "place",
+      "useTime": 1544604198000,
+      "lastUpdateTime": 1544604198000,
+      "creationTime": 1544604196000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19862383",
+      "address": "서울 성동구 아차산로7길 7 동진빌딩 1층 성수족발",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09200115",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220766",
+        "221504"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77548905,
+      "name": "돈불1971",
+      "displayName": "",
+      "px": 126.9336306,
+      "py": 37.5569982,
+      "type": "place",
+      "useTime": 1544603831000,
+      "lastUpdateTime": 1544603831000,
+      "creationTime": 1544603830000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "36343564",
+      "address": "서울 서대문구 연세로5다길 36",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09410116",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220765",
+        "221458"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77548852,
+      "name": "벽제갈비 신촌점",
+      "displayName": "",
+      "px": 126.938,
+      "py": 37.5578,
+      "type": "place",
+      "useTime": 1544603810000,
+      "lastUpdateTime": 1544603810000,
+      "creationTime": 1544603808000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18240923",
+      "address": "서울 서대문구 명물길 22",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09410116",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220764",
+        "221447"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77548259,
+      "name": "진주회관",
+      "displayName": "",
+      "px": 126.974513,
+      "py": 37.562321,
+      "type": "place",
+      "useTime": 1544603579000,
+      "lastUpdateTime": 1544603579000,
+      "creationTime": 1544603577000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11679660",
+      "address": "서울 중구 세종대로11길 26",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09140166",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220062",
+        "220628"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 77548208,
+      "name": "진주집",
+      "displayName": "",
+      "px": 126.9268251,
+      "py": 37.5206924,
+      "type": "place",
+      "useTime": 1544603562000,
+      "lastUpdateTime": 1544603562000,
+      "creationTime": 1544603560000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "11678773",
+      "address": "서울 영등포구 국제금융로6길 33",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09560110",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220062",
+        "220628"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 75663099,
+      "name": "춘천옥",
+      "displayName": "",
+      "px": 126.8896826,
+      "py": 37.4778623,
+      "type": "place",
+      "useTime": 1543465312000,
+      "lastUpdateTime": 1543465312000,
+      "creationTime": 1543465310000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "187013117",
+      "address": "서울 금천구 디지털로12길 19",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09545101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 74559924,
+      "name": "광화문고기집",
+      "displayName": "",
+      "px": 126.9737678,
+      "py": 37.5730088,
+      "type": "place",
+      "useTime": 1542776268000,
+      "lastUpdateTime": 1542776268000,
+      "creationTime": 1542776268000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "1536447942",
+      "address": "서울특별시 종로구 새문안로5가길 11",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09110118",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220733"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": true
+    },
+    {
+      "bookmarkId": 72445123,
+      "name": "풍산소금구이",
+      "displayName": "",
+      "px": 126.8705256,
+      "py": 37.5533065,
+      "type": "place",
+      "useTime": 1541480386000,
+      "lastUpdateTime": 1541480386000,
+      "creationTime": 1541480385000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "18326530",
+      "address": "서울 강서구 양천로 651-19",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09500101",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220053"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 72445076,
+      "name": "미분당 강남점",
+      "displayName": "",
+      "px": 127.0262325,
+      "py": 37.503809,
+      "type": "place",
+      "useTime": 1541480365000,
+      "lastUpdateTime": 1541480365000,
+      "creationTime": 1541480363000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "744404302",
+      "address": "서울 강남구 강남대로110길 16",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09680101",
+      "cidPath": [
+        "220036",
+        "220041",
+        "1005203"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 72444954,
+      "name": "미분당 신촌본점",
+      "displayName": "",
+      "px": 126.9352237,
+      "py": 37.5566802,
+      "type": "place",
+      "useTime": 1541480304000,
+      "lastUpdateTime": 1541480304000,
+      "creationTime": 1541480303000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "38301992",
+      "address": "서울 서대문구 연세로5길 26-7",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09410116",
+      "cidPath": [
+        "220036",
+        "220041",
+        "1005203"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 70685200,
+      "name": "허브족발",
+      "displayName": "",
+      "px": 126.9030058,
+      "py": 37.5343526,
+      "type": "place",
+      "useTime": 1541479122000,
+      "lastUpdateTime": 1541479122000,
+      "creationTime": 1540374449000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "20626597",
+      "address": "서울 영등포구 당산로48길 6 대호빌딩",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09560116",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220766",
+        "221504"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 66394597,
+      "name": "육즙",
+      "displayName": "",
+      "px": 126.8754208,
+      "py": 37.5252594,
+      "type": "place",
+      "useTime": 1541479122000,
+      "lastUpdateTime": 1541479122000,
+      "creationTime": 1537677296000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "849850628",
+      "address": "서울 양천구 오목로 337-10 소망빌딩",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "09470102",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220733"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    },
+    {
+      "bookmarkId": 29827122,
+      "name": "정통춘천닭갈비",
+      "displayName": "",
+      "px": 127.1139673,
+      "py": 37.3717577,
+      "type": "place",
+      "useTime": 1541479122000,
+      "lastUpdateTime": 1541479122000,
+      "creationTime": 1491911101000,
+      "order": 65535,
+      "bookmarkMismatchInfo": {
+        "isMatched": true,
+        "details": [
+          "AVAILABLE"
+        ]
+      },
+      "sid": "19882096",
+      "address": "경기도 성남시 분당구 내정로119번길 15",
+      "memo": null,
+      "url": null,
+      "mcid": "DINING",
+      "mcidName": "음식점",
+      "rcode": "02135103",
+      "cidPath": [
+        "220036",
+        "220037",
+        "220075",
+        "220771",
+        "221585"
+      ],
+      "available": true,
+      "folderMappings": null,
+      "placeInfo": null,
+      "isIndoor": false
+    }
+  ]
+}

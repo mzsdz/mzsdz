@@ -1,0 +1,32 @@
+---
+description: Supabase 스키마 변경은 migration + db push로 진행
+alwaysApply: true
+---
+
+# Supabase 스키마 워크플로
+
+스키마/RLS/인덱스 변경 시 SQL Editor에 붙여넣지 말고 CLI migration을 쓴다.
+
+## 절차
+
+1. 프로젝트 루트 `C:\Users\user\Projects\맛집신동진`에서 작업
+2. `supabase/migrations/YYYYMMDDHHMMSS_설명.sql` 파일 추가 (idempotent하게: `if not exists`, `drop policy if exists` 등)
+3. `schema.sql`도 같은 내용으로 동기화해 신규 프로젝트 기준본을 유지
+4. 사용자에게 실행 요청:
+   ```powershell
+   cd "C:\Users\user\Projects\맛집신동진"
+   npx supabase db push
+   ```
+5. `supabase/archive/`의 옛 `fix-*.sql`은 참고용. 새 패치를 여기에 추가하지 않음
+
+## 금지
+
+- `C:\` 등 프로젝트 밖 경로에서 `supabase` 명령 실행
+- anon key로 DDL 실행 시도
+- `fix-*.sql`을 migrations에 중복으로 넣기 (내용은 baseline/`schema.sql`에 이미 있음)
+
+## 참고
+
+- project-ref: `ujfuyrsfuqhyydhasqfi`
+- baseline: `supabase/migrations/20260724000000_baseline.sql`
+- link 되어 있지 않으면: `npx supabase login` → `npx supabase link --project-ref ujfuyrsfuqhyydhasqfi`

@@ -1,0 +1,3 @@
+-- 과거 SQL Editor용 일회성 패치 보관.
+-- 내용은 `migrations/20260724000000_baseline.sql` / `schema.sql`에 이미 포함됨.
+-- 새 변경은 여기에 추가하지 말고 `supabase/migrations/`에 새 파일을 만드세요.
