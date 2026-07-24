@@ -153,6 +153,12 @@
 
     .meta strong { color: var(--ink); font-weight: 600; }
 
+    .meta-stars {
+      color: #c9a227;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
     .controls {
       display: grid;
       gap: 1rem;
@@ -703,6 +709,23 @@
       gap: 0.2rem;
     }
 
+    .tag-add select {
+      max-width: 5.6rem;
+      border: 1px dashed var(--line);
+      background: transparent;
+      border-radius: 6px;
+      padding: 0.18rem 0.2rem;
+      font: inherit;
+      font-size: 0.72rem;
+      color: var(--ink);
+      outline: none;
+      cursor: pointer;
+    }
+    .tag-add select:focus {
+      border-color: var(--accent);
+      border-style: solid;
+    }
+
     .tag-add input {
       width: 5.5rem;
       border: 1px dashed var(--line);
@@ -734,6 +757,20 @@
     .tag-add-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
+    }
+
+    .bulk-cuisine-major {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 0.38rem 0.5rem;
+      font: inherit;
+      font-size: 0.86rem;
+      color: var(--ink);
+      max-width: 7.5rem;
+    }
+    .bulk-cuisine-major[hidden] {
+      display: none !important;
     }
 
     .tag-rows {
@@ -836,6 +873,30 @@
       color: var(--muted);
       cursor: default;
     }
+    .auth-modal select {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 0.85rem;
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      width: 100%;
+    }
+    .add-place-status {
+      font-size: 0.84rem;
+      color: var(--accent);
+      min-height: 1.2em;
+    }
+    .add-place-status.error { color: #b42318; }
+    .add-place-preview {
+      display: grid;
+      gap: 0.65rem;
+      border-top: 1px solid var(--line);
+      padding-top: 0.85rem;
+    }
+    .add-place-preview[hidden] { display: none !important; }
     .auth-actions {
       display: grid;
       gap: 0.45rem;
@@ -913,11 +974,11 @@
         <div class="auth-bar" id="authBar"></div>
       </div>
       <div class="meta">
-        <span>★★★ <strong id="star3Count">0</strong></span>
-        <span>★★ <strong id="star2Count">0</strong></span>
-        <span>★ <strong id="star1Count">0</strong></span>
-        <span>미방문 <strong id="star0Count">0</strong></span>
-        <span>전체 <strong id="totalCount">0</strong>곳</span>
+        <span><span class="meta-stars">★★★</span> <strong id="star3Count">0</strong></span>
+        <span><span class="meta-stars">★★</span> <strong id="star2Count">0</strong></span>
+        <span><span class="meta-stars">★</span> <strong id="star1Count">0</strong></span>
+        <span>맛집 후보 <strong id="star0Count">0</strong></span>
+        <span>총 <strong id="totalCount">0</strong>곳</span>
       </div>
     </header>
 
@@ -943,6 +1004,7 @@
 
       <div class="filter-block">
         <div class="filter-label">종류</div>
+        <div class="region-nav" id="cuisineNav"></div>
         <div class="chips" id="cuisineChips"></div>
       </div>
     </section>
@@ -953,6 +1015,7 @@
         <div class="result-count">맛집 <strong id="shownCount">0</strong>곳</div>
       </div>
       <div class="toolbar-actions">
+        <button type="button" class="toolbar-btn" id="addPlaceBtn" hidden>가게 추가</button>
         <button type="button" class="toolbar-btn" id="selectModeBtn" hidden>선택</button>
         <button type="button" class="toolbar-btn" id="selectVisibleBtn" hidden>표시 중 선택</button>
         <button type="button" class="reset" id="resetBtn">필터 초기화</button>
@@ -968,7 +1031,36 @@
           <button type="button" data-kind="cuisine" class="on">종류</button>
           <button type="button" data-kind="region">지역</button>
         </div>
-        <input id="bulkLabel" type="text" maxlength="24" placeholder="추가할 태그" autocomplete="off" />
+        <select id="bulkCuisineMajor" class="bulk-cuisine-major" aria-label="종류 대분류" title="종류 대분류">
+          <option value="한식">한식</option>
+          <option value="중식">중식</option>
+          <option value="일식">일식</option>
+          <option value="양식">양식</option>
+          <option value="아시안">아시안</option>
+          <option value="카페·디저트">카페·디저트</option>
+          <option value="술집">술집</option>
+          <option value="기타">기타</option>
+        </select>
+        <select id="bulkRegionSido" class="bulk-cuisine-major" aria-label="지역 대분류" title="지역 대분류" hidden>
+          <option value="서울">서울</option>
+          <option value="경기">경기</option>
+          <option value="인천">인천</option>
+          <option value="부산">부산</option>
+          <option value="대구">대구</option>
+          <option value="광주">광주</option>
+          <option value="대전">대전</option>
+          <option value="울산">울산</option>
+          <option value="세종">세종</option>
+          <option value="강원">강원</option>
+          <option value="충북">충북</option>
+          <option value="충남">충남</option>
+          <option value="전북">전북</option>
+          <option value="전남">전남</option>
+          <option value="경북">경북</option>
+          <option value="경남">경남</option>
+          <option value="제주">제주</option>
+        </select>
+        <input id="bulkLabel" type="text" maxlength="24" placeholder="소분류 이름" autocomplete="off" />
         <button type="button" class="bulk-add" id="bulkAddBtn">추가</button>
         <button type="button" class="bulk-ghost" id="bulkClearBtn">선택 해제</button>
         <button type="button" class="bulk-ghost" id="bulkExitBtn">선택 종료</button>
@@ -976,6 +1068,54 @@
     </div>
     <div class="empty" id="empty" hidden>조건에 맞는 곳이 없어요. 태그를 조금 줄여보세요.</div>
   </div>
+
+  <dialog class="auth-modal" id="addPlaceModal">
+    <form method="dialog">
+      <button type="submit" class="auth-modal-close" id="addPlaceModalClose" aria-label="닫기">×</button>
+    </form>
+    <div class="auth-modal-inner">
+      <h2>가게 추가</h2>
+      <p class="hint">네이버 지도 장소 링크를 붙여넣으면 이름·주소를 불러옵니다.</p>
+      <label>
+        네이버 지도 링크
+        <input id="addPlaceUrl" type="url" placeholder="https://map.naver.com/p/entry/place/…" autocomplete="off" />
+      </label>
+      <div class="auth-actions">
+        <button type="button" class="auth-btn primary" id="addPlaceResolveBtn">정보 불러오기</button>
+      </div>
+      <p class="add-place-status" id="addPlaceStatus" role="status"></p>
+      <div class="add-place-preview" id="addPlacePreview" hidden>
+        <label>
+          이름
+          <input id="addPlaceName" type="text" maxlength="80" required />
+        </label>
+        <label>
+          주소
+          <input id="addPlaceAddress" type="text" maxlength="120" />
+        </label>
+        <label>
+          종류(원본)
+          <input id="addPlaceCategory" type="text" maxlength="40" placeholder="예: 카페,디저트" />
+        </label>
+        <label>
+          평점
+          <select id="addPlaceStars">
+            <option value="0" selected>맛집 후보</option>
+            <option value="1">★</option>
+            <option value="2">★★</option>
+            <option value="3">★★★</option>
+          </select>
+        </label>
+        <input id="addPlaceSid" type="hidden" />
+        <input id="addPlacePx" type="hidden" />
+        <input id="addPlacePy" type="hidden" />
+        <input id="addPlaceSourceUrl" type="hidden" />
+        <div class="auth-actions">
+          <button type="button" class="auth-btn primary" id="addPlaceSaveBtn">목록에 추가</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <dialog class="auth-modal" id="authModal">
     <form method="dialog">
@@ -1023,122 +1163,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./js/supabase-client.js"></script>
+  <script src="./js/cuisine-taxonomy.js"></script>
   <script src="./js/place-social.js"></script>
   <script src="./places.js"></script>
   <script>
-    const CATEGORY_ALIASES = {
-      "바(BAR)": "바",
-      BAR: "바",
-      "백숙,삼계탕": "삼계탕",
-      "순대,순댓국": "순대",
-      "족발,보쌈": "족발·보쌈",
-      "곱창,막창,양": "곱창·막창",
-      "곰탕,설렁탕": "곰탕·설렁탕",
-      "칼국수,만두": "칼국수",
-      "장어,먹장어요리": "장어",
-      "육류,고기요리": "고기",
-      "맥주,호프": "맥주·호프",
-      "다이어트,샐러드": "샐러드",
-      "카페,디저트": "카페",
-      "백반,가정식": "백반",
-      "떡류제조": "떡",
-      "일본식라면": "라멘",
-      "돼지고기구이": "돼지고기",
-      "소고기구이": "소고기",
-      "브런치카페": "브런치",
-      "베트남음식": "베트남",
-      "인도음식": "인도",
-      "아시아음식": "아시아",
-      "프랑스음식": "프랑스",
-      "이탈리아음식": "이탈리아",
-      "멕시코,남미음식": "멕시코",
-      "멕시코음식": "멕시코",
-      "아귀찜,해물찜": "해물찜",
-      "스파게티,파스타전문": "파스타",
-      "전,빈대떡": "전·빈대떡",
-      "치킨,닭강정": "치킨",
-      "사철,영양탕": "영양탕",
-      "일식당": "일식",
-      "중식당": "중식",
-      "한식당": "한식",
-      "요리주점": "술집",
-      "포장마차": "포차",
-      "종합분식": "분식",
-      "돈가스": "돈가스",
-      "돈까스": "돈가스",
-      "국수": "국수",
-      "냉면": "냉면",
-      "김밥": "김밥",
-      "카레": "카레",
-      "베이글": "베이글",
-      "브런치": "브런치",
-      "국밥": "국밥",
-      "감자탕": "감자탕",
-      "해장국": "해장국",
-      "추어탕": "추어탕",
-      "양꼬치": "양꼬치",
-      "닭갈비": "닭갈비",
-      "생선회": "회",
-      "횟집": "회",
-      "초밥": "초밥",
-      "스시": "초밥",
-      "라멘": "라멘",
-      "우동": "우동",
-      "소바": "소바",
-      "떡볶이": "떡볶이",
-      "마라탕": "마라탕",
-      "한정식": "한정식",
-      "햄버거": "햄버거",
-      "피자": "피자",
-      "스테이크": "스테이크",
-      "샤브샤브": "샤브샤브",
-      "이자카야": "이자카야",
-      "덮밥": "덮밥",
-      "만두": "만두",
-      "쌈밥": "쌈밥",
-      "게장": "게장",
-      "조개요리": "조개",
-      "해물": "해물",
-      "베이커리": "베이커리",
-      "디저트": "디저트",
-      "아이스크림": "아이스크림",
-      "와인": "와인",
-      "주류": "주류",
-      "카페": "카페",
-      "한식": "한식",
-      "양식": "양식",
-      "중식": "중식",
-      "일식": "일식",
-      "분식": "분식",
-      "술집": "술집",
-      "바": "바",
-    };
-
-    const GENERIC_CUISINE = new Set([
-      "음식점",
-      "일반",
-      "기타",
-      "여가",
-      "생활/문화",
-      "쇼핑",
-    ]);
-
-    // Extra tags split out from compound Naver categories
-    const CATEGORY_EXTRA_TAGS = {
-      "카페,디저트": ["디저트"],
-      "족발,보쌈": ["족발", "보쌈"],
-      "곱창,막창,양": ["곱창", "막창"],
-      "곰탕,설렁탕": ["곰탕", "설렁탕"],
-      "칼국수,만두": ["만두"],
-      "백숙,삼계탕": ["백숙", "삼계탕"],
-      "순대,순댓국": ["순댓국"],
-      "치킨,닭강정": ["닭강정"],
-      "전,빈대떡": ["전", "빈대떡"],
-      "아귀찜,해물찜": ["아귀찜", "해물"],
-      "맥주,호프": ["맥주", "호프"],
-      "스파게티,파스타전문": ["스파게티"],
-      "소고기구이": ["한우"],
-    };
+    const Cuisine = window.CuisineTaxonomy;
+    const GENERIC_CUISINE = Cuisine?.GENERIC || new Set(["음식점", "일반", "기타"]);
 
     const METRO_SIDOS = new Set(["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종"]);
     const KNOWN_SIDOS = new Set([
@@ -1310,49 +1340,35 @@
       );
     }
 
-    function parseCuisine(category) {
-      const raw = (category || "").trim();
-      const tags = [];
-
-      const push = (t) => {
-        const v = (t || "").trim();
-        if (!v || GENERIC_CUISINE.has(v) || tags.includes(v)) return;
-        tags.push(v);
+    function parseCuisine(category, name) {
+      const hit = Cuisine?.classify?.(category, name) || {
+        major: null,
+        minor: null,
+        labels: [],
       };
-
-      if (CATEGORY_ALIASES[raw]) push(CATEGORY_ALIASES[raw]);
-      for (const extra of CATEGORY_EXTRA_TAGS[raw] || []) push(extra);
-
-      for (const piece of raw.split(",").map((s) => s.trim()).filter(Boolean)) {
-        if (CATEGORY_ALIASES[piece]) push(CATEGORY_ALIASES[piece]);
-        else {
-          const cleaned = piece
-            .replace(/\(BAR\)/gi, "")
-            .replace(/전문$/, "")
-            .replace(/요리$/, "")
-            .trim();
-          if (!GENERIC_CUISINE.has(cleaned)) push(cleaned);
-        }
-      }
-
-      if (/카페/.test(raw)) push("카페");
-      if (/디저트/.test(raw)) push("디저트");
-      if (/BAR|바\(/.test(raw)) push("바");
-
-      return tags;
+      return hit;
     }
 
     function starLabel(n) {
       if (n >= 3) return "★★★";
       if (n === 2) return "★★";
       if (n === 1) return "★";
-      return "미방문";
+      return "맛집 후보";
+    }
+
+    function emptyCuisinePath() {
+      return Cuisine?.emptyCuisinePath?.() || { major: null, minor: null };
     }
 
     function enrich(place, index) {
       const rawStars = Number(place.stars);
       const stars = Number.isFinite(rawStars) ? rawStars : 1;
-      const baseCuisine = parseCuisine(place.category);
+      const classified = parseCuisine(place.category, place.name);
+      const baseCuisine = classified.labels || [];
+      const baseCuisinePath = {
+        major: classified.major || null,
+        minor: classified.minor || null,
+      };
       const addressRegionPath = parseRegionPath(place.address);
       const addressRegionLabels = regionLabels(addressRegionPath);
       const tags = [
@@ -1380,8 +1396,10 @@
         baseStars: stars,
         id: index,
         baseCuisine,
+        baseCuisinePath,
         cuisine: [...baseCuisine],
         cuisineSet: new Set(baseCuisine),
+        cuisinePath: { ...baseCuisinePath },
         cuisineTags: baseCuisine.map((label) => ({ type: "cuisine", label })),
         customTags: [],
         addressRegionPath,
@@ -1390,6 +1408,7 @@
         region: [...addressRegionLabels],
         regionTags: addressRegionLabels.map((label) => ({ type: "region", label })),
         extraRegions: [],
+        extraCuisines: [],
         tags,
         searchText,
         baseSearchText,
@@ -1397,21 +1416,26 @@
       };
     }
 
-    const allPlaces = (window.PLACES || []).map(enrich)
+    const staticPlaces = (window.PLACES || []).map(enrich)
       .sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name, "ko"));
+    /** @type {typeof staticPlaces} */
+    let allPlaces = staticPlaces.slice();
     /** @type {typeof allPlaces} */
     let places = allPlaces.slice();
     /** @type {Set<string>} */
     let hiddenSids = new Set();
     /** @type {Record<string, number>} */
     let starsBySid = {};
+    /** @type {Array<Record<string, unknown>>} */
+    let addedPlaceRows = [];
 
     const state = {
       q: "",
       stars: new Set(),
       regionPath: emptyRegionPath(),
       customRegion: null,
-      cuisines: new Set(),
+      cuisinePath: emptyCuisinePath(),
+      customCuisine: null,
     };
 
     /** @type {Record<string, string>} */
@@ -1433,6 +1457,7 @@
       starChips: document.getElementById("starChips"),
       regionNav: document.getElementById("regionNav"),
       regionChips: document.getElementById("regionChips"),
+      cuisineNav: document.getElementById("cuisineNav"),
       cuisineChips: document.getElementById("cuisineChips"),
       grid: document.getElementById("grid"),
       empty: document.getElementById("empty"),
@@ -1440,11 +1465,29 @@
       q: document.getElementById("q"),
       resetBtn: document.getElementById("resetBtn"),
       homeBtn: document.getElementById("homeBtn"),
+      addPlaceBtn: document.getElementById("addPlaceBtn"),
+      addPlaceModal: document.getElementById("addPlaceModal"),
+      addPlaceModalClose: document.getElementById("addPlaceModalClose"),
+      addPlaceUrl: document.getElementById("addPlaceUrl"),
+      addPlaceResolveBtn: document.getElementById("addPlaceResolveBtn"),
+      addPlaceStatus: document.getElementById("addPlaceStatus"),
+      addPlacePreview: document.getElementById("addPlacePreview"),
+      addPlaceName: document.getElementById("addPlaceName"),
+      addPlaceAddress: document.getElementById("addPlaceAddress"),
+      addPlaceCategory: document.getElementById("addPlaceCategory"),
+      addPlaceStars: document.getElementById("addPlaceStars"),
+      addPlaceSid: document.getElementById("addPlaceSid"),
+      addPlacePx: document.getElementById("addPlacePx"),
+      addPlacePy: document.getElementById("addPlacePy"),
+      addPlaceSourceUrl: document.getElementById("addPlaceSourceUrl"),
+      addPlaceSaveBtn: document.getElementById("addPlaceSaveBtn"),
       selectModeBtn: document.getElementById("selectModeBtn"),
       selectVisibleBtn: document.getElementById("selectVisibleBtn"),
       bulkBar: document.getElementById("bulkBar"),
       bulkCount: document.getElementById("bulkCount"),
       bulkKind: document.getElementById("bulkKind"),
+      bulkCuisineMajor: document.getElementById("bulkCuisineMajor"),
+      bulkRegionSido: document.getElementById("bulkRegionSido"),
       bulkLabel: document.getElementById("bulkLabel"),
       bulkAddBtn: document.getElementById("bulkAddBtn"),
       bulkClearBtn: document.getElementById("bulkClearBtn"),
@@ -1477,7 +1520,7 @@
         ["★★★", places.filter((p) => p.stars === 3).length],
         ["★★", places.filter((p) => p.stars === 2).length],
         ["★", places.filter((p) => p.stars === 1).length],
-        ["미방문", places.filter((p) => p.stars === 0).length],
+        ["맛집 후보", places.filter((p) => p.stars === 0).length],
       ];
     }
 
@@ -1492,6 +1535,51 @@
       for (const sid of [...selectedSids]) {
         if (hiddenSids.has(sid) || !placeBySid.has(sid)) selectedSids.delete(sid);
       }
+    }
+
+    function applyAddedPlaces(rows) {
+      addedPlaceRows = rows || [];
+      const existingSids = new Set(
+        staticPlaces.map((p) => String(p.sid || "")).filter(Boolean)
+      );
+      const extras = [];
+      for (const row of addedPlaceRows) {
+        const sid = String(row.sid || row.place_sid || "").trim();
+        if (!sid || existingSids.has(sid)) continue;
+        existingSids.add(sid);
+        extras.push(
+          enrich(
+            {
+              name: row.name || "",
+              address: row.address || "",
+              category: row.category || "",
+              stars: Number(row.stars) || 0,
+              px: row.px,
+              py: row.py,
+              sid,
+              list: row.list || "직접추가",
+            },
+            staticPlaces.length + extras.length
+          )
+        );
+      }
+      allPlaces = [...staticPlaces, ...extras].sort(
+        (a, b) => b.stars - a.stars || a.name.localeCompare(b.name, "ko")
+      );
+      places = allPlaces.filter((p) => !p.sid || !hiddenSids.has(String(p.sid)));
+      // Re-apply star overrides onto the rebuilt list
+      if (Object.keys(starsBySid).length) {
+        for (const place of allPlaces) {
+          const sid = place.sid ? String(place.sid) : "";
+          const override = sid ? starsBySid[sid] : undefined;
+          if (Number.isFinite(override)) place.stars = Number(override);
+        }
+        allPlaces.sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name, "ko"));
+        places = allPlaces.filter((p) => !p.sid || !hiddenSids.has(String(p.sid)));
+      }
+      starStats = computeStarStats();
+      rebuildPlaceIndex();
+      applyCustomTags();
     }
 
     function applyStarOverrides(map) {
@@ -1539,7 +1627,7 @@
         (state.stars.has("★★★") && place.stars === 3) ||
         (state.stars.has("★★") && place.stars === 2) ||
         (state.stars.has("★") && place.stars === 1) ||
-        (state.stars.has("미방문") && place.stars === 0)
+        (state.stars.has("맛집 후보") && place.stars === 0)
       );
     }
 
@@ -1556,10 +1644,13 @@
     }
 
     function matchesCuisine(place) {
-      if (!state.cuisines.size) return true;
-      for (const t of state.cuisines) {
-        if (!place.cuisineSet?.has(t)) return false;
+      if (state.customCuisine) {
+        return (place.extraCuisines || []).includes(state.customCuisine);
       }
+      const cp = place.cuisinePath || emptyCuisinePath();
+      const sp = state.cuisinePath;
+      if (sp.major && cp.major !== sp.major) return false;
+      if (sp.minor && cp.minor !== sp.minor) return false;
       return true;
     }
 
@@ -1580,7 +1671,7 @@
         ["★★★", list.filter((p) => p.stars === 3).length],
         ["★★", list.filter((p) => p.stars === 2).length],
         ["★", list.filter((p) => p.stars === 1).length],
-        ["미방문", list.filter((p) => p.stars === 0).length],
+        ["맛집 후보", list.filter((p) => p.stars === 0).length],
       ];
     }
 
@@ -1600,20 +1691,59 @@
 
         // Cuisine: DB is source of truth once seeded / present / explicitly cleared.
         if (cuisineDbReady || cuisineCustom.length > 0 || cuisineCleared) {
-          place.cuisine = cuisineCustom.map((t) => t.label);
+          const labels = cuisineCustom.map((t) => t.label);
+          const path = Cuisine?.pathFromLabels?.(labels) || {
+            major: null,
+            minor: null,
+            extras: labels,
+          };
+          const byLabel = new Map();
+          for (const t of cuisineCustom) {
+            const key = normTagKey(t.label);
+            if (!key) continue;
+            const prev = byLabel.get(key);
+            if (!prev || (!prev.id && t.id)) byLabel.set(key, t);
+          }
+          const cuisineTagViews = [];
+          const seen = new Set();
+          const pushLabel = (label) => {
+            const key = normTagKey(label);
+            if (!key || seen.has(key)) return;
+            seen.add(key);
+            const hit = byLabel.get(key);
+            cuisineTagViews.push(
+              hit
+                ? { type: "cuisine", label: hit.label, tagId: hit.id }
+                : { type: "cuisine", label: String(label).trim() }
+            );
+          };
+          if (path.major) pushLabel(path.major);
+          if (path.minor) pushLabel(path.minor);
+          for (const t of cuisineCustom) {
+            const key = normTagKey(t.label);
+            if (!key || seen.has(key)) continue;
+            seen.add(key);
+            cuisineTagViews.push({ type: "cuisine", label: t.label, tagId: t.id });
+          }
+          place.cuisinePath = { major: path.major || null, minor: path.minor || null };
+          place.cuisineTags = dedupeTagViews(cuisineTagViews);
+          place.cuisine = place.cuisineTags.map((t) => t.label);
           place.cuisineSet = new Set(place.cuisine);
-          place.cuisineTags = cuisineCustom.map((t) => ({
-            type: "cuisine",
-            label: t.label,
-            tagId: t.id,
-          }));
+          place.extraCuisines = (path.extras || []).filter(
+            (l) => l && l !== path.major && l !== path.minor
+          );
         } else {
           place.cuisine = [...(place.baseCuisine || [])];
           place.cuisineSet = new Set(place.cuisine);
+          place.cuisinePath = {
+            major: place.baseCuisinePath?.major || null,
+            minor: place.baseCuisinePath?.minor || null,
+          };
           place.cuisineTags = (place.baseCuisine || []).map((label) => ({
             type: "cuisine",
             label,
           }));
+          place.extraCuisines = [];
         }
 
         // Region: same rule.
@@ -1691,18 +1821,34 @@
     }
 
     function cuisineStats() {
-      const stats = countBy((p) => p.cuisine, placesForFacet("cuisine"));
-      const selected = state.cuisines;
-      if (stats.length <= 60) return stats;
-      const top = stats.slice(0, 60);
-      const topSet = new Set(top.map(([k]) => k));
-      for (const label of selected) {
-        if (!topSet.has(label)) {
-          const hit = stats.find(([k]) => k === label);
-          if (hit) top.push(hit);
-        }
+      return currentCuisineLevelStats();
+    }
+
+    function placesMatchingCuisine(path, list = places) {
+      return list.filter((p) => {
+        const cp = p.cuisinePath || emptyCuisinePath();
+        if (path.major && cp.major !== path.major) return false;
+        if (path.minor && cp.minor !== path.minor) return false;
+        return true;
+      });
+    }
+
+    function currentCuisineLevelStats() {
+      const base = placesForFacet("cuisine");
+      const majors = new Set(Cuisine?.MAJORS || []);
+      if (!state.cuisinePath.major || state.customCuisine) {
+        const majorStats = countField(base, (p) => p.cuisinePath?.major).filter(([k]) =>
+          majors.has(k)
+        );
+        const customStats = countBy((p) => p.extraCuisines || [], base);
+        const majorSet = new Set(majorStats.map(([k]) => k));
+        const extras = customStats.filter(([k]) => !majorSet.has(k) && !majors.has(k));
+        return [...majorStats, ...extras];
       }
-      return top;
+      return countField(
+        placesMatchingCuisine({ major: state.cuisinePath.major, minor: null }, base),
+        (p) => p.cuisinePath?.minor
+      ).filter(([k]) => k);
     }
 
     function placesMatchingRegion(path, list = places) {
@@ -1874,6 +2020,99 @@
       }
     }
 
+    function isCuisineMajorLabel(label) {
+      return (Cuisine?.MAJORS || []).includes(label);
+    }
+
+    function renderCuisineNav() {
+      if (!els.cuisineNav) return;
+      els.cuisineNav.innerHTML = "";
+      const { major, minor } = state.cuisinePath;
+      if (!major && !state.customCuisine) return;
+
+      const addCrumb = (label, onClick) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "region-crumb" + (onClick ? "" : " current");
+        btn.textContent = label;
+        if (onClick) btn.addEventListener("click", onClick);
+        els.cuisineNav.appendChild(btn);
+      };
+      const addSep = () => {
+        const sep = document.createElement("span");
+        sep.className = "region-sep";
+        sep.textContent = "›";
+        els.cuisineNav.appendChild(sep);
+      };
+
+      addCrumb("전체", () => {
+        state.cuisinePath = emptyCuisinePath();
+        state.customCuisine = null;
+        scheduleRender();
+      });
+
+      if (state.customCuisine) {
+        addSep();
+        addCrumb(state.customCuisine, null);
+        return;
+      }
+
+      addSep();
+      addCrumb(major, minor
+        ? () => {
+            state.cuisinePath = { major, minor: null };
+            state.customCuisine = null;
+            scheduleRender();
+          }
+        : null);
+
+      if (minor) {
+        addSep();
+        addCrumb(minor, null);
+      }
+    }
+
+    function renderCuisineChips() {
+      renderCuisineNav();
+      const stats = currentCuisineLevelStats();
+
+      els.cuisineChips.innerHTML = "";
+      for (const [label, count] of stats) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        const on =
+          state.customCuisine === label ||
+          state.cuisinePath.minor === label ||
+          (!state.cuisinePath.minor &&
+            !state.customCuisine &&
+            state.cuisinePath.major === label);
+        btn.className = "chip" + (on ? " on" : "");
+        btn.innerHTML = `${escapeHtml(label)}<span class="count">${count}</span>`;
+        btn.addEventListener("click", () => {
+          if (state.customCuisine || (!state.cuisinePath.major && !state.customCuisine)) {
+            if (!isCuisineMajorLabel(label)) {
+              state.customCuisine = state.customCuisine === label ? null : label;
+              state.cuisinePath = emptyCuisinePath();
+            } else {
+              state.customCuisine = null;
+              state.cuisinePath = {
+                major: state.cuisinePath.major === label ? null : label,
+                minor: null,
+              };
+            }
+          } else {
+            state.customCuisine = null;
+            state.cuisinePath = {
+              major: state.cuisinePath.major,
+              minor: state.cuisinePath.minor === label ? null : label,
+            };
+          }
+          scheduleRender();
+        });
+        els.cuisineChips.appendChild(btn);
+      }
+    }
+
     function renderChips(container, stats, selected, { exclusive = false } = {}) {
       container.innerHTML = "";
       for (const [label, count] of stats) {
@@ -1918,6 +2157,7 @@
 
     function currentFilterKey() {
       const sp = state.regionPath;
+      const cp = state.cuisinePath;
       return [
         state.q,
         [...state.stars].join(","),
@@ -1925,8 +2165,22 @@
         sp.city || "",
         sp.district || "",
         state.customRegion || "",
-        [...state.cuisines].join(","),
+        cp.major || "",
+        cp.minor || "",
+        state.customCuisine || "",
       ].join("|");
+    }
+
+    function sidoOptionsHtml(selected) {
+      const sel = String(selected || "").trim();
+      const order = [
+        "서울", "경기", "인천", "부산", "대구", "광주", "대전", "울산", "세종",
+        "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주",
+      ];
+      return order
+        .filter((s) => KNOWN_SIDOS.has(s))
+        .map((s) => `<option value="${s}"${s === sel ? " selected" : ""}>${s}</option>`)
+        .join("");
     }
 
     function placeCardHtml(place, isAdmin) {
@@ -1952,15 +2206,27 @@
         .map(renderTag)
         .join("");
 
+      const defaultMajor =
+        place.cuisinePath?.major ||
+        state.cuisinePath.major ||
+        "한식";
+      const majorSelect = Cuisine?.majorOptionsHtml?.(defaultMajor) ||
+        `<option value="한식" selected>한식</option>`;
       const cuisineAdd = isAdmin && place.sid
         ? `<form class="tag-add" data-sid="${escapeHtml(String(place.sid))}" data-kind="cuisine">
-            <input type="text" name="label" maxlength="24" placeholder="추가" aria-label="종류 태그 추가" />
+            <select name="major" aria-label="대분류" title="대분류">${majorSelect}</select>
+            <input type="text" name="label" maxlength="24" placeholder="소분류" aria-label="소분류 추가" />
             <button type="submit" class="tag-add-btn" title="종류 태그 추가">+</button>
           </form>`
         : "";
+      const defaultSido =
+        place.regionPath?.sido ||
+        state.regionPath.sido ||
+        "서울";
       const regionAdd = isAdmin && place.sid
         ? `<form class="tag-add" data-sid="${escapeHtml(String(place.sid))}" data-kind="region">
-            <input type="text" name="label" maxlength="24" placeholder="추가" aria-label="지역 태그 추가" />
+            <select name="sido" aria-label="시도" title="시도">${sidoOptionsHtml(defaultSido)}</select>
+            <input type="text" name="label" maxlength="24" placeholder="구/시 등" aria-label="지역 소분류 추가" />
             <button type="submit" class="tag-add-btn" title="지역 태그 추가">+</button>
           </form>`
         : "";
@@ -1976,7 +2242,7 @@
               <option value="3"${place.stars === 3 ? " selected" : ""}>★★★</option>
               <option value="2"${place.stars === 2 ? " selected" : ""}>★★</option>
               <option value="1"${place.stars === 1 ? " selected" : ""}>★</option>
-              <option value="0"${place.stars === 0 ? " selected" : ""}>미방문</option>
+              <option value="0"${place.stars === 0 ? " selected" : ""}>맛집 후보</option>
             </select>`
           : `<span class="stars${place.stars === 0 ? " unvisited" : ""}" title="${starLabel(place.stars)}">${starLabel(place.stars)}</span>`;
 
@@ -2029,14 +2295,142 @@
           state.regionPath = emptyRegionPath();
         }
       } else {
-        if (state.cuisines.has(label)) state.cuisines.clear();
-        else {
-          state.cuisines.clear();
-          state.cuisines.add(label);
+        const cp = place.cuisinePath || emptyCuisinePath();
+        if ((place.extraCuisines || []).includes(label)) {
+          state.customCuisine = state.customCuisine === label ? null : label;
+          state.cuisinePath = emptyCuisinePath();
+        } else if (label === cp.major || isCuisineMajorLabel(label)) {
+          state.customCuisine = null;
+          state.cuisinePath = {
+            major: state.cuisinePath.major === label && !state.cuisinePath.minor ? null : label,
+            minor: null,
+          };
+        } else if (label === cp.minor || Cuisine?.isLeaf?.(label)) {
+          state.customCuisine = null;
+          const major = cp.major || Cuisine?.majorOfLeaf?.(label) || null;
+          state.cuisinePath = {
+            major,
+            minor:
+              state.cuisinePath.minor === label && state.cuisinePath.major === major
+                ? null
+                : label,
+          };
+        } else {
+          state.customCuisine = label;
+          state.cuisinePath = emptyCuisinePath();
         }
       }
       scheduleRender();
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function isIgnorableTagError(err) {
+      return /이미 있는/.test(String(err || ""));
+    }
+
+    /** 대분류 아래 소분류로 종류 태그 추가 (대분류 태그도 함께 보장) */
+    async function addRegionUnderSido(sid, sidoRaw, minorRaw) {
+      const sido = String(sidoRaw || "").trim();
+      const minor = String(minorRaw || "").trim();
+      if (!sid || !KNOWN_SIDOS.has(sido)) {
+        return { error: "시도를 선택해 주세요." };
+      }
+      if (!minor) return { error: "구/시 등 소분류를 입력해 주세요." };
+
+      if (KNOWN_SIDOS.has(minor)) {
+        const result = await window.PlaceSocial.addTag(sid, minor, "region");
+        if (result?.error && !isIgnorableTagError(result.error)) return result;
+        return { ok: true };
+      }
+
+      const sidoResult = await window.PlaceSocial.addTag(sid, sido, "region");
+      if (sidoResult?.error && !isIgnorableTagError(sidoResult.error)) {
+        return sidoResult;
+      }
+
+      if (minor !== sido) {
+        const minorResult = await window.PlaceSocial.addTag(sid, minor, "region");
+        if (minorResult?.error && !isIgnorableTagError(minorResult.error)) {
+          return minorResult;
+        }
+      }
+      return { ok: true };
+    }
+
+    async function addRegionUnderSidoBulk(sids, sidoRaw, minorRaw) {
+      const sido = String(sidoRaw || "").trim();
+      const minor = String(minorRaw || "").trim();
+      if (!KNOWN_SIDOS.has(sido)) {
+        return { error: "시도를 선택해 주세요.", added: 0 };
+      }
+      if (!minor) return { error: "구/시 등 소분류를 입력해 주세요.", added: 0 };
+
+      if (KNOWN_SIDOS.has(minor)) {
+        return window.PlaceSocial.addTagsBulk(sids, minor, "region");
+      }
+
+      const sidoRes = await window.PlaceSocial.addTagsBulk(sids, sido, "region");
+      if (sidoRes?.error) return sidoRes;
+      const minorRes = await window.PlaceSocial.addTagsBulk(sids, minor, "region");
+      return {
+        added: minorRes?.added || 0,
+        skipped: minorRes?.skipped || 0,
+        error: minorRes?.error,
+      };
+    }
+
+    async function addCuisineUnderMajor(sid, major, minorRaw) {
+      const minor = String(minorRaw || "").trim();
+      const maj = String(major || "").trim();
+      if (!sid || !maj || !Cuisine?.isMajor?.(maj)) {
+        return { error: "대분류를 선택해 주세요." };
+      }
+      if (!minor) return { error: "소분류 이름을 입력해 주세요." };
+
+      if (Cuisine.isMajor(minor)) {
+        const result = await window.PlaceSocial.addTag(sid, minor, "cuisine");
+        if (result?.error && !isIgnorableTagError(result.error)) return result;
+        return { ok: true };
+      }
+
+      Cuisine.registerLeaf?.(minor, maj);
+
+      const majorResult = await window.PlaceSocial.addTag(sid, maj, "cuisine");
+      if (majorResult?.error && !isIgnorableTagError(majorResult.error)) {
+        return majorResult;
+      }
+
+      if (minor !== maj) {
+        const minorResult = await window.PlaceSocial.addTag(sid, minor, "cuisine");
+        if (minorResult?.error && !isIgnorableTagError(minorResult.error)) {
+          return minorResult;
+        }
+      }
+      return { ok: true };
+    }
+
+    async function addCuisineUnderMajorBulk(sids, major, minorRaw) {
+      const minor = String(minorRaw || "").trim();
+      const maj = String(major || "").trim();
+      if (!maj || !Cuisine?.isMajor?.(maj)) {
+        return { error: "대분류를 선택해 주세요.", added: 0 };
+      }
+      if (!minor) return { error: "소분류 이름을 입력해 주세요.", added: 0 };
+
+      if (Cuisine.isMajor(minor)) {
+        return window.PlaceSocial.addTagsBulk(sids, minor, "cuisine");
+      }
+
+      Cuisine.registerLeaf?.(minor, maj);
+      const majorRes = await window.PlaceSocial.addTagsBulk(sids, maj, "cuisine");
+      if (majorRes?.error) return majorRes;
+      const minorRes = await window.PlaceSocial.addTagsBulk(sids, minor, "cuisine");
+      return {
+        added: (minorRes?.added || 0),
+        skipped: (minorRes?.skipped || 0),
+        error: minorRes?.error,
+        majorAdded: majorRes?.added || 0,
+      };
     }
 
     function wireGridOnce() {
@@ -2129,6 +2523,39 @@
         const label = (input?.value || "").trim();
         const kind = form.dataset.kind === "region" ? "region" : "cuisine";
         if (!label || !window.PlaceSocial?.addTag) return;
+
+        if (kind === "cuisine") {
+          const majorSel = form.querySelector('select[name="major"]');
+          const major = (majorSel?.value || "").trim();
+          if (!major || !Cuisine?.isMajor?.(major)) {
+            alert("대분류를 선택해 주세요.");
+            return;
+          }
+          const result = await addCuisineUnderMajor(form.dataset.sid, major, label);
+          if (result?.error) {
+            alert(result.error);
+            return;
+          }
+          if (input) input.value = "";
+          return;
+        }
+
+        if (kind === "region") {
+          const sidoSel = form.querySelector('select[name="sido"]');
+          const sido = (sidoSel?.value || "").trim();
+          if (!KNOWN_SIDOS.has(sido)) {
+            alert("시도를 선택해 주세요.");
+            return;
+          }
+          const result = await addRegionUnderSido(form.dataset.sid, sido, label);
+          if (result?.error) {
+            alert(result.error);
+            return;
+          }
+          if (input) input.value = "";
+          return;
+        }
+
         const result = await window.PlaceSocial.addTag(form.dataset.sid, label, kind);
         if (result?.error) {
           alert(result.error);
@@ -2157,6 +2584,9 @@
 
     function updateBulkBar() {
       const isAdmin = !!window.PlaceSocial?.isAdmin?.();
+      if (els.addPlaceBtn) {
+        els.addPlaceBtn.hidden = !isAdmin;
+      }
       if (els.selectModeBtn) {
         els.selectModeBtn.hidden = !isAdmin;
         els.selectModeBtn.classList.toggle("on", selectMode);
@@ -2219,7 +2649,7 @@
       if (q) add(`“${q}”`, "query");
 
       for (const star of state.stars) {
-        add(star, star === "미방문" ? "star unvisited" : "star");
+        add(star, star === "맛집 후보" ? "star unvisited" : "star");
       }
 
       if (state.customRegion) {
@@ -2231,8 +2661,13 @@
         }
       }
 
-      for (const cuisine of state.cuisines) {
-        add(cuisine, "cuisine");
+      if (state.customCuisine) {
+        add(state.customCuisine, "cuisine");
+      } else {
+        const { major, minor } = state.cuisinePath;
+        for (const label of [major, minor].filter(Boolean)) {
+          add(label, "cuisine");
+        }
       }
 
       els.activeFilters.replaceChildren(frag);
@@ -2256,7 +2691,7 @@
 
       renderChips(els.starChips, starChipStats(), state.stars, { exclusive: true });
       renderRegionChips();
-      renderChips(els.cuisineChips, cuisineStats(), state.cuisines, { exclusive: true });
+      renderCuisineChips();
       renderActiveFilters();
 
       const filtered = places.filter(matches);
@@ -2267,7 +2702,7 @@
       els.star2Count.textContent = String(starStats.find(([k]) => k === "★★")?.[1] || 0);
       els.star3Count.textContent = String(starStats.find(([k]) => k === "★★★")?.[1] || 0);
       if (els.star0Count) {
-        els.star0Count.textContent = String(starStats.find(([k]) => k === "미방문")?.[1] || 0);
+        els.star0Count.textContent = String(starStats.find(([k]) => k === "맛집 후보")?.[1] || 0);
       }
       els.shownCount.textContent = String(filtered.length);
       els.empty.hidden = filtered.length > 0;
@@ -2290,12 +2725,146 @@
       state.stars.clear();
       state.regionPath = emptyRegionPath();
       state.customRegion = null;
-      state.cuisines.clear();
+      state.cuisinePath = emptyCuisinePath();
+      state.customCuisine = null;
       if (els.q) els.q.value = "";
       if (selectMode) setSelectMode(false);
       else scheduleRender();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    function setAddPlaceStatus(msg, isError = false) {
+      if (!els.addPlaceStatus) return;
+      els.addPlaceStatus.textContent = msg || "";
+      els.addPlaceStatus.classList.toggle("error", !!isError);
+    }
+
+    function resetAddPlaceModal() {
+      if (els.addPlaceUrl) els.addPlaceUrl.value = "";
+      if (els.addPlacePreview) els.addPlacePreview.hidden = true;
+      if (els.addPlaceName) els.addPlaceName.value = "";
+      if (els.addPlaceAddress) els.addPlaceAddress.value = "";
+      if (els.addPlaceCategory) els.addPlaceCategory.value = "";
+      if (els.addPlaceStars) els.addPlaceStars.value = "0";
+      if (els.addPlaceSid) els.addPlaceSid.value = "";
+      if (els.addPlacePx) els.addPlacePx.value = "";
+      if (els.addPlacePy) els.addPlacePy.value = "";
+      if (els.addPlaceSourceUrl) els.addPlaceSourceUrl.value = "";
+      setAddPlaceStatus("");
+    }
+
+    function openAddPlaceModal() {
+      if (!els.addPlaceModal || !window.PlaceSocial?.isAdmin?.()) return;
+      resetAddPlaceModal();
+      els.addPlaceModal.showModal();
+      els.addPlaceUrl?.focus();
+    }
+
+    els.addPlaceBtn?.addEventListener("click", () => {
+      openAddPlaceModal();
+    });
+
+    els.addPlaceResolveBtn?.addEventListener("click", async () => {
+      if (!window.PlaceSocial?.resolveNaverPlace) return;
+      const url = (els.addPlaceUrl?.value || "").trim();
+      if (!url) {
+        setAddPlaceStatus("네이버 지도 링크를 입력해 주세요.", true);
+        els.addPlaceUrl?.focus();
+        return;
+      }
+      els.addPlaceResolveBtn.disabled = true;
+      setAddPlaceStatus("불러오는 중…");
+      const result = await window.PlaceSocial.resolveNaverPlace(url);
+      els.addPlaceResolveBtn.disabled = false;
+      if (result?.error) {
+        setAddPlaceStatus(result.error, true);
+        return;
+      }
+      const sid = String(result.sid || "");
+      if (sid && placeBySid.has(sid)) {
+        setAddPlaceStatus(`이미 목록에 있는 가게입니다. (sid ${sid})`, true);
+      } else if (result.partial) {
+        setAddPlaceStatus("일부만 불러왔습니다. 이름·주소를 확인해 주세요.");
+      } else {
+        setAddPlaceStatus("불러오기 완료. 확인 후 추가하세요.");
+      }
+      if (els.addPlacePreview) els.addPlacePreview.hidden = false;
+      if (els.addPlaceSid) els.addPlaceSid.value = sid;
+      if (els.addPlaceName) els.addPlaceName.value = result.name || "";
+      if (els.addPlaceAddress) els.addPlaceAddress.value = result.address || "";
+      if (els.addPlaceCategory) els.addPlaceCategory.value = result.category || "";
+      if (els.addPlacePx) els.addPlacePx.value = result.px == null ? "" : String(result.px);
+      if (els.addPlacePy) els.addPlacePy.value = result.py == null ? "" : String(result.py);
+      if (els.addPlaceSourceUrl) els.addPlaceSourceUrl.value = result.source_url || url;
+      if (els.addPlaceStars) els.addPlaceStars.value = "0";
+      els.addPlaceName?.focus();
+    });
+
+    els.addPlaceSaveBtn?.addEventListener("click", async () => {
+      if (!window.PlaceSocial?.addPlace) return;
+      const sid = (els.addPlaceSid?.value || "").trim();
+      const name = (els.addPlaceName?.value || "").trim();
+      const address = (els.addPlaceAddress?.value || "").trim();
+      const category = (els.addPlaceCategory?.value || "").trim();
+      const stars = Number(els.addPlaceStars?.value || 0);
+      if (!sid) {
+        setAddPlaceStatus("먼저 링크에서 정보를 불러와 주세요.", true);
+        return;
+      }
+      if (!name) {
+        setAddPlaceStatus("가게 이름을 입력해 주세요.", true);
+        els.addPlaceName?.focus();
+        return;
+      }
+      if (placeBySid.has(sid) && !addedPlaceRows.some((r) => String(r.sid) === sid)) {
+        setAddPlaceStatus("이미 기본 목록에 있는 가게입니다.", true);
+        return;
+      }
+      els.addPlaceSaveBtn.disabled = true;
+      setAddPlaceStatus("저장 중…");
+      const pxRaw = els.addPlacePx?.value;
+      const pyRaw = els.addPlacePy?.value;
+      const result = await window.PlaceSocial.addPlace({
+        sid,
+        name,
+        address,
+        category,
+        stars,
+        px: pxRaw === "" || pxRaw == null ? null : Number(pxRaw),
+        py: pyRaw === "" || pyRaw == null ? null : Number(pyRaw),
+        source_url: els.addPlaceSourceUrl?.value || null,
+      });
+      els.addPlaceSaveBtn.disabled = false;
+      if (result?.error) {
+        setAddPlaceStatus(result.error, true);
+        return;
+      }
+
+      // Seed tags for the new place when possible
+      const place = placeBySid.get(sid);
+      if (place && window.PlaceSocial.seedRegionTags && window.PlaceSocial.seedCuisineTags) {
+        await window.PlaceSocial.seedRegionTags([
+          { sid, labels: place.addressRegionLabels || [] },
+        ]);
+        await window.PlaceSocial.seedCuisineTags([
+          { sid, labels: place.baseCuisine || [] },
+        ]);
+      }
+
+      setAddPlaceStatus("추가되었습니다.");
+      els.addPlaceModal?.close();
+      resetAddPlaceModal();
+      filterKey = "";
+      scheduleRender();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    els.addPlaceUrl?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        els.addPlaceResolveBtn?.click();
+      }
+    });
 
     els.homeBtn?.addEventListener("click", goHome);
 
@@ -2323,7 +2892,24 @@
       els.bulkKind.querySelectorAll("button").forEach((b) => {
         b.classList.toggle("on", b.dataset.kind === bulkKind);
       });
+      if (els.bulkCuisineMajor) {
+        els.bulkCuisineMajor.hidden = bulkKind !== "cuisine";
+      }
+      if (els.bulkRegionSido) {
+        els.bulkRegionSido.hidden = bulkKind !== "region";
+      }
+      if (els.bulkLabel) {
+        els.bulkLabel.placeholder =
+          bulkKind === "cuisine" ? "소분류 이름" : "구/시 등";
+      }
     });
+
+    if (els.bulkCuisineMajor) {
+      els.bulkCuisineMajor.hidden = bulkKind !== "cuisine";
+    }
+    if (els.bulkRegionSido) {
+      els.bulkRegionSido.hidden = bulkKind !== "region";
+    }
 
     els.bulkClearBtn?.addEventListener("click", () => {
       selectedSids.clear();
@@ -2338,7 +2924,7 @@
       if (!window.PlaceSocial?.addTagsBulk) return;
       const label = (els.bulkLabel?.value || "").trim();
       if (!label) {
-        alert("태그 이름을 입력해 주세요.");
+        alert(bulkKind === "cuisine" ? "소분류 이름을 입력해 주세요." : "구/시 등 소분류를 입력해 주세요.");
         els.bulkLabel?.focus();
         return;
       }
@@ -2346,12 +2932,34 @@
         alert("가게를 먼저 선택해 주세요.");
         return;
       }
-      const kindLabel = bulkKind === "region" ? "지역" : "종류";
-      if (!confirm(`선택한 ${selectedSids.size}곳에 ${kindLabel} 태그 「${label}」을(를) 추가할까요?`)) {
+
+      if (bulkKind === "cuisine") {
+        const major = (els.bulkCuisineMajor?.value || "").trim();
+        const preview = `${major} › ${label}`;
+        if (!confirm(`선택한 ${selectedSids.size}곳에 종류 태그 「${preview}」을(를) 추가할까요?`)) {
+          return;
+        }
+        els.bulkAddBtn.disabled = true;
+        const result = await addCuisineUnderMajorBulk([...selectedSids], major, label);
+        els.bulkAddBtn.disabled = selectedSids.size === 0;
+        if (result?.error) {
+          alert(result.error);
+          return;
+        }
+        const added = result?.added || 0;
+        const skipped = result?.skipped || 0;
+        if (els.bulkLabel) els.bulkLabel.value = "";
+        alert(`추가 ${added}곳` + (skipped ? `, 이미 있음 ${skipped}곳` : ""));
+        return;
+      }
+
+      const sido = (els.bulkRegionSido?.value || "").trim();
+      const preview = `${sido} › ${label}`;
+      if (!confirm(`선택한 ${selectedSids.size}곳에 지역 태그 「${preview}」을(를) 추가할까요?`)) {
         return;
       }
       els.bulkAddBtn.disabled = true;
-      const result = await window.PlaceSocial.addTagsBulk([...selectedSids], label, bulkKind);
+      const result = await addRegionUnderSidoBulk([...selectedSids], sido, label);
       els.bulkAddBtn.disabled = selectedSids.size === 0;
       if (result?.error) {
         alert(result.error);
@@ -2419,6 +3027,11 @@
         filterKey = "";
         scheduleRender();
       },
+      onAddedPlacesChange(rows) {
+        applyAddedPlaces(rows);
+        filterKey = "";
+        scheduleRender();
+      },
       async onAuthChange(auth) {
         if (!auth?.isAdmin && selectMode) {
           selectMode = false;
@@ -2430,19 +3043,7 @@
         if (!window.PlaceSocial?.seedRegionTags || !window.PlaceSocial?.seedCuisineTags) return;
         tagSeedStarted = true;
 
-        const cuisineLabelSet = [
-          ...Object.values(CATEGORY_ALIASES),
-          ...Object.values(CATEGORY_EXTRA_TAGS).flat(),
-          "바",
-          "칵테일",
-          "위스키",
-          "이자카야",
-          "술집",
-          "포차",
-          "맥주",
-          "호프",
-          "와인",
-        ];
+        const cuisineLabelSet = Cuisine?.allCuisineLabels?.() || [];
 
         if (window.PlaceSocial.repairTagKinds) {
           const repaired = await window.PlaceSocial.repairTagKinds({
@@ -2488,5 +3089,10 @@
       },
     });
   </script>
+  <!-- Vercel Web Analytics (enable in Vercel project → Analytics) -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

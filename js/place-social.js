@@ -14,10 +14,13 @@
   let hiddenSids = new Set();
   /** @type {Record<string, number>} */
   let starsBySid = {};
+  /** @type {Array<Record<string, unknown>>} */
+  let addedPlaces = [];
   let onMemosChange = null;
   let onTagsChange = null;
   let onHiddenChange = null;
   let onStarsChange = null;
+  let onAddedPlacesChange = null;
   let onAuthChangeCb = null;
 
   const $ = (id) => document.getElementById(id);
@@ -656,6 +659,48 @@
     return seedTags(placeEntries, "cuisine");
   }
 
+  /**
+   * Replace cuisine tags from base classification.
+   * Keeps places marked with __empty__. Deletes other cuisine labels, then inserts new ones.
+   */
+  async function replaceCuisineTags(placeEntries) {
+    const client = sb();
+    if (!client) return { error: "Supabase 미설정", seeded: 0, removed: 0 };
+    if (!profile?.is_admin) return { error: "관리자만 가능합니다.", seeded: 0, removed: 0 };
+    if (!Array.isArray(placeEntries) || !placeEntries.length) return { seeded: 0, removed: 0 };
+
+    const protectedSids = new Set();
+    for (const [sid, rows] of Object.entries(tagsBySid)) {
+      if ((rows || []).some((t) => t.kind === "cuisine" && t.label === EMPTY_TAG)) {
+        protectedSids.add(sid);
+      }
+    }
+
+    let removed = 0;
+    const pageSize = 500;
+    for (;;) {
+      const { data, error } = await client
+        .from("place_tags")
+        .select("id, place_sid, label")
+        .eq("kind", "cuisine")
+        .neq("label", EMPTY_TAG)
+        .limit(pageSize);
+      if (error) return { error: error.message || "종류 태그 조회 실패", seeded: 0, removed };
+      const rows = (data || []).filter((r) => !protectedSids.has(String(r.place_sid)));
+      if (!rows.length) break;
+      const ids = rows.map((r) => r.id);
+      const { error: delErr } = await client.from("place_tags").delete().in("id", ids);
+      if (delErr) return { error: delErr.message || "종류 태그 삭제 실패", seeded: 0, removed };
+      removed += ids.length;
+      if (rows.length < pageSize) break;
+    }
+
+    await loadTags();
+    const seeded = await seedTags(placeEntries, "cuisine");
+    if (seeded?.error) return { ...seeded, removed };
+    return { seeded: seeded?.seeded || 0, removed };
+  }
+
   async function repairTagKinds({ cuisineLabels = [], regionLabels = [] } = {}) {
     const client = sb();
     if (!client) return { error: "Supabase 미설정", fixed: 0 };
@@ -908,15 +953,164 @@
     return { ok: true };
   }
 
+  function notifyAddedPlacesChange() {
+    onAddedPlacesChange?.(addedPlaces.map((r) => ({ ...r })));
+  }
+
+  function getAddedPlacesSnapshot() {
+    return addedPlaces.map((r) => ({ ...r }));
+  }
+
+  async function loadAddedPlaces() {
+    const client = sb();
+    addedPlaces = [];
+    if (!client) {
+      notifyAddedPlacesChange();
+      return;
+    }
+    const pageSize = 1000;
+    let from = 0;
+    for (;;) {
+      const { data, error } = await client
+        .from("added_places")
+        .select("place_sid, name, address, category, stars, px, py, source_url, created_at")
+        .order("created_at", { ascending: true })
+        .range(from, from + pageSize - 1);
+      if (error) {
+        console.warn("[added_places] load failed", error);
+        notifyAddedPlacesChange();
+        return;
+      }
+      const rows = data || [];
+      for (const row of rows) {
+        if (!row.place_sid) continue;
+        addedPlaces.push({
+          sid: String(row.place_sid),
+          place_sid: String(row.place_sid),
+          name: String(row.name || "").trim(),
+          address: String(row.address || "").trim(),
+          category: String(row.category || "").trim(),
+          stars: Number(row.stars) || 0,
+          px: row.px == null ? null : Number(row.px),
+          py: row.py == null ? null : Number(row.py),
+          source_url: row.source_url || null,
+          list: "직접추가",
+        });
+      }
+      if (rows.length < pageSize) break;
+      from += pageSize;
+    }
+    notifyAddedPlacesChange();
+  }
+
+  async function resolveNaverPlace(url) {
+    const client = sb();
+    if (!client) return { error: "Supabase 미설정" };
+    if (!profile?.is_admin) return { error: "관리자만 사용할 수 있습니다." };
+    const input = String(url || "").trim();
+    if (!input) return { error: "네이버 지도 링크를 입력해 주세요." };
+
+    const { data, error } = await client.functions.invoke("resolve-naver-place", {
+      body: { url: input },
+    });
+    if (error) {
+      console.warn("[resolve-naver-place]", error, data);
+      let msg = error.message || "가게 정보를 가져오지 못했습니다.";
+      try {
+        if (data?.error) msg = data.error;
+        else if (typeof error.context?.json === "function") {
+          const body = await error.context.json();
+          if (body?.error) msg = body.error;
+        }
+      } catch (_) {
+        /* ignore */
+      }
+      return { error: msg };
+    }
+    if (data?.error) return { error: data.error };
+    return {
+      ok: true,
+      sid: String(data.sid || ""),
+      name: String(data.name || ""),
+      address: String(data.address || ""),
+      category: String(data.category || ""),
+      px: data.px == null ? null : Number(data.px),
+      py: data.py == null ? null : Number(data.py),
+      partial: !!data.partial,
+      source_url: data.source_url || input,
+    };
+  }
+
+  async function addPlace(place) {
+    const client = sb();
+    if (!client) return { error: "Supabase 미설정" };
+    if (!profile?.is_admin) return { error: "관리자만 추가할 수 있습니다." };
+
+    const sid = String(place?.sid || place?.place_sid || "").trim();
+    const name = String(place?.name || "").trim();
+    const address = String(place?.address || "").trim();
+    const category = String(place?.category || "").trim();
+    const stars = Number(place?.stars);
+    const n = Number.isInteger(stars) && stars >= 0 && stars <= 3 ? stars : 0;
+    if (!sid) return { error: "가게 id가 없습니다." };
+    if (!name) return { error: "가게 이름을 입력해 주세요." };
+
+    if (hiddenSids.has(sid)) {
+      return { error: "숨긴 가게입니다. 목록에 다시 넣으려면 숨김을 해제해 주세요." };
+    }
+
+    const { error } = await client.from("added_places").upsert(
+      {
+        place_sid: sid,
+        name,
+        address,
+        category,
+        stars: n,
+        px: place?.px == null || place.px === "" ? null : Number(place.px),
+        py: place?.py == null || place.py === "" ? null : Number(place.py),
+        source_url: place?.source_url || null,
+        created_by: session?.user?.id || null,
+      },
+      { onConflict: "place_sid" }
+    );
+    if (error) {
+      console.warn("[added_places] insert failed", error);
+      return { error: error.message || "가게 추가 실패" };
+    }
+
+    await loadAddedPlaces();
+    return {
+      ok: true,
+      place: {
+        sid,
+        name,
+        address,
+        category,
+        stars: n,
+        px: place?.px ?? null,
+        py: place?.py ?? null,
+        list: "직접추가",
+      },
+    };
+  }
+
   async function init(options = {}) {
     onMemosChange = typeof options.onMemosChange === "function" ? options.onMemosChange : null;
     onTagsChange = typeof options.onTagsChange === "function" ? options.onTagsChange : null;
     onHiddenChange = typeof options.onHiddenChange === "function" ? options.onHiddenChange : null;
     onStarsChange = typeof options.onStarsChange === "function" ? options.onStarsChange : null;
+    onAddedPlacesChange =
+      typeof options.onAddedPlacesChange === "function" ? options.onAddedPlacesChange : null;
     onAuthChangeCb = typeof options.onAuthChange === "function" ? options.onAuthChange : null;
     wireUi();
     renderAuthBar();
-    await Promise.all([loadMemos(), loadTags(), loadHiddenPlaces(), loadStars()]);
+    await Promise.all([
+      loadMemos(),
+      loadTags(),
+      loadHiddenPlaces(),
+      loadStars(),
+      loadAddedPlaces(),
+    ]);
 
     const client = sb();
     if (!client) return;
@@ -951,6 +1145,7 @@
     removeTagByLabel,
     seedRegionTags,
     seedCuisineTags,
+    replaceCuisineTags,
     repairTagKinds,
     reloadTags: loadTags,
     hidePlace,
@@ -959,6 +1154,10 @@
     getStars() {
       return { ...starsBySid };
     },
+    resolveNaverPlace,
+    addPlace,
+    getAddedPlaces: getAddedPlacesSnapshot,
+    reloadAddedPlaces: loadAddedPlaces,
     isAdmin() {
       return !!profile?.is_admin;
     },
