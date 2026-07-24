@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "네이버 지도 공유 리스트를 별점·지역·종류 태그로 필터링하는 정적 사이트입니다.",
+  "main": "places.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mzsdz/mzsdz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mzsdz/mzsdz/issues"
+  },
+  "homepage": "https://github.com/mzsdz/mzsdz#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
