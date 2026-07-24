@@ -268,7 +268,73 @@
       color: var(--chip-on-text);
     }
 
-    .result-count { font-size: 0.95rem; color: var(--muted); }
+    .result-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem 0.7rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .active-filters:empty {
+      display: none;
+    }
+
+    .active-filter {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #cfd8d3;
+      background: var(--chip);
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+      line-height: 1.2;
+    }
+
+    .active-filter.star {
+      background: #fff6d8;
+      border-color: #e6d7a8;
+      color: #b8860b;
+    }
+
+    .active-filter.star.unvisited {
+      background: #e8eef2;
+      border-color: #cfd8de;
+      color: #5a6570;
+    }
+
+    .active-filter.region {
+      background: var(--tag-r);
+      border-color: transparent;
+    }
+
+    .active-filter.cuisine {
+      background: var(--tag-c, #e8f0ea);
+      border-color: transparent;
+    }
+
+    .active-filter.query {
+      background: #eef2f6;
+      border-color: #d5dde5;
+      color: var(--muted);
+      font-weight: 500;
+      max-width: 14rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .result-count { font-size: 0.95rem; color: var(--muted); white-space: nowrap; }
     .result-count strong { color: var(--accent); }
 
     .reset {
@@ -573,7 +639,9 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 0.3rem 0.35rem;
-      min-height: 1.35rem;
+    }
+    .region-nav:empty {
+      display: none;
     }
     .region-crumb {
       border: none;
@@ -874,7 +942,10 @@
     </section>
 
     <div class="toolbar">
-      <div class="result-count"><strong id="shownCount">0</strong>곳 표시</div>
+      <div class="result-summary">
+        <div class="active-filters" id="activeFilters"></div>
+        <div class="result-count">맛집 <strong id="shownCount">0</strong>곳</div>
+      </div>
       <div class="toolbar-actions">
         <button type="button" class="toolbar-btn" id="selectModeBtn" hidden>선택</button>
         <button type="button" class="toolbar-btn" id="selectVisibleBtn" hidden>표시 중 선택</button>
@@ -1352,6 +1423,7 @@
       star3Count: document.getElementById("star3Count"),
       star0Count: document.getElementById("star0Count"),
       shownCount: document.getElementById("shownCount"),
+      activeFilters: document.getElementById("activeFilters"),
       starChips: document.getElementById("starChips"),
       regionNav: document.getElementById("regionNav"),
       regionChips: document.getElementById("regionChips"),
@@ -1437,14 +1509,73 @@
       rebuildPlaceIndex();
     }
 
-    function countBy(getter) {
+    function countBy(getter, list = places) {
       const map = new Map();
-      for (const p of places) {
+      for (const p of list) {
         for (const tag of getter(p)) {
           map.set(tag, (map.get(tag) || 0) + 1);
         }
       }
       return [...map.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ko"));
+    }
+
+    function matchesQuery(place) {
+      if (!state.q) return true;
+      const tokens = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+      const memo = (memosBySid[String(place.sid)] || "").toLowerCase();
+      const hay = `${place.searchText} ${memo}`;
+      return tokens.every((t) => hay.includes(t.replace(/^#/, "")));
+    }
+
+    function matchesStars(place) {
+      if (!state.stars.size) return true;
+      return (
+        (state.stars.has("★★★") && place.stars === 3) ||
+        (state.stars.has("★★") && place.stars === 2) ||
+        (state.stars.has("★") && place.stars === 1) ||
+        (state.stars.has("미방문") && place.stars === 0)
+      );
+    }
+
+    function matchesRegionFilter(place) {
+      const rp = place.regionPath || emptyRegionPath();
+      const sp = state.regionPath;
+      if (state.customRegion) {
+        return (place.extraRegions || []).includes(state.customRegion);
+      }
+      if (sp.sido && rp.sido !== sp.sido) return false;
+      if (sp.city && rp.city !== sp.city) return false;
+      if (sp.district && rp.district !== sp.district) return false;
+      return true;
+    }
+
+    function matchesCuisine(place) {
+      if (!state.cuisines.size) return true;
+      for (const t of state.cuisines) {
+        if (!place.cuisineSet?.has(t)) return false;
+      }
+      return true;
+    }
+
+    /** Facet counts: apply other filters, skip the facet being counted. */
+    function placesForFacet(exclude) {
+      return places.filter((p) => {
+        if (!matchesQuery(p)) return false;
+        if (exclude !== "stars" && !matchesStars(p)) return false;
+        if (exclude !== "region" && !matchesRegionFilter(p)) return false;
+        if (exclude !== "cuisine" && !matchesCuisine(p)) return false;
+        return true;
+      });
+    }
+
+    function starChipStats() {
+      const list = placesForFacet("stars");
+      return [
+        ["★★★", list.filter((p) => p.stars === 3).length],
+        ["★★", list.filter((p) => p.stars === 2).length],
+        ["★", list.filter((p) => p.stars === 1).length],
+        ["미방문", list.filter((p) => p.stars === 0).length],
+      ];
     }
 
     function applyCustomTags() {
@@ -1554,7 +1685,7 @@
     }
 
     function cuisineStats() {
-      const stats = countBy((p) => p.cuisine);
+      const stats = countBy((p) => p.cuisine, placesForFacet("cuisine"));
       const selected = state.cuisines;
       if (stats.length <= 60) return stats;
       const top = stats.slice(0, 60);
@@ -1568,8 +1699,8 @@
       return top;
     }
 
-    function placesMatchingRegion(path) {
-      return places.filter((p) => {
+    function placesMatchingRegion(path, list = places) {
+      return list.filter((p) => {
         const rp = p.regionPath || emptyRegionPath();
         if (path.sido && rp.sido !== path.sido) return false;
         if (path.city && rp.city !== path.city) return false;
@@ -1596,13 +1727,14 @@
     }
 
     function currentRegionLevelStats() {
+      const base = placesForFacet("region");
       const { sido, city, district } = state.regionPath;
       if (!sido || state.customRegion) {
         // Top level: only real 시도. Districts like 남구/중구 must not appear here.
-        const sidoStats = countField(places, (p) => p.regionPath?.sido).filter(([k]) =>
+        const sidoStats = countField(base, (p) => p.regionPath?.sido).filter(([k]) =>
           KNOWN_SIDOS.has(k)
         );
-        const customStats = countBy((p) => p.extraRegions || []);
+        const customStats = countBy((p) => p.extraRegions || [], base);
         const sidoSet = new Set(sidoStats.map(([k]) => k));
         const extras = customStats.filter(
           ([k]) => !sidoSet.has(k) && !isAdminAreaLabel(k)
@@ -1611,18 +1743,18 @@
       }
       if (METRO_SIDOS.has(sido)) {
         return countField(
-          placesMatchingRegion({ sido, city: null, district: null }),
+          placesMatchingRegion({ sido, city: null, district: null }, base),
           (p) => p.regionPath?.district
         );
       }
       if (!city) {
         return countField(
-          placesMatchingRegion({ sido, city: null, district: null }),
+          placesMatchingRegion({ sido, city: null, district: null }, base),
           (p) => p.regionPath?.city
         );
       }
       return countField(
-        placesMatchingRegion({ sido, city, district: null }),
+        placesMatchingRegion({ sido, city, district: null }, base),
         (p) => p.regionPath?.district
       );
     }
@@ -1762,35 +1894,12 @@
     }
 
     function matches(place) {
-      if (state.q) {
-        const tokens = state.q.toLowerCase().split(/\s+/).filter(Boolean);
-        const memo = (memosBySid[String(place.sid)] || "").toLowerCase();
-        const hay = `${place.searchText} ${memo}`;
-        if (!tokens.every((t) => hay.includes(t.replace(/^#/, "")))) return false;
-      }
-      if (state.stars.size) {
-        const ok =
-          (state.stars.has("★★★") && place.stars === 3) ||
-          (state.stars.has("★★") && place.stars === 2) ||
-          (state.stars.has("★") && place.stars === 1) ||
-          (state.stars.has("미방문") && place.stars === 0);
-        if (!ok) return false;
-      }
-      const rp = place.regionPath || emptyRegionPath();
-      const sp = state.regionPath;
-      if (state.customRegion) {
-        if (!(place.extraRegions || []).includes(state.customRegion)) return false;
-      } else {
-        if (sp.sido && rp.sido !== sp.sido) return false;
-        if (sp.city && rp.city !== sp.city) return false;
-        if (sp.district && rp.district !== sp.district) return false;
-      }
-      if (state.cuisines.size) {
-        for (const t of state.cuisines) {
-          if (!place.cuisineSet?.has(t)) return false;
-        }
-      }
-      return true;
+      return (
+        matchesQuery(place) &&
+        matchesStars(place) &&
+        matchesRegionFilter(place) &&
+        matchesCuisine(place)
+      );
     }
 
     function escapeHtml(s) {
@@ -2090,6 +2199,39 @@
       updateBulkBar();
     }
 
+    function renderActiveFilters() {
+      if (!els.activeFilters) return;
+      const frag = document.createDocumentFragment();
+      const add = (label, className) => {
+        const span = document.createElement("span");
+        span.className = "active-filter" + (className ? ` ${className}` : "");
+        span.textContent = label;
+        frag.appendChild(span);
+      };
+
+      const q = (state.q || "").trim();
+      if (q) add(`“${q}”`, "query");
+
+      for (const star of state.stars) {
+        add(star, star === "미방문" ? "star unvisited" : "star");
+      }
+
+      if (state.customRegion) {
+        add(state.customRegion, "region");
+      } else {
+        const { sido, city, district } = state.regionPath;
+        for (const label of [sido, city, district].filter(Boolean)) {
+          add(label, "region");
+        }
+      }
+
+      for (const cuisine of state.cuisines) {
+        add(cuisine, "cuisine");
+      }
+
+      els.activeFilters.replaceChildren(frag);
+    }
+
     function scheduleRender() {
       if (renderQueued) return;
       renderQueued = true;
@@ -2106,9 +2248,10 @@
         visibleLimit = PAGE_SIZE;
       }
 
-      renderChips(els.starChips, starStats, state.stars, { exclusive: true });
+      renderChips(els.starChips, starChipStats(), state.stars, { exclusive: true });
       renderRegionChips();
       renderChips(els.cuisineChips, cuisineStats(), state.cuisines, { exclusive: true });
+      renderActiveFilters();
 
       const filtered = places.filter(matches);
       const shown = filtered.slice(0, visibleLimit);
@@ -2120,10 +2263,7 @@
       if (els.star0Count) {
         els.star0Count.textContent = String(starStats.find(([k]) => k === "미방문")?.[1] || 0);
       }
-      els.shownCount.textContent =
-        filtered.length > shown.length
-          ? `${shown.length} / ${filtered.length}`
-          : String(filtered.length);
+      els.shownCount.textContent = String(filtered.length);
       els.empty.hidden = filtered.length > 0;
       hasMore = filtered.length > shown.length;
       if (els.scrollSentinel) {
