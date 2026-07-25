@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PLACES_JSON = ROOT / "data" / "places.json"
 OUT = ROOT / "rss.xml"
-SITE = "https://mzsdz.com"
+SITE = "https://www.mzsdz.com"
 MAX_ITEMS = 100
 
 
