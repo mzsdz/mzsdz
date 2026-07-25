@@ -74,8 +74,9 @@
 
   /** Naver category / 별칭 → 소분류(leaf) */
   const ALIAS_TO_LEAF = {
-    "바(BAR)": "바",
-    BAR: "바",
+    // 네이버 '바(BAR)'는 포차·주점·식당까지 넓게 붙음 → 기본은 술집 (소분류 '바'는 수동/이름 힌트용)
+    "바(BAR)": "술집",
+    BAR: "술집",
     바: "바",
     "백숙,삼계탕": "삼계탕",
     백숙: "삼계탕",
@@ -273,9 +274,17 @@
     ["커피", "카페"],
     ["디저트", "디저트"],
     ["아이스크림", "아이스크림"],
+    ["칵테일바", "바"],
     ["칵테일", "바"],
+    ["위스키바", "바"],
+    ["위스키", "바"],
+    ["하이볼", "바"],
     ["와인바", "와인"],
     ["와인", "와인"],
+    ["요리주점", "술집"],
+    ["심야식당", "술집"],
+    ["노래타운", "술집"],
+    ["노래방", "술집"],
     ["중식", "중식"],
     ["중국집", "중식"],
     ["딤섬", "중식"],
@@ -397,8 +406,25 @@
     if (isLeaf(cleaned)) return cleaned;
     if (/카페/.test(t)) return "카페";
     if (/디저트/.test(t)) return "디저트";
-    if (/BAR|바\(/.test(t)) return "바";
+    // 네이버 BAR 버킷은 술집으로만 (소분류 '바'로 떨어뜨리지 않음)
+    if (/BAR|바\(/.test(t)) return "술집";
     return null;
+  }
+
+  function isWeakBarCategory(category) {
+    const t = String(category || "").trim();
+    if (!t) return false;
+    if (t === "바(BAR)" || t === "바") return true;
+    if (/^BAR$/i.test(t)) return true;
+    if (/바\(BAR\)/i.test(t)) return true;
+    return false;
+  }
+
+  /** 이름만으로 '바' 소분류를 줄 만한지 — 끝글자 '바'만으로는 판단하지 않음 */
+  function looksLikeCocktailBar(name) {
+    const n = String(name || "");
+    if (!n) return false;
+    return /칵테일|위스키|하이볼|스피크이지/.test(n);
   }
 
   function inferFromName(name) {
@@ -413,7 +439,17 @@
    * @returns {{ major: string|null, minor: string|null, labels: string[] }}
    */
   function classify(category, name) {
-    let leaf = resolveAlias(category) || inferFromName(name);
+    const fromName = inferFromName(name);
+    const fromCat = resolveAlias(category);
+    let leaf = null;
+    if (isWeakBarCategory(category)) {
+      // 넓은 네이버 BAR 카테고리: 가게명 힌트 우선, 아니면 술집(또는 명확한 바 신호)
+      if (fromName && fromName !== "바") leaf = fromName;
+      else if (fromName === "바" || looksLikeCocktailBar(name)) leaf = "바";
+      else leaf = "술집";
+    } else {
+      leaf = fromCat || fromName;
+    }
     if (!leaf) {
       return { major: null, minor: null, labels: [] };
     }
