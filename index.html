@@ -1045,7 +1045,9 @@
           <option value="중식">중식</option>
           <option value="일식">일식</option>
           <option value="양식">양식</option>
-          <option value="아시안">아시안</option>
+          <option value="인도음식">인도음식</option>
+          <option value="베트남음식">베트남음식</option>
+          <option value="태국음식">태국음식</option>
           <option value="카페·디저트">카페·디저트</option>
           <option value="술집">술집</option>
           <option value="기타">기타</option>
@@ -1056,7 +1058,7 @@
           <option value="인천">인천</option>
           <option value="부산">부산</option>
           <option value="대구">대구</option>
-          <option value="광주">광주</option>
+          <option value="광주">광주광역시</option>
           <option value="대전">대전</option>
           <option value="울산">울산</option>
           <option value="세종">세종</option>
@@ -1184,6 +1186,23 @@
       "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
       "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주",
     ]);
+    /** 도(경기) 아래 시 이름인데, 광역시 시도와 철자가 같은 경우 */
+    const CITY_SIDO_HOMONYMS = new Set(["광주"]); // 경기 광주 ↔ 광주광역시
+
+    /** UI 표시용 (내부 키는 기존대로 광주 유지) */
+    function displaySidoLabel(sido) {
+      if (sido === "광주") return "광주광역시";
+      return sido;
+    }
+    function displayCityLabel(sido, city) {
+      if (sido === "경기" && city === "광주") return "광주시";
+      return city;
+    }
+    function displayRegionChipLabel(label, level) {
+      if (level === "sido") return displaySidoLabel(label);
+      if (level === "city") return displayCityLabel(state.regionPath.sido, label);
+      return label;
+    }
 
     /** 법정동(용산동2가 등) → 행정구 복원용 */
     const DISTRICT_SIDO = {
@@ -1323,18 +1342,24 @@
             .filter((l) => l && !isLegalDongToken(l))
         ),
       ];
-      const sido = list.find((l) => KNOWN_SIDOS.has(l)) || null;
-      const district = list.find((l) => /구$/.test(l)) || null;
+      // Prefer province (경기) over metro homonym (광주) when both appear.
+      const province = list.find((l) => KNOWN_SIDOS.has(l) && !METRO_SIDOS.has(l)) || null;
+      const sido =
+        province ||
+        list.find((l) => KNOWN_SIDOS.has(l)) ||
+        null;
+      const district = list.find((l) => /구$/.test(l) && !isLegalDongToken(l)) || null;
       let city = null;
       if (sido && !METRO_SIDOS.has(sido)) {
         city =
-          list.find(
-            (l) =>
-              l !== sido &&
-              l !== district &&
-              !KNOWN_SIDOS.has(l) &&
-              !/구$/.test(l)
-          ) || null;
+          list.find((l) => {
+            if (!l || l === sido || l === district || /구$/.test(l)) return false;
+            if (KNOWN_SIDOS.has(l)) {
+              // 경기 + 광주 → city 광주 (not 광주광역시)
+              return CITY_SIDO_HOMONYMS.has(l);
+            }
+            return true;
+          }) || null;
       }
       if (city && city === sido) city = null;
       return { sido, city, district };
@@ -1347,6 +1372,31 @@
       return (labels || []).filter(
         (l) => l && !used.has(normTagKey(l)) && !isLegalDongToken(l)
       );
+    }
+
+    /** Resolve 광주 모호성: 주소가 있으면 태그의 광주/경기 충돌보다 주소를 우선 */
+    function disambiguateRegionPath(path, addr) {
+      const p = path || emptyRegionPath();
+      const a = addr || emptyRegionPath();
+      if (a.sido === "경기" && a.city === "광주") {
+        return {
+          sido: "경기",
+          city: "광주",
+          district: p.district || a.district || null,
+        };
+      }
+      if (a.sido === "광주") {
+        return {
+          sido: "광주",
+          city: null,
+          district: p.district || a.district || null,
+        };
+      }
+      return {
+        sido: p.sido || a.sido || null,
+        city: p.city || a.city || null,
+        district: p.district || a.district || null,
+      };
     }
 
     function parseCuisine(category, name) {
@@ -1759,11 +1809,7 @@
         if (regionDbReady || regionCustom.length > 0 || regionCleared) {
           let path = deriveRegionPath(regionCustom.map((t) => t.label));
           const addr = place.addressRegionPath || emptyRegionPath();
-          path = {
-            sido: path.sido || addr.sido || null,
-            city: path.city || addr.city || null,
-            district: path.district || addr.district || null,
-          };
+          path = disambiguateRegionPath(path, addr);
           if (path.city && path.sido && path.city === path.sido) path.city = null;
 
           const byLabel = new Map();
@@ -1807,7 +1853,11 @@
           );
         } else {
           const allRegionLabels = [...(place.addressRegionLabels || [])];
-          place.regionPath = deriveRegionPath(allRegionLabels);
+          const addr = place.addressRegionPath || emptyRegionPath();
+          place.regionPath = disambiguateRegionPath(
+            deriveRegionPath(allRegionLabels),
+            addr
+          );
           place.regionTags = dedupeTagViews(
             allRegionLabels.map((label) => ({ type: "region", label }))
           );
@@ -1958,7 +2008,7 @@
       }
 
       addSep();
-      addCrumb(sido, district || city ? () => {
+      addCrumb(displaySidoLabel(sido), district || city ? () => {
         state.regionPath = { sido, city: null, district: null };
         state.customRegion = null;
         scheduleRender();
@@ -1966,7 +2016,7 @@
 
       if (city) {
         addSep();
-        addCrumb(city, district ? () => {
+        addCrumb(displayCityLabel(sido, city), district ? () => {
           state.regionPath = { sido, city, district: null };
           scheduleRender();
         } : null);
@@ -1987,6 +2037,11 @@
       else if (sido && city) selected = district;
 
       els.regionChips.innerHTML = "";
+      let chipLevel = "district";
+      if (!sido && !state.customRegion) chipLevel = "sido";
+      else if (sido && !METRO_SIDOS.has(sido) && !city) chipLevel = "city";
+      else if (sido && METRO_SIDOS.has(sido)) chipLevel = "district";
+
       for (const [label, count] of stats) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -1994,7 +2049,8 @@
           state.customRegion === label ||
           selected === label;
         btn.className = "chip" + (on ? " on" : "");
-        btn.innerHTML = `${label}<span class="count">${count}</span>`;
+        const shown = displayRegionChipLabel(label, chipLevel);
+        btn.innerHTML = `${escapeHtml(shown)}<span class="count">${count}</span>`;
         btn.addEventListener("click", () => {
           if (state.customRegion || (!state.regionPath.sido && !state.customRegion)) {
             if (!isSidoLabel(label)) {
@@ -2188,16 +2244,32 @@
       ];
       return order
         .filter((s) => KNOWN_SIDOS.has(s))
-        .map((s) => `<option value="${s}"${s === sel ? " selected" : ""}>${s}</option>`)
+        .map(
+          (s) =>
+            `<option value="${s}"${s === sel ? " selected" : ""}>${displaySidoLabel(s)}</option>`
+        )
         .join("");
+    }
+
+    function displayRegionTagLabel(place, label) {
+      const rp = place?.regionPath || emptyRegionPath();
+      if (label === "광주") {
+        if (rp.sido === "경기" && rp.city === "광주") return "광주시";
+        if (rp.sido === "광주") return "광주광역시";
+      }
+      if (label === rp.sido) return displaySidoLabel(label);
+      if (label === rp.city) return displayCityLabel(rp.sido, label);
+      return label;
     }
 
     function placeCardHtml(place, isAdmin) {
       const renderTag = (t) => {
+        const shown =
+          t.type === "region" ? displayRegionTagLabel(place, t.label) : t.label;
         if (isAdmin && place.sid) {
           const idAttr = t.tagId ? ` data-tag-id="${escapeHtml(t.tagId)}"` : "";
           return `<span class="tag ${t.type} custom" data-type="${t.type}" data-label="${escapeHtml(t.label)}">
-            <button type="button" class="tag-label" data-type="${t.type}" data-label="${escapeHtml(t.label)}">${escapeHtml(t.label)}</button>
+            <button type="button" class="tag-label" data-type="${t.type}" data-label="${escapeHtml(t.label)}">${escapeHtml(shown)}</button>
             <button type="button" class="tag-x"${idAttr}
               data-sid="${escapeHtml(String(place.sid))}"
               data-kind="${escapeHtml(t.type)}"
@@ -2205,7 +2277,7 @@
               title="태그 삭제" aria-label="태그 삭제">×</button>
           </span>`;
         }
-        return `<button type="button" class="tag ${t.type}" data-type="${t.type}" data-label="${escapeHtml(t.label)}">${escapeHtml(t.label)}</button>`;
+        return `<button type="button" class="tag ${t.type}" data-type="${t.type}" data-label="${escapeHtml(t.label)}">${escapeHtml(shown)}</button>`;
       };
 
       const cuisineHtml = (place.cuisineTags || [])
@@ -2665,9 +2737,9 @@
         add(state.customRegion, "region");
       } else {
         const { sido, city, district } = state.regionPath;
-        for (const label of [sido, city, district].filter(Boolean)) {
-          add(label, "region");
-        }
+        if (sido) add(displaySidoLabel(sido), "region");
+        if (city) add(displayCityLabel(sido, city), "region");
+        if (district) add(district, "region");
       }
 
       if (state.customCuisine) {

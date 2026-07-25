@@ -8,7 +8,9 @@
     "중식",
     "일식",
     "양식",
-    "아시안",
+    "인도음식",
+    "베트남음식",
+    "태국음식",
     "카페·디저트",
     "술집",
     "기타",
@@ -62,10 +64,12 @@
       "멕시코",
       "샐러드",
     ],
-    아시안: ["아시안", "베트남", "인도", "아시아"],
+    인도음식: ["인도음식"],
+    베트남음식: ["베트남음식"],
+    태국음식: ["태국음식"],
     "카페·디저트": ["카페", "베이커리", "디저트", "아이스크림", "베이글"],
     술집: ["술집", "바", "맥주·호프", "와인", "포차"],
-    기타: [],
+    기타: ["아시아"],
   };
 
   /** Naver category / 별칭 → 소분류(leaf) */
@@ -120,12 +124,16 @@
     한우: "소고기",
     브런치카페: "브런치",
     브런치: "브런치",
-    베트남음식: "베트남",
-    베트남: "베트남",
-    인도음식: "인도",
-    인도: "인도",
+    베트남음식: "베트남음식",
+    베트남요리: "베트남음식",
+    베트남: "베트남음식",
+    인도음식: "인도음식",
+    인도: "인도음식",
+    태국음식: "태국음식",
+    태국: "태국음식",
     아시아음식: "아시아",
     아시아: "아시아",
+    아시안: "아시아",
     프랑스음식: "프랑스",
     프랑스: "프랑스",
     이탈리아음식: "이탈리아",
@@ -275,9 +283,24 @@
     ["마라샹궈", "마라탕"],
     ["일식", "일식"],
     ["이탈리", "이탈리아"],
-    ["베트남", "베트남"],
-    ["쌀국수", "베트남"],
-    ["인도", "인도"],
+    ["베트남", "베트남음식"],
+    ["쌀국수", "베트남음식"],
+    ["분짜", "베트남음식"],
+    ["반미", "베트남음식"],
+    ["월남쌈", "베트남음식"],
+    ["월남", "베트남음식"],
+    ["사이공", "베트남음식"],
+    ["하노이", "베트남음식"],
+    ["퍼상", "베트남음식"],
+    ["인도", "인도음식"],
+    ["커리하우스", "인도음식"],
+    ["인도커리", "인도음식"],
+    ["남인도", "인도음식"],
+    ["태국", "태국음식"],
+    ["팟타이", "태국음식"],
+    ["똠양", "태국음식"],
+    ["톰얌", "태국음식"],
+    ["쏨땀", "태국음식"],
     ["샤브", "샤브샤브"],
     ["게장", "게장"],
     ["해물찜", "해물"],
@@ -411,7 +434,11 @@
    * @param {string[]} labels
    */
   function pathFromLabels(labels) {
-    const list = (labels || []).map((l) => String(l || "").trim()).filter(Boolean);
+    const list = (labels || [])
+      .map((l) => String(l || "").trim())
+      .filter(Boolean)
+      .map((l) => ALIAS_TO_LEAF[l] || l);
+
     const majors = list.filter((l) => isMajor(l));
     const leaves = list.filter((l) => isLeaf(l) && !isMajor(l));
     const unknown = list.filter((l) => !isLeaf(l) && !isMajor(l));
@@ -422,6 +449,8 @@
       for (const u of unknown) registerLeaf(u, major);
     }
 
+    // major-only leaves (인도음식 등): treat as major path
+    const majorLeaves = list.filter((l) => isMajor(l) && isLeaf(l));
     const leaves2 = list.filter((l) => isLeaf(l) && !isMajor(l));
     if (leaves2.length) {
       const minor =
@@ -436,8 +465,12 @@
         ),
       };
     }
-    if (majors.length) {
-      return { major: majors[0], minor: null, extras: unknown };
+    if (majors.length || majorLeaves.length) {
+      return {
+        major: majors[0] || majorLeaves[0],
+        minor: null,
+        extras: unknown,
+      };
     }
     if (unknown.length) {
       registerLeaf(unknown[0], "기타");
