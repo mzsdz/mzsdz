@@ -587,6 +587,68 @@
     return removeTag(String(id));
   }
 
+  /** 선택한 가게들에서 특정 라벨 태그 삭제 */
+  async function removeTagsBulk(placeSids, label, kind = "cuisine") {
+    const trimmed = String(label || "").trim();
+    const tagKind = kind === "region" ? "region" : "cuisine";
+    if (!profile?.is_admin) return { error: "관리자만 태그를 삭제할 수 있습니다.", removed: 0 };
+    if (!trimmed) return { error: "삭제할 태그 이름을 입력해 주세요.", removed: 0 };
+    const sids = [...new Set((placeSids || []).map((s) => String(s || "")).filter(Boolean))];
+    if (!sids.length) return { error: "가게를 먼저 선택해 주세요.", removed: 0 };
+
+    let removed = 0;
+    let lastError = null;
+    for (const sid of sids) {
+      const hit = realTags(sid, tagKind).find(
+        (t) => t.label.toLowerCase() === trimmed.toLowerCase()
+      );
+      if (!hit) continue;
+      const result = await removeTag(hit.id);
+      if (result?.error) {
+        lastError = result.error;
+        continue;
+      }
+      removed += 1;
+    }
+    if (!removed && lastError) return { error: lastError, removed: 0 };
+    return { ok: true, removed };
+  }
+
+  /** 선택한 가게들의 종류/지역 태그를 모두 비움 (__empty__ 마커) */
+  async function clearKindTagsBulk(placeSids, kind = "cuisine") {
+    const client = sb();
+    const tagKind = kind === "region" ? "region" : "cuisine";
+    if (!client) return { error: "Supabase 미설정", cleared: 0 };
+    if (!profile?.is_admin) return { error: "관리자만 태그를 삭제할 수 있습니다.", cleared: 0 };
+    const sids = [...new Set((placeSids || []).map((s) => String(s || "")).filter(Boolean))];
+    if (!sids.length) return { error: "가게를 먼저 선택해 주세요.", cleared: 0 };
+
+    let cleared = 0;
+    for (const sid of sids) {
+      const rows = realTags(sid, tagKind);
+      if (!rows.length) {
+        await ensureEmptyMarker(sid, tagKind);
+        continue;
+      }
+      const ids = rows.map((r) => r.id).filter(Boolean);
+      if (ids.length) {
+        const { error } = await client.from("place_tags").delete().in("id", ids);
+        if (error) {
+          console.warn("[tags] clear bulk failed", error);
+          return { error: error.message || "태그 삭제 실패", cleared };
+        }
+        tagsBySid[sid] = (tagsBySid[sid] || []).filter(
+          (t) => !(t.kind === tagKind && t.label !== EMPTY_TAG)
+        );
+        if (!tagsBySid[sid].length) delete tagsBySid[sid];
+      }
+      await ensureEmptyMarker(sid, tagKind);
+      cleared += 1;
+    }
+    notifyTagsChange();
+    return { ok: true, cleared };
+  }
+
   async function seedTags(placeEntries, kind = "region") {
     const tagKind = kind === "region" ? "region" : "cuisine";
     const client = sb();
@@ -602,6 +664,8 @@
       if ((tagsBySid[sid] || []).some((t) => t.kind === tagKind && t.label === EMPTY_TAG)) {
         continue;
       }
+      // Already has DB tags → treat as source of truth (don't re-add deleted labels).
+      if (realTags(sid, tagKind).length) continue;
       const labels = [
         ...new Set(
           (entry.labels || [])
@@ -610,14 +674,7 @@
         ),
       ];
       if (!labels.length) continue;
-      const existing = new Set(
-        (tagsBySid[sid] || [])
-          .filter((t) => t.kind === tagKind && t.label !== EMPTY_TAG)
-          .map((t) => t.label.toLowerCase())
-      );
       for (const label of labels) {
-        if (existing.has(label.toLowerCase())) continue;
-        existing.add(label.toLowerCase());
         toInsert.push({
           place_sid: sid,
           label,
@@ -1143,6 +1200,8 @@
     addTagsBulk,
     removeTag,
     removeTagByLabel,
+    removeTagsBulk,
+    clearKindTagsBulk,
     seedRegionTags,
     seedCuisineTags,
     replaceCuisineTags,

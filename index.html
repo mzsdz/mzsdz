@@ -510,9 +510,26 @@
       cursor: pointer;
     }
 
-    .bulk-bar .bulk-add:disabled {
+    .bulk-bar .bulk-add:disabled,
+    .bulk-bar .bulk-remove:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+    }
+
+    .bulk-bar .bulk-remove {
+      border: 1px solid #c45c5c;
+      background: #fff;
+      color: #b33b3b;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 0.42rem 0.9rem;
+      cursor: pointer;
+    }
+
+    .bulk-bar .bulk-remove:hover:not(:disabled) {
+      background: #fff5f5;
     }
 
     .bulk-bar .bulk-ghost {
@@ -525,6 +542,25 @@
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 2px;
+    }
+
+    .tag-clear-kind {
+      border: 1px dashed var(--line);
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .tag-clear-kind:hover {
+      color: #b33b3b;
+      border-color: #e0a0a0;
+      background: #fff8f8;
     }
 
     .scroll-sentinel {
@@ -1026,6 +1062,7 @@
       <div class="toolbar-actions">
         <button type="button" class="toolbar-btn" id="addPlaceBtn" hidden>가게 추가</button>
         <button type="button" class="toolbar-btn" id="selectModeBtn" hidden>선택</button>
+        <button type="button" class="toolbar-btn" id="selectAllBtn" hidden>전체 선택</button>
         <button type="button" class="toolbar-btn" id="selectVisibleBtn" hidden>표시 중 선택</button>
         <button type="button" class="reset" id="resetBtn">필터 초기화</button>
       </div>
@@ -1073,6 +1110,8 @@
         </select>
         <input id="bulkLabel" type="text" maxlength="24" placeholder="소분류 이름" autocomplete="off" />
         <button type="button" class="bulk-add" id="bulkAddBtn">추가</button>
+        <button type="button" class="bulk-remove" id="bulkRemoveBtn" title="입력한 태그를 선택 가게에서 삭제">삭제</button>
+        <button type="button" class="bulk-ghost" id="bulkWipeBtn" title="선택한 가게의 종류/지역 태그를 모두 비움">태그 비우기</button>
         <button type="button" class="bulk-ghost" id="bulkClearBtn">선택 해제</button>
         <button type="button" class="bulk-ghost" id="bulkExitBtn">선택 종료</button>
       </div>
@@ -1541,6 +1580,7 @@
       addPlaceSourceUrl: document.getElementById("addPlaceSourceUrl"),
       addPlaceSaveBtn: document.getElementById("addPlaceSaveBtn"),
       selectModeBtn: document.getElementById("selectModeBtn"),
+      selectAllBtn: document.getElementById("selectAllBtn"),
       selectVisibleBtn: document.getElementById("selectVisibleBtn"),
       bulkBar: document.getElementById("bulkBar"),
       bulkCount: document.getElementById("bulkCount"),
@@ -1549,6 +1589,8 @@
       bulkRegionSido: document.getElementById("bulkRegionSido"),
       bulkLabel: document.getElementById("bulkLabel"),
       bulkAddBtn: document.getElementById("bulkAddBtn"),
+      bulkRemoveBtn: document.getElementById("bulkRemoveBtn"),
+      bulkWipeBtn: document.getElementById("bulkWipeBtn"),
       bulkClearBtn: document.getElementById("bulkClearBtn"),
       bulkExitBtn: document.getElementById("bulkExitBtn"),
     };
@@ -1564,6 +1606,8 @@
     const selectedSids = new Set();
     /** @type {object[]} */
     let lastShownPlaces = [];
+    /** @type {typeof places} */
+    let lastFilteredPlaces = [];
     /** @type {Map<string, object>} */
     const placeBySid = new Map();
 
@@ -2293,6 +2337,10 @@
         "한식";
       const majorSelect = Cuisine?.majorOptionsHtml?.(defaultMajor) ||
         `<option value="한식" selected>한식</option>`;
+      const cuisineClear =
+        isAdmin && place.sid && (place.cuisineTags || []).length
+          ? `<button type="button" class="tag-clear-kind" data-sid="${escapeHtml(String(place.sid))}" data-kind="cuisine" title="종류 태그 모두 삭제">비우기</button>`
+          : "";
       const cuisineAdd = isAdmin && place.sid
         ? `<form class="tag-add" data-sid="${escapeHtml(String(place.sid))}" data-kind="cuisine">
             <select name="major" aria-label="대분류" title="대분류">${majorSelect}</select>
@@ -2344,7 +2392,7 @@
         <div class="tag-rows">
           <div class="tag-row">
             <div class="tag-row-label">종류</div>
-            <div class="tag-row-items">${cuisineHtml}${selectMode ? "" : cuisineAdd}</div>
+            <div class="tag-row-items">${cuisineHtml}${selectMode ? "" : `${cuisineClear}${cuisineAdd}`}</div>
           </div>
           <div class="tag-row">
             <div class="tag-row-label">지역</div>
@@ -2562,6 +2610,20 @@
           return;
         }
 
+        const clearKindBtn = e.target.closest?.(".tag-clear-kind");
+        if (clearKindBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const sid = clearKindBtn.dataset.sid;
+          const kind = clearKindBtn.dataset.kind === "region" ? "region" : "cuisine";
+          if (!sid || !window.PlaceSocial?.clearKindTagsBulk) return;
+          const kindLabel = kind === "region" ? "지역" : "종류";
+          if (!confirm(`이 가게의 ${kindLabel} 태그를 모두 삭제할까요?`)) return;
+          const result = await window.PlaceSocial.clearKindTagsBulk([sid], kind);
+          if (result?.error) alert(result.error);
+          return;
+        }
+
         const xBtn = e.target.closest?.(".tag-x");
         if (xBtn) {
           e.preventDefault();
@@ -2673,6 +2735,9 @@
         els.selectModeBtn.classList.toggle("on", selectMode);
         els.selectModeBtn.textContent = selectMode ? "선택 중" : "선택";
       }
+      if (els.selectAllBtn) {
+        els.selectAllBtn.hidden = !isAdmin || !selectMode;
+      }
       if (els.selectVisibleBtn) {
         els.selectVisibleBtn.hidden = !isAdmin || !selectMode;
       }
@@ -2684,6 +2749,12 @@
       }
       if (els.bulkAddBtn) {
         els.bulkAddBtn.disabled = selectedSids.size === 0;
+      }
+      if (els.bulkRemoveBtn) {
+        els.bulkRemoveBtn.disabled = selectedSids.size === 0;
+      }
+      if (els.bulkWipeBtn) {
+        els.bulkWipeBtn.disabled = selectedSids.size === 0;
       }
       els.grid.classList.toggle("select-mode", selectMode && isAdmin);
     }
@@ -2776,6 +2847,7 @@
       renderActiveFilters();
 
       const filtered = places.filter(matches);
+      lastFilteredPlaces = filtered;
       const shown = filtered.slice(0, visibleLimit);
 
       els.totalCount.textContent = String(places.length);
@@ -2958,6 +3030,14 @@
       setSelectMode(!selectMode);
     });
 
+    els.selectAllBtn?.addEventListener("click", () => {
+      if (!selectMode) return;
+      for (const place of lastFilteredPlaces) {
+        if (place.sid) selectedSids.add(String(place.sid));
+      }
+      scheduleRender();
+    });
+
     els.selectVisibleBtn?.addEventListener("click", () => {
       if (!selectMode) return;
       for (const place of lastShownPlaces) {
@@ -2999,6 +3079,72 @@
 
     els.bulkExitBtn?.addEventListener("click", () => {
       setSelectMode(false);
+    });
+
+    els.bulkRemoveBtn?.addEventListener("click", async () => {
+      if (!window.PlaceSocial?.removeTagsBulk) return;
+      const label = (els.bulkLabel?.value || "").trim();
+      if (!label) {
+        alert(
+          bulkKind === "cuisine"
+            ? "삭제할 종류 태그 이름을 입력해 주세요. (예: 바)"
+            : "삭제할 지역 태그 이름을 입력해 주세요."
+        );
+        els.bulkLabel?.focus();
+        return;
+      }
+      if (!selectedSids.size) {
+        alert("가게를 먼저 선택해 주세요.");
+        return;
+      }
+      const kindLabel = bulkKind === "cuisine" ? "종류" : "지역";
+      if (
+        !confirm(
+          `선택한 ${selectedSids.size}곳에서 ${kindLabel} 태그 「${label}」을(를) 삭제할까요?`
+        )
+      ) {
+        return;
+      }
+      els.bulkRemoveBtn.disabled = true;
+      const result = await window.PlaceSocial.removeTagsBulk(
+        [...selectedSids],
+        label,
+        bulkKind
+      );
+      els.bulkRemoveBtn.disabled = selectedSids.size === 0;
+      if (result?.error) {
+        alert(result.error);
+        return;
+      }
+      alert(`${result?.removed || 0}곳에서 「${label}」 태그를 삭제했습니다.`);
+      if (els.bulkLabel) els.bulkLabel.value = "";
+    });
+
+    els.bulkWipeBtn?.addEventListener("click", async () => {
+      if (!window.PlaceSocial?.clearKindTagsBulk) return;
+      if (!selectedSids.size) {
+        alert("가게를 먼저 선택해 주세요.");
+        return;
+      }
+      const kindLabel = bulkKind === "cuisine" ? "종류" : "지역";
+      if (
+        !confirm(
+          `선택한 ${selectedSids.size}곳의 ${kindLabel} 태그를 모두 삭제할까요?`
+        )
+      ) {
+        return;
+      }
+      els.bulkWipeBtn.disabled = true;
+      const result = await window.PlaceSocial.clearKindTagsBulk(
+        [...selectedSids],
+        bulkKind
+      );
+      els.bulkWipeBtn.disabled = selectedSids.size === 0;
+      if (result?.error) {
+        alert(result.error);
+        return;
+      }
+      alert(`${result?.cleared || 0}곳의 ${kindLabel} 태그를 비웠습니다.`);
     });
 
     els.bulkAddBtn?.addEventListener("click", async () => {
