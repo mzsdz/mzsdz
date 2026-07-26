@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ÛÑàÙÄ">
+  <rect width="32" height="32" rx="8" fill="#0f7a63"/>
+  <text
+    x="16"
+    y="17"
+    text-anchor="middle"
+    dominant-baseline="central"
+    fill="#ffffff"
+    font-family="IBM Plex Sans KR, Apple SD Gothic Neo, Malgun Gothic, sans-serif"
+    font-size="18"
+    font-weight="700"
+  >à</text>
+</svg>
