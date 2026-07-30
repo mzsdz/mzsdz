@@ -180,6 +180,20 @@
       letter-spacing: 0.02em;
     }
 
+    .visit-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 1rem;
+      margin-top: 0.55rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .visit-stats strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
     .controls {
       display: grid;
       gap: 1rem;
@@ -1038,6 +1052,11 @@
         <span>맛집 후보 <strong id="star0Count">0</strong></span>
         <span>총 <strong id="totalCount">0</strong>곳</span>
       </div>
+      <div class="visit-stats" id="visitStats" hidden>
+        <span>오늘 <strong id="visitToday">0</strong></span>
+        <span>어제 <strong id="visitYesterday">0</strong></span>
+        <span>전체 <strong id="visitTotal">0</strong></span>
+      </div>
     </header>
 
     <section class="controls">
@@ -1226,6 +1245,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./js/supabase-client.js"></script>
+  <script src="./js/site-visits.js"></script>
   <script src="./js/cuisine-taxonomy.js"></script>
   <script src="./js/place-social.js"></script>
   <script src="./places.js"></script>
