@@ -11,4 +11,4 @@
 @media(max-width:600px){.brand{gap:7px}.brand-mark{width:27px;height:27px}.tagline{font-size:10px}}
 @media(max-width:360px){.tools a[href="/me"]{display:none}.brand{font-size:21px}.brand-mark{width:25px;height:25px}.header-tools{gap:1px}.account-link{padding:7px 6px}}
 
-.restaurant-entry{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;margin:0 0 15px;border:1px solid var(--line);border-radius:7px;background:var(--chip);color:var(--ink);font-size:13px;font-weight:600;line-height:1.5}.restaurant-entry svg{width:16px;height:16px}.restaurant-entry:hover{background:var(--line)}
+.restaurant-entry{display:inline-flex;align-items:center;gap:4px;padding:3px 0;margin:0 0 12px;border:0;border-radius:0;background:transparent;color:var(--muted);font-size:11px;font-weight:400;line-height:1.6}.restaurant-entry svg{display:none}.restaurant-entry:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
