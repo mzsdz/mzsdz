@@ -17,4 +17,4 @@ for (const a of articles) {
   if (a.status === 'published' && (!/^\d{4}-\d{2}-\d{2}$/.test(a.publishedAt || '') || !a.sources?.length)) throw Error('Published articles require date and verified source links');
   for (const source of a.sources || []) if (!/^https:\/\//.test(source.url) || !source.title) throw Error('Invalid source');
 }
-require('./render-editorial.cjs')({ root, origin, articles });
+require('./render-reader.cjs')({ root, origin, articles });

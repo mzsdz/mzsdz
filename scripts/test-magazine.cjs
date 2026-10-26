@@ -18,31 +18,33 @@ for (const a of articles) {
   }
 }
 const home = read('index.html');
-assert.ok(home.includes('FEED YOUR'));
-assert.ok(read('magazine/style.css').includes('--lime:'));
+assert.ok(home.includes('id="readerStories"'));
+assert.ok(home.includes('data-view="gallery"'));
+assert.ok(read('me.html').includes('noindex,follow'));
+assert.ok(read('me.html').includes('data-personal-tab="places"'));
 assert.ok(home.includes('href="/list"'));
 assert.ok(!home.includes('#/article/'));
 assert.ok(!read('dist/index.html').includes('프로토타입'));
 assert.ok(fs.existsSync(path.join(root, 'dist/list.html')));
 assert.equal(read('dist/places.js'), read('places.js'));
-for (const js of ['js/auth-return.js', 'js/magazine.js']) new vm.Script(read(js));
+for (const js of ['js/auth-return.js', 'js/reader.js', 'js/member-client.js', 'js/auth-callback.js', 'js/archive-wishlist.js']) new vm.Script(read(js));
 function redirect(search, hash) {
   let target = null;
   vm.runInNewContext(read('js/auth-return.js'), { URLSearchParams, location: { search, hash, replace: url => { target = url; } } });
   return target;
 }
-assert.equal(redirect('?code=pkce-test', ''), '/list?code=pkce-test');
-assert.equal(redirect('', '#access_token=example&refresh_token=example&type=magiclink'), '/list#access_token=example&refresh_token=example&type=magiclink');
+assert.equal(redirect('?code=pkce-test', ''), '/auth/callback?code=pkce-test');
+assert.equal(redirect('', '#access_token=example&refresh_token=example&type=magiclink'), '/auth/callback#access_token=example&refresh_token=example&type=magiclink');
 assert.equal(redirect('?q=test', ''), '/list?q=test');
 assert.equal(redirect('?tag=맛의%20기준', ''), null);
 assert.equal(redirect('', '#/article/pyongyang'), null);
-assert.equal(redirect('?error_description=cancelled', ''), '/list?error_description=cancelled');
+assert.equal(redirect('?error_description=cancelled', ''), '/auth/callback?error_description=cancelled');
 assert.ok(read('js/place-social.js').includes('return window.location.origin + "/";'));
 console.log('PASS: editorial theme built; article HTML, canonical URLs, draft exclusion, deployment assets and auth callbacks.');
 // Exercise publication and withdrawal in an isolated fixture, without publishing sample claims.
 const temp = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'mzsdz-publish-'));
 try {
-  for (const file of ['scripts/build-magazine.cjs', 'scripts/render-editorial.cjs', 'magazine/template.html', 'magazine/editorial.css', 'magazine/archive.css', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
+  for (const file of ['scripts/build-magazine.cjs', 'scripts/render-editorial.cjs', 'scripts/render-reader.cjs', 'magazine/reader.css', 'magazine/member.css', 'magazine/template.html', 'magazine/editorial.css', 'magazine/archive.css', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
     fs.mkdirSync(path.dirname(path.join(temp, file)), { recursive: true });
     fs.cpSync(path.join(root, file), path.join(temp, file), { recursive: true });
   }

@@ -35,6 +35,7 @@
 
   function redirectTo() {
     // Root is the existing allowed callback. The magazine forwards tokens to /list.
+    try { sessionStorage.setItem("mzsdz.auth.return", "/list"); } catch {}
     return window.location.origin + "/";
   }
 
@@ -1176,8 +1177,8 @@
     const { data } = await client.auth.getSession();
     await onAuthChange(data.session);
 
-    client.auth.onAuthStateChange(async (_event, next) => {
-      await onAuthChange(next);
+    client.auth.onAuthStateChange((_event, next) => {
+      setTimeout(() => { void onAuthChange(next); }, 0);
     });
   }
 

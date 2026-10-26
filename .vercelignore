@@ -2,6 +2,7 @@ raw/
 scripts/*
 !scripts/build-magazine.cjs
 !scripts/render-editorial.cjs
+!scripts/render-reader.cjs
 supabase/
 .cursor/
 .git/

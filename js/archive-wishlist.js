@@ -1,0 +1,8 @@
+(() => {
+  const api=window.MemberClient,grid=document.getElementById('grid');if(!api||!grid)return;
+  const originals=new Map((window.PLACES||[]).filter(p=>p.sid).map(p=>[String(p.sid),p]));
+  function enhance(){const state=api.getState();for(const card of grid.querySelectorAll('.place')){const link=card.querySelector('a.naver'),name=card.querySelector('h2')?.textContent?.trim();if(!link||!name)continue;let button=card.querySelector('.wishlist-toggle');if(!button){button=document.createElement('button');button.type='button';button.className='wishlist-toggle';card.append(button);}const sid=link.href.match(/\/entry\/place\/(\d+)/)?.[1]||null;button.dataset.placeSid=sid||'';button.dataset.placeName=name;button.dataset.mapUrl=link.href;const saved=state.wishlist.some(p=>sid?p.place_sid===sid:p.map_url===link.href&&p.name===name);const text=saved?'✓ 가고 싶은 맛집에 저장됨':'＋ 가고 싶은 맛집';if(button.textContent!==text)button.textContent=text;button.setAttribute('aria-pressed',String(!!saved));}}
+  const observer=new MutationObserver(enhance);observer.observe(grid,{childList:true,subtree:true});
+  grid.addEventListener('click',async event=>{const b=event.target.closest('.wishlist-toggle');if(!b)return;event.preventDefault();event.stopPropagation();b.disabled=true;const sid=b.dataset.placeSid;try{const saved=api.getState().wishlist.find(p=>sid?p.place_sid===sid:p.map_url===b.dataset.mapUrl&&p.name===b.dataset.placeName);if(saved)await api.removePlace(saved.id);else await api.addPlace({name:b.dataset.placeName,place_sid:sid||null,map_url:b.dataset.mapUrl,address:originals.get(sid)?.address||''});}catch(error){api.notify(error.message);}finally{b.disabled=false;enhance();}},true);
+  window.addEventListener('member-change',enhance);enhance();
+})();
