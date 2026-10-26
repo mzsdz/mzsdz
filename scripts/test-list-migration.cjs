@@ -4,10 +4,10 @@ const vm = require('node:vm');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
-const original = read('index.html');
+const original = require('node:child_process').execFileSync('git', ['show', '9dae28bd996ba26d41f39bef7851adea0f071347:index.html'], { cwd: root, encoding: 'utf8' });
 const listing = read('list.html');
 const inlineScripts = html => [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)]
-  .filter(match => !/\bsrc=/.test(match[1]) && !/ld\+json/.test(match[1])).map(match => match[2]);
+  .filter(match => !/\bsrc=/.test(match[1]) && !/ld\+json/.test(match[1])).map(match => match[2].replace(/\r\n/g, '\n'));
 assert.deepEqual(inlineScripts(listing), inlineScripts(original), 'List application logic must remain identical');
 for (const script of inlineScripts(listing)) new vm.Script(script);
 for (const match of listing.matchAll(/<script[^>]+src="([^"]+)"/g)) {

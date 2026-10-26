@@ -38,11 +38,11 @@ def main() -> None:
         category = str(p.get("category") or "").strip()
         stars = int(p.get("stars") or 0)
         star_label = {3: "★★★", 2: "★★", 1: "★"}.get(stars, "맛집 후보")
-        link = f"{SITE}/?q={html.escape(name, quote=False)}"
+        link = f"{SITE}/list?q={html.escape(name, quote=False)}"
         # Use + for query spaces in URL without full urllib for readability in RSS
         from urllib.parse import quote
 
-        link = f"{SITE}/?q={quote(name)}"
+        link = f"{SITE}/list?q={quote(name)}"
         desc_parts = [star_label]
         if category:
             desc_parts.append(category)

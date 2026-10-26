@@ -34,7 +34,8 @@
   }
 
   function redirectTo() {
-    return window.location.href.split("#")[0];
+    // Root is the existing allowed callback. The magazine forwards tokens to /list.
+    return window.location.origin + "/";
   }
 
   function displayName() {

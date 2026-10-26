@@ -4,7 +4,8 @@
   "description": "네이버 지도 공유 리스트를 별점·지역·종류 태그로 필터링하는 정적 사이트입니다.",
   "main": "places.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node scripts/build-magazine.cjs",
+    "test": "node scripts/test-list-migration.cjs && node scripts/test-magazine.cjs"
   },
   "repository": {
     "type": "git",
