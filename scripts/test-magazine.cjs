@@ -42,7 +42,7 @@ console.log('PASS: original prototype CSS preserved; article HTML, canonical URL
 // Exercise publication and withdrawal in an isolated fixture, without publishing sample claims.
 const temp = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'mzsdz-publish-'));
 try {
-  for (const file of ['scripts/build-magazine.cjs', 'magazine/template.html', 'content/articles.json', 'list.html', 'places.js', 'js', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
+  for (const file of ['scripts/build-magazine.cjs', 'magazine/template.html', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
     fs.mkdirSync(path.dirname(path.join(temp, file)), { recursive: true });
     fs.cpSync(path.join(root, file), path.join(temp, file), { recursive: true });
   }
