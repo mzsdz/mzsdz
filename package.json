@@ -5,7 +5,7 @@
   "main": "places.js",
   "scripts": {
     "build": "node scripts/build-magazine.cjs",
-    "test": "node scripts/test-list-migration.cjs && node scripts/test-magazine.cjs"
+    "test": "node scripts/test-list-migration.cjs && node scripts/test-magazine.cjs && node scripts/test-member-client.cjs"
   },
   "repository": {
     "type": "git",
