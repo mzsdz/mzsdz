@@ -1,6 +1,7 @@
 raw/
 scripts/*
 !scripts/build-magazine.cjs
+!scripts/render-editorial.cjs
 supabase/
 .cursor/
 .git/

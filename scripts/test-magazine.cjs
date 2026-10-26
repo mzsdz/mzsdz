@@ -18,8 +18,8 @@ for (const a of articles) {
   }
 }
 const home = read('index.html');
-const originalCSS = read('magazine/template.html').split('<style>')[1].split('</style>')[0];
-assert.ok(read('magazine/style.css').startsWith(originalCSS), 'Preserve the approved prototype CSS');
+assert.ok(home.includes('FEED YOUR'));
+assert.ok(read('magazine/style.css').includes('--lime:'));
 assert.ok(home.includes('href="/list"'));
 assert.ok(!home.includes('#/article/'));
 assert.ok(!read('dist/index.html').includes('프로토타입'));
@@ -38,11 +38,11 @@ assert.equal(redirect('?tag=맛의%20기준', ''), null);
 assert.equal(redirect('', '#/article/pyongyang'), null);
 assert.equal(redirect('?error_description=cancelled', ''), '/list?error_description=cancelled');
 assert.ok(read('js/place-social.js').includes('return window.location.origin + "/";'));
-console.log('PASS: original prototype CSS preserved; article HTML, canonical URLs, draft exclusion, deployment assets and auth callbacks.');
+console.log('PASS: editorial theme built; article HTML, canonical URLs, draft exclusion, deployment assets and auth callbacks.');
 // Exercise publication and withdrawal in an isolated fixture, without publishing sample claims.
 const temp = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'mzsdz-publish-'));
 try {
-  for (const file of ['scripts/build-magazine.cjs', 'magazine/template.html', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
+  for (const file of ['scripts/build-magazine.cjs', 'scripts/render-editorial.cjs', 'magazine/template.html', 'magazine/editorial.css', 'magazine/archive.css', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
     fs.mkdirSync(path.dirname(path.join(temp, file)), { recursive: true });
     fs.cpSync(path.join(root, file), path.join(temp, file), { recursive: true });
   }
