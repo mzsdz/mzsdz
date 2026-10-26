@@ -61,6 +61,8 @@
     const nav = event.target.closest('#navSaved, #navMagazine');
     if (nav && document.getElementById('stories')) {
       event.preventDefault(); savedOnly = nav.id === 'navSaved'; category = '전체'; updateURL(); render();
+      if (savedOnly) document.getElementById('storiesSection')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      else window.scrollTo({ top: 0, behavior: 'auto' });
     }
     if (event.target.closest('#copyArticle')) {
       try { await navigator.clipboard.writeText(location.origin + location.pathname); notify('기사 주소를 복사했습니다.'); }

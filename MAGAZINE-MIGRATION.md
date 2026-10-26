@@ -1,12 +1,12 @@
 # 맛집신동진 매거진 운영
 
-`/`는 승인된 HTML 시안의 CSS와 모바일 레이아웃을 유지한 매거진입니다.
+`/`는 블랙·라임·코발트의 새 에디토리얼 디자인을 적용한 매거진입니다.
 `/list`, `/list/`는 기존 검색·별점·지역·종류 필터·로그인·관리자 기능을 보존합니다.
 `/articles/<id>`에서 JavaScript 없이도 기사 본문을 읽을 수 있습니다.
 
 ## 기사 편집과 발행
 
-`content/articles.json`이 기사 원본이고 `magazine/template.html`은 승인 시안 보관본입니다.
+`content/articles.json`이 기사 원본이고 `magazine/template.html`은 초기 시안 보관본입니다. 새 디자인은 `magazine/editorial.css`, `magazine/archive.css`, `scripts/render-editorial.cjs`에서 관리합니다.
 `id`는 영문 소문자·숫자·하이픈의 고유 주소이며 발행 후 유지합니다.
 `title`, `desc`, `category`, `tags`, `color`, `short`, `paras`를 입력합니다.
 `paras`는 `[소제목, 본문]` 목록입니다. HTML은 허용하지 않습니다.
@@ -46,3 +46,7 @@
 - 격리된 테스트 데이터로 기사 발행·초안 전환·삭제의 SEO/피드 반영 확인.
 - 실제 사용자 OAuth 완료나 운영 DB의 관리자 저장·삭제는 실행하지 않았습니다.
   관리자 구현과 DOM ID를 보존했으며 운영 데이터에는 쓰기 검증을 하지 않았습니다.
+
+## 비주얼 소스
+
+냉면·카츠·스시 화보는 image_gen 기본 도구로 제작한 AI 비주얼입니다. 실제 매장 방문 사진이 아닙니다. 프로젝트의 assets/*-editorial.webp에 저장하며, 기사에서 출처 성격을 명시합니다.
