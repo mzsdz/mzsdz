@@ -14,7 +14,7 @@ for (const a of articles) {
   ids.add(a.id);
   if (!['draft', 'published'].includes(a.status)) throw Error('Invalid article status');
   if (!a.title || !a.desc || !Array.isArray(a.paras) || !a.paras.length || !Array.isArray(a.tags)) throw Error('Incomplete article');
-  if (a.status === 'published' && (!/^\d{4}-\d{2}-\d{2}$/.test(a.publishedAt || '') || !a.sources?.length)) throw Error('Published articles require date and verified source links');
+  if (a.status === 'published' && (!/^\d{4}-\d{2}-\d{2}$/.test(a.publishedAt || '') || (a.editorialType !== 'personal-essay' && !a.sources?.length))) throw Error('Published articles require date and verified source links; personal essays may use firsthand memories');
   for (const source of a.sources || []) if (!/^https:\/\//.test(source.url) || !source.title) throw Error('Invalid source');
 }
 require('./render-reader.cjs')({ root, origin, articles });

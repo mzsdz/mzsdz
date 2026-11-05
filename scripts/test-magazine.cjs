@@ -48,7 +48,7 @@ try {
     fs.mkdirSync(path.dirname(path.join(temp, file)), { recursive: true });
     fs.cpSync(path.join(root, file), path.join(temp, file), { recursive: true });
   }
-  const fixture = [{ ...articles[0], status: 'published', publishedAt: '2026-10-26', sources: [{ title: 'Test source', url: 'https://example.com/source' }] }];
+  const fixture = [{ ...articles.find(a => a.id === 'pyongyang'), status: 'published', publishedAt: '2026-10-26', sources: [{ title: 'Test source', url: 'https://example.com/source' }] }];
   const dataPath = path.join(temp, 'content/articles.json');
   const run = () => require('node:child_process').execFileSync(process.execPath, [path.join(temp, 'scripts/build-magazine.cjs')], { stdio: 'pipe' });
   fs.writeFileSync(dataPath, JSON.stringify(fixture)); run();
@@ -56,6 +56,9 @@ try {
   assert.ok(output('sitemap.xml').includes('/articles/pyongyang'));
   assert.ok(output('magazine.xml').includes('<item>'));
   assert.ok(output('articles/pyongyang/index.html').includes('application/ld+json'));
+  fixture[0].editorialType = 'personal-essay'; fixture[0].sources = []; fs.writeFileSync(dataPath, JSON.stringify(fixture)); run();
+  assert.ok(output('articles/pyongyang/index.html').includes('필자의 경험과 기억을 바탕으로 쓴 에세이입니다.'));
+  assert.ok(output('sitemap.xml').includes('/articles/pyongyang'));
   fixture[0].status = 'draft'; fs.writeFileSync(dataPath, JSON.stringify(fixture)); run();
   assert.ok(!output('sitemap.xml').includes('/articles/pyongyang'));
   assert.ok(output('articles/pyongyang/index.html').includes('noindex,follow'));
