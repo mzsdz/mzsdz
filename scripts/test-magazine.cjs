@@ -44,7 +44,7 @@ console.log('PASS: editorial theme built; article HTML, canonical URLs, draft ex
 // Exercise publication and withdrawal in an isolated fixture, without publishing sample claims.
 const temp = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'mzsdz-publish-'));
 try {
-  for (const file of ['scripts/build-magazine.cjs', 'scripts/render-editorial.cjs', 'scripts/render-reader.cjs', 'magazine/reader.css', 'magazine/member.css', 'magazine/template.html', 'magazine/editorial.css', 'magazine/archive.css', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
+  for (const file of ['scripts/build-magazine.cjs', 'scripts/render-editorial.cjs', 'scripts/render-reader.cjs', 'magazine/reader.css', 'magazine/member.css', 'magazine/sister.css', 'magazine/template.html', 'magazine/editorial.css', 'magazine/archive.css', 'content/articles.json', 'list.html', 'places.js', 'js', 'assets', 'favicon.svg', 'robots.txt', 'rss.xml', 'naver621a83f766e979127bfc0e9ce86265b8.html']) {
     fs.mkdirSync(path.dirname(path.join(temp, file)), { recursive: true });
     fs.cpSync(path.join(root, file), path.join(temp, file), { recursive: true });
   }
