@@ -1,5 +1,6 @@
 raw/
 scripts/*
+!scripts/build-portfolio.cjs
 !scripts/build-magazine.cjs
 !scripts/render-editorial.cjs
 !scripts/render-reader.cjs
