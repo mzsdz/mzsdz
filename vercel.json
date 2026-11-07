@@ -1,26 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "/list",
-      "destination": "/list.html"
-    },
-    {
-      "source": "/list/",
-      "destination": "/list.html"
-    },
-    {
-      "source": "/me",
-      "destination": "/me.html"
-    },
-    {
-      "source": "/me/",
-      "destination": "/me.html"
-    },
-    {
-      "source": "/auth/callback",
-      "destination": "/auth-callback.html"
-    }
-  ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist"
 }

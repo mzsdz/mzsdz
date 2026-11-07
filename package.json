@@ -1,11 +1,10 @@
 {
   "name": "primary",
   "version": "1.0.0",
-  "description": "네이버 지도 공유 리스트를 별점·지역·종류 태그로 필터링하는 정적 사이트입니다.",
+  "description": "MZSDZ 앱 포트폴리오",
   "main": "places.js",
   "scripts": {
-    "build": "node scripts/build-magazine.cjs",
-    "test": "node scripts/test-list-migration.cjs && node scripts/test-magazine.cjs && node scripts/test-member-client.cjs"
+    "build": "node scripts/build-portfolio.cjs"
   },
   "repository": {
     "type": "git",

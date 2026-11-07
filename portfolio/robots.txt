@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.mzsdz.com/sitemap.xml

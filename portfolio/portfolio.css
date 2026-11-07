@@ -1,0 +1,81 @@
+:root {
+  color-scheme: light;
+  --paper: #f5f4ee;
+  --ink: #20201e;
+  --quiet: #55554d;
+  --line: #cdccc2;
+  --lime: #ddf56c;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.6 system-ui, -apple-system, "Malgun Gothic", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 3px solid #5b681c; outline-offset: 5px; }
+.wrap { width: min(1120px, calc(100% - 72px)); margin-inline: auto; }
+.skip { position: fixed; top: -100px; left: 12px; padding: 10px; background: white; z-index: 1; }
+.skip:focus { top: 12px; }
+.masthead, .footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.masthead { min-height: 77px; border-bottom: 1px solid var(--line); }
+.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 850; letter-spacing: -.04em; }
+.mark { width: 24px; height: 24px; background: url('/portfolio-mark.svg') center / contain no-repeat; }
+.index-link { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 650; padding-block: 8px; }
+.index-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.intro { padding-block: clamp(68px, 10vw, 128px) clamp(58px, 8vw, 99px); }
+.label, .section-line > span, .cover-label, .number, .footer {
+  font: 650 11px/1.4 ui-monospace, Consolas, monospace;
+  letter-spacing: .09em;
+}
+.label { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; }
+.dot { width: 8px; height: 8px; background: #687620; border-radius: 50%; }
+h1 { font-size: clamp(52px, 10vw, 120px); letter-spacing: -.095em; line-height: 1.05; margin: 0 0 24px; font-weight: 900; }
+h1 span { color: #687620; }
+.intro-copy { margin: 0; font-size: clamp(14px, 2vw, 17px); color: var(--quiet); line-height: 1.9; word-break: keep-all; }
+.section-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ink); padding: 13px 0 20px; }
+.section-line h2 { margin: 0; font-size: 15px; font-weight: 750; }
+.section-line > span { color: var(--quiet); }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 22px; }
+.project { display: block; height: 100%; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fffefa; }
+.cover { position: relative; overflow: hidden; display: grid; place-items: center; aspect-ratio: 1.9; min-height: 158px; }
+.cover-label, .number { position: absolute; z-index: 1; }
+.cover-label { top: 17px; left: 17px; }
+.number { right: 17px; bottom: 17px; }
+.wiki { background: #201d22; color: #f8f1e9; }
+.fan { position: relative; width: 132px; height: 110px; transform: rotate(-8deg); }
+.fan i { position: absolute; width: 62px; height: 91px; left: 34px; bottom: 7px; border-radius: 7px; transform-origin: bottom center; border: 3px solid #201d22; }
+.fan i:nth-child(1) { background: #564879; transform: rotate(-39deg); }
+.fan i:nth-child(2) { background: #a55b93; transform: rotate(-21deg); }
+.fan i:nth-child(3) { background: #e5756a; transform: rotate(-3deg); }
+.fan i:nth-child(4) { background: #fa995d; transform: rotate(17deg); }
+.world { background: #e3ded1; color: #262921; }
+.world-type { font: 700 clamp(31px, 6vw, 64px)/.84 Georgia, serif; letter-spacing: -.075em; padding: 18px 26px; border: 1px solid #9d9b87; }
+.people { background: #542a50; color: #fff2fa; }
+.portrait { display: flex; align-items: center; justify-content: center; }
+.portrait i { width: 62px; height: 88px; background: #ae78a5; border: 1px solid #e2aed4; border-radius: 30px 30px 7px 7px; transform: rotate(-17deg); }
+.portrait i:nth-child(2) { background: #f3c4d8; transform: translateY(-12px); z-index: 1; }
+.portrait i:nth-child(3) { background: #98628e; transform: rotate(17deg); }
+.style { background: #ddf56c; color: #252a18; }
+.style-type { font: 850 clamp(38px, 6vw, 68px)/.76 system-ui, sans-serif; letter-spacing: -.09em; }
+.style-type em { font: italic 500 .85em/.9 Georgia, serif; }
+.details { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 19px 20px 22px; }
+.details h3 { font-size: 20px; line-height: 1.3; letter-spacing: -.035em; margin: 0 0 7px; }
+.details p { font-size: 13px; color: var(--quiet); margin: 0; word-break: keep-all; }
+.arrow { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; }
+.project:hover .arrow, .project:focus-visible .arrow { background: var(--lime); border-color: var(--lime); }
+.footer { padding-block: 24px 36px; margin-top: 58px; border-top: 1px solid var(--line); color: var(--quiet); }
+@media (max-width: 620px) {
+  .wrap { width: calc(100% - 36px); }
+  .masthead { min-height: 63px; }
+  .grid { grid-template-columns: 1fr; gap: 22px; }
+  .cover { aspect-ratio: 2; }
+  .details { padding: 16px; }
+  .details h3 { font-size: 18px; }
+  .footer { margin-top: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
