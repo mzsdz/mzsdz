@@ -4,7 +4,8 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const source = path.join(root, 'portfolio');
 const output = path.join(root, 'dist');
-const files = ['index.html', '404.html', 'portfolio.css', 'portfolio-mark.svg', 'robots.txt', 'sitemap.xml'];
+const files = ['index.html', '404.html', 'portfolio.css', 'portfolio-mark.svg', 'robots.txt', 'sitemap.xml',
+  'app-wiki.webp', 'app-world.webp', 'app-people.webp', 'app-style.webp'];
 
 for (const file of files) {
   fs.accessSync(path.join(source, file), fs.constants.R_OK);
