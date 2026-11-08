@@ -71,3 +71,16 @@ h1 span { color: #687620; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+.app-story { max-width: 800px; margin: 0 auto; }
+.story-header { padding: clamp(45px, 8vw, 94px) 0 26px; }
+.story-header .label { color: #5b681c; margin-bottom: 14px; }
+.story-header h1 { font-size: clamp(32px, 7vw, 76px); letter-spacing: -.065em; line-height: 1.15; margin-bottom: 15px; overflow-wrap: anywhere; }
+.story-dek { margin: 0; font-size: clamp(16px, 3vw, 22px); color: var(--quiet); word-break: keep-all; }
+.story-figure { margin: 0; }
+.story-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
+.story-figure figcaption { color: var(--quiet); font-size: 12px; margin-top: 8px; }
+.story-copy { max-width: 640px; margin: 32px auto 0; font-size: clamp(16px, 2vw, 18px); line-height: 1.9; word-break: keep-all; }
+.story-copy p { margin: 0 0 18px; }
+.story-cta { display: inline-flex; align-items: center; gap: 14px; background: var(--lime); border-radius: 8px; font-size: 15px; font-weight: 750; padding: 12px 18px; margin-top: 9px; }
+.story-cta:hover { text-decoration: underline; text-underline-offset: 4px; }
