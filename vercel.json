@@ -1,4 +1,11 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/projects/:path*",
+      "destination": "/#projects",
+      "permanent": true
+    }
+  ]
 }
