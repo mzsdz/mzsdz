@@ -1,8 +1,7 @@
 {
-  "name": "primary",
+  "name": "mzsdz-portfolio",
   "version": "1.0.0",
   "description": "MZSDZ 앱 포트폴리오",
-  "main": "places.js",
   "scripts": {
     "build": "node scripts/build-portfolio.cjs"
   },
@@ -17,7 +16,5 @@
     "url": "https://github.com/mzsdz/mzsdz/issues"
   },
   "homepage": "https://github.com/mzsdz/mzsdz#readme",
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1"
-  }
+  "dependencies": {}
 }
